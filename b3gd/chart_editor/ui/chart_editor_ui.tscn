@@ -1,0 +1,911 @@
+[gd_scene format=3 uid="uid://bok4o5o3bpn34"]
+
+[ext_resource type="Theme" uid="uid://djr1hg1crhdfd" path="res://b3gd/chart_editor/theme.tres" id="1_7yymv"]
+[ext_resource type="Script" uid="uid://cqdqwytteipxn" path="res://b3gd/chart_editor/ui/event_editing/event_container.gd" id="2_1jq7l"]
+[ext_resource type="PackedScene" uid="uid://bsssdbp2x7c5k" path="res://b3gd/chart_editor/ui/event_editing/event.tscn" id="3_ea26n"]
+[ext_resource type="Script" uid="uid://cn74d3233l48t" path="res://b3gd/chart_editor/ui/event_editing/event_timeline.gd" id="4_qsagg"]
+[ext_resource type="Script" uid="uid://d05nfs1bnke2y" path="res://b3gd/chart_editor/ui/event_editing/event_maker.gd" id="5_w761s"]
+[ext_resource type="Script" uid="uid://cddem6pgulynf" path="res://b3gd/chart_editor/ui/class_selector_box.gd" id="6_30g18"]
+[ext_resource type="Texture2D" uid="uid://cka5y22a126yx" path="res://b3gd/chart_editor/ui/event_editing/event_line.png" id="7_ja7vl"]
+[ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="8_fj1tq"]
+[ext_resource type="Script" uid="uid://bapfqr3m4v28h" path="res://b3gd/chart_editor/ui/sidebar/icons/time_bar.gd" id="9_6qroi"]
+[ext_resource type="Script" uid="uid://bsme726k4o1ru" path="res://b3gd/chart_editor/ui/value_input/no_focus_line_edit.gd" id="10_k1i7g"]
+[ext_resource type="Script" uid="uid://krqcacc7sq0o" path="res://b3gd/chart_editor/ui/value_input/spin_slider.gd" id="11_fapty"]
+[ext_resource type="Texture2D" uid="uid://dhh476fdfywca" path="res://b3gd/chart_editor/note_unknown.png" id="12_yyyxq"]
+[ext_resource type="Script" uid="uid://b585c60ln25gs" path="res://b3gd/chart_editor/ui/editor_pitch_scale.gd" id="13_wak4q"]
+[ext_resource type="Script" uid="uid://470bmkuhss05" path="res://b3gd/chart_editor/ui/mute_inst.gd" id="14_77s4c"]
+[ext_resource type="Script" uid="uid://bhvkv73cux2u0" path="res://b3gd/chart_editor/event_panel.gd" id="15_62kli"]
+[ext_resource type="Script" uid="uid://c15k5evwc05ek" path="res://b3gd/chart_editor/ui/event_field_container.gd" id="16_hh114"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkt7h"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="FontVariation" id="FontVariation_akx1q"]
+variation_embolden = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_asiwl"]
+font = SubResource("FontVariation_akx1q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp8ci"]
+content_margin_left = 3.0
+content_margin_top = 1.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+texture = ExtResource("8_fj1tq")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1koxw"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(35, 83, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ap54"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y80lg"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="FontVariation" id="FontVariation_yao2k"]
+spacing_top = -2
+spacing_bottom = -2
+
+[sub_resource type="LabelSettings" id="LabelSettings_o3yqt"]
+font = SubResource("FontVariation_yao2k")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_8stnh"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.5647059)
+
+[sub_resource type="FontVariation" id="FontVariation_aqojd"]
+variation_embolden = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_piitt"]
+font = SubResource("FontVariation_aqojd")
+
+[sub_resource type="InputEventKey" id="InputEventKey_dyjyi"]
+device = -1
+command_or_control_autoremap = true
+pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_xr37n"]
+events = [SubResource("InputEventKey_dyjyi")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tpte"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="InputEventKey" id="InputEventKey_xr37n"]
+device = -1
+command_or_control_autoremap = true
+pressed = true
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_cle1c"]
+events = [SubResource("InputEventKey_xr37n")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r27ga"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(1, 63, 9, 9)
+
+[sub_resource type="InputEventKey" id="InputEventKey_cle1c"]
+device = -1
+command_or_control_autoremap = true
+shift_pressed = true
+pressed = true
+keycode = 90
+unicode = 90
+
+[sub_resource type="InputEventKey" id="InputEventKey_yecj3"]
+device = -1
+command_or_control_autoremap = true
+pressed = true
+keycode = 89
+unicode = 121
+
+[sub_resource type="InputEventKey" id="InputEventKey_xayn1"]
+device = -1
+alt_pressed = true
+ctrl_pressed = true
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_kkbay"]
+events = [SubResource("InputEventKey_cle1c"), SubResource("InputEventKey_yecj3"), SubResource("InputEventKey_xayn1")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xba6y"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(1, 71, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxk88"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xayn1"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+texture = ExtResource("8_fj1tq")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(96, 0, 16, 16)
+
+[sub_resource type="FontVariation" id="FontVariation_csxqf"]
+variation_embolden = 1.0
+spacing_top = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_4huly"]
+font = SubResource("FontVariation_csxqf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhun1"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52wg0"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48w3h"]
+atlas = ExtResource("8_fj1tq")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xba6y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvkre"]
+font_color = Color(1, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" unique_id=1207813288]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="UIContainer" type="HBoxContainer" parent="." unique_id=1378123441]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7yymv")
+
+[node name="WorkAreaScroll" type="ScrollContainer" parent="UIContainer" unique_id=486621149]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+scroll_hint_mode = 1
+
+[node name="Container" type="HBoxContainer" parent="UIContainer/WorkAreaScroll" unique_id=138080715]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="EventContainer" type="Control" parent="UIContainer/WorkAreaScroll/Container" unique_id=1349188022 node_paths=PackedStringArray("event_list")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("2_1jq7l")
+event_scene = ExtResource("3_ea26n")
+event_list = NodePath("Timeline/Events")
+
+[node name="Timeline" type="Control" parent="UIContainer/WorkAreaScroll/Container/EventContainer" unique_id=605001605]
+anchors_preset = 0
+offset_left = -39.0
+offset_top = 128.0
+offset_right = -39.0
+offset_bottom = 128.0
+script = ExtResource("4_qsagg")
+
+[node name="Events" type="Node2D" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline" unique_id=1432781571]
+
+[node name="EventMaker" type="Node2D" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline" unique_id=1013244921]
+unique_name_in_owner = true
+script = ExtResource("5_w761s")
+
+[node name="ClassBox" type="OptionButton" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" unique_id=2080191140]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -18.0
+offset_bottom = 18.0
+grow_vertical = 2
+size_flags_vertical = 0
+focus_mode = 0
+theme = ExtResource("1_7yymv")
+fit_to_longest_item = false
+search_bar_enabled = true
+search_bar_min_item_count = 9
+script = ExtResource("6_30g18")
+script_path = "res://b3gd/chart_data/note.gd"
+
+[node name="Arrow" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" unique_id=1985064699]
+anchors_preset = -1
+anchor_right = 0.99700004
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 39.0
+offset_bottom = 3.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("7_ja7vl")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="StrumLineContainer" type="HBoxContainer" parent="UIContainer/WorkAreaScroll/Container" unique_id=545850274]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Scrubber" type="VScrollBar" parent="UIContainer" unique_id=1548452833]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="FieldScroll" type="ScrollContainer" parent="UIContainer" unique_id=1377599752]
+layout_mode = 2
+focus_behavior_recursive = 2
+horizontal_scroll_mode = 0
+
+[node name="Container" type="VBoxContainer" parent="UIContainer/FieldScroll" unique_id=226811258]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="ChartInfoPanel" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=247241107]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel" unique_id=1917482177]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBox" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin" unique_id=1820234870]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1559987340]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header" unique_id=235205154]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wkt7h")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header" unique_id=43372625]
+layout_mode = 2
+text = "Chart Info"
+label_settings = SubResource("LabelSettings_asiwl")
+
+[node name="PanelContainer" type="PanelContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header" unique_id=1902985513]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/panel = SubResource("StyleBoxTexture_dp8ci")
+
+[node name="TimeBar" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer" unique_id=487894124]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("9_6qroi")
+
+[node name="TimeFormatBox" type="OptionButton" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=2097590553]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/arrow = SubResource("AtlasTexture_1koxw")
+selected = 0
+fit_to_longest_item = false
+allow_reselect = true
+item_count = 2
+popup/item_0/icon = SubResource("AtlasTexture_1ap54")
+popup/item_0/id = 0
+popup/item_1/icon = SubResource("AtlasTexture_y80lg")
+popup/item_1/id = 1
+
+[node name="CurrentTimeLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1627467009]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "1:28.00"
+label_settings = SubResource("LabelSettings_o3yqt")
+
+[node name="TotalTimeLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=795274847]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "/ 3:00.00"
+label_settings = SubResource("LabelSettings_8stnh")
+horizontal_alignment = 2
+
+[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1579187594]
+layout_mode = 2
+
+[node name="FileGroupLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=2007275514]
+layout_mode = 2
+text = "File"
+label_settings = SubResource("LabelSettings_piitt")
+horizontal_alignment = 1
+
+[node name="FileButtons" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1240845874]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=2138865879]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_xr37n")
+text = "Save"
+icon = SubResource("AtlasTexture_4tpte")
+
+[node name="UndoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1667046611]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_cle1c")
+text = "Undo"
+icon = SubResource("AtlasTexture_r27ga")
+
+[node name="RedoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1341042153]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_kkbay")
+text = "Redo"
+icon = SubResource("AtlasTexture_xba6y")
+
+[node name="HBoxContainer" type="GridContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=777782342]
+layout_mode = 2
+columns = 2
+
+[node name="SongNameLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1562207007]
+layout_mode = 2
+text = "Song Name:"
+horizontal_alignment = 2
+
+[node name="SongName" type="Control" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=247535462]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("10_k1i7g")
+metadata/_custom_type_script = "uid://bsme726k4o1ru"
+
+[node name="ScrollSpeedLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1467052819]
+layout_mode = 2
+text = "Scroll Speed: "
+
+[node name="ScrollSpeed" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1332384026]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+min_value = 1.0
+max_value = 10.0
+step = 0.5
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
+allow_greater = true
+allow_lesser = false
+script = ExtResource("11_fapty")
+show_range = true
+suffix = " x"
+metadata/_custom_type_script = "uid://krqcacc7sq0o"
+
+[node name="ChartInfoPanel2" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=1305931804]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2" unique_id=1036352485]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBox" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin" unique_id=1574012326]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1675264666]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/Header" unique_id=1486874149]
+layout_mode = 2
+texture = SubResource("AtlasTexture_oxk88")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/Header" unique_id=1527823580]
+layout_mode = 2
+text = "Editor Options"
+label_settings = SubResource("LabelSettings_asiwl")
+
+[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1687273222]
+layout_mode = 2
+
+[node name="InputGroupLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1854837320]
+layout_mode = 2
+text = "Input"
+label_settings = SubResource("LabelSettings_piitt")
+horizontal_alignment = 1
+
+[node name="EditorFieldContainer" type="GridContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=489970749]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 2
+
+[node name="NoteClassLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1547029802]
+layout_mode = 2
+text = "Note Class:"
+
+[node name="NoteClass" type="OptionButton" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1824406232]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+search_bar_enabled = true
+search_bar_min_item_count = 8
+script = ExtResource("6_30g18")
+default_icon = ExtResource("12_yyyxq")
+script_path = "res://b3gd/chart_data/note.gd"
+
+[node name="SnapLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=584154372]
+layout_mode = 2
+text = "Snap:"
+horizontal_alignment = 2
+
+[node name="Snap" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1408204639]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+min_value = 1.0
+max_value = 6.0
+step = 1.0
+page = 1.0
+value = 5.0
+exp_edit = false
+rounded = false
+allow_greater = true
+allow_lesser = false
+script = ExtResource("11_fapty")
+prefix = "4 / "
+show_range = true
+force_default_value = true
+default_value = 32.0
+metadata/_custom_type_script = "uid://krqcacc7sq0o"
+
+[node name="FileSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=139084770]
+layout_mode = 2
+
+[node name="PlaybackGroupLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=455287605]
+layout_mode = 2
+text = "Playback"
+label_settings = SubResource("LabelSettings_piitt")
+horizontal_alignment = 1
+
+[node name="PlaybackFieldContainer" type="GridContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1177214077]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 2
+
+[node name="PitchScaleLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=529360905]
+layout_mode = 2
+text = "Pitch:"
+horizontal_alignment = 2
+
+[node name="PitchScale" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=75759367]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 32)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+min_value = 0.1
+max_value = 8.0
+step = 0.1
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
+allow_greater = true
+allow_lesser = false
+script = ExtResource("13_wak4q")
+show_range = true
+metadata/_custom_type_script = "uid://krqcacc7sq0o"
+
+[node name="ZoomLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1545481226]
+layout_mode = 2
+text = "Zoom:"
+horizontal_alignment = 2
+
+[node name="Zoom" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1802225076]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(130, 32)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+min_value = 0.2
+max_value = 8.0
+step = 0.05
+page = 0.0
+value = 8.0
+exp_edit = false
+rounded = false
+allow_greater = true
+allow_lesser = false
+script = ExtResource("11_fapty")
+show_range = true
+suffix = " x"
+metadata/_custom_type_script = "uid://krqcacc7sq0o"
+
+[node name="HitSoundLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1777660297]
+layout_mode = 2
+text = "Hit Sound:"
+
+[node name="HitSound" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=876066071]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+button_pressed = true
+alignment = 1
+
+[node name="MuteInstLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=793198647]
+layout_mode = 2
+text = "Mute Inst:"
+
+[node name="MuteInst" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=2110000863]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+alignment = 1
+script = ExtResource("14_77s4c")
+
+[node name="EventPanel" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=2092374413]
+visible = false
+layout_mode = 2
+script = ExtResource("15_62kli")
+
+[node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/EventPanel" unique_id=734399009]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="EventContainer" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin" unique_id=431886376]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=694557060]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="EventID" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1899375433]
+unique_name_in_owner = true
+editor_description = "Its a button so it looks like that don't worry its not like a  functionality thing"
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/disabled = SubResource("StyleBoxTexture_xayn1")
+disabled = true
+text = "0"
+
+[node name="EventHeader" type="Label" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1116334053]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Event"
+label_settings = SubResource("LabelSettings_4huly")
+clip_text = true
+
+[node name="Button2" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1455645227]
+layout_mode = 2
+size_flags_horizontal = 8
+icon = SubResource("AtlasTexture_yhun1")
+
+[node name="Button3" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=2102690130]
+layout_mode = 2
+size_flags_horizontal = 8
+disabled = true
+icon = SubResource("AtlasTexture_52wg0")
+
+[node name="Button" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1064398345]
+layout_mode = 2
+size_flags_horizontal = 8
+icon = SubResource("AtlasTexture_48w3h")
+
+[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=382725732]
+layout_mode = 2
+
+[node name="EventFieldContainer" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=1634332450]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("16_hh114")
+header_label_settings = SubResource("LabelSettings_asiwl")
+property_label_settings = SubResource("LabelSettings_xba6y")
+error_label_settings = SubResource("LabelSettings_qvkre")
+
+[connection signal="update_event_data_view" from="UIContainer/WorkAreaScroll/Container/EventContainer" to="UIContainer/FieldScroll/Container/EventPanel" method="update_event_data_view"]
+[connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" method="_on_class_box_item_selected"]
+[connection signal="value_changed" from="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" to="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" method="_on_value_changed"]
+[connection signal="pressed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header/Button" to="UIContainer/FieldScroll/Container/EventPanel" method="remove_event"]
+[connection signal="value_changed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/EventFieldContainer" to="UIContainer/FieldScroll/Container/EventPanel" method="value_changed"]
