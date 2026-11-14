@@ -17,6 +17,8 @@ var zoom = 0
 var song_progress_seconds = 0
 
 func _ready() -> void:
+	print( get_tree().get_first_node_in_group("ChartEditorUI"))
+	
 	replace_strum_lines()
 	snap_slider.value_changed.connect(snap_changed)
 

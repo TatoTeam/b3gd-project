@@ -166,7 +166,7 @@ region = Rect2(32, 48, 16, 16)
 [sub_resource type="LabelSettings" id="LabelSettings_qvkre"]
 font_color = Color(1, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" unique_id=1207813288]
+[node name="EditorUI" type="MarginContainer" unique_id=1207813288 groups=["ChartEditorUI"]]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0

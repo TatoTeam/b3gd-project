@@ -65,7 +65,7 @@ script = ExtResource("4_45i1f")
 stream = ExtResource("5_wg2wr")
 volume_db = -6.0
 
-[node name="ChartEditorUI" parent="." unique_id=950676380 groups=["ChartEditorUI"] instance=ExtResource("7_cqpfm")]
+[node name="ChartEditorUI" parent="." unique_id=950676380 instance=ExtResource("7_cqpfm")]
 
 [connection signal="events_changed" from="ActionPlayer" to="DataEditors/StrumLineEditor" method="_on_action_player_events_changed"]
 [connection signal="events_changed" from="ActionPlayer" to="DataEditors/EventEditor" method="_on_action_player_events_changed"]
