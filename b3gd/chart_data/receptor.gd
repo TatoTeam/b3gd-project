@@ -4,10 +4,10 @@ class_name Receptor extends Resource
 
 class ReceptorInput extends RefCounted:
 	## The time the input occured. Used for rendering
-	@export var input_time: float
+	@export var input_time: float = -1000.0
 	## If drawing this press should be ignored. For when an input is released
-	@export var ignore_draw: bool
+	@export var ignore_draw: bool = true
 	## This is "true" when the input didnt hit any notes.
-	@export var dummy: bool
+	@export var dummy: bool = false
 
 var last_press:ReceptorInput

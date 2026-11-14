@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b507lgcilwgxq"]
+
+[ext_resource type="Script" uid="uid://cc12t4u5iccp8" path="res://b3gd/chart_editor/_old/event_editing/event_box.gd" id="1_ff074"]
+[ext_resource type="Texture2D" uid="uid://cka5y22a126yx" path="res://b3gd/chart_editor/ui/event_editing/event_line.png" id="2_nbsgv"]
+
+[sub_resource type="FontVariation" id="FontVariation_lcodg"]
+spacing_top = -4
+spacing_bottom = -4
+
+[node name="EventBox" type="Control" unique_id=2124450847]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 40.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_ff074")
+
+[node name="Button" type="Button" parent="." unique_id=1545249279]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_right = 147.02002
+grow_vertical = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_lcodg")
+toggle_mode = true
+autowrap_mode = 1
+
+[node name="Arrow" type="NinePatchRect" parent="." unique_id=1878804386]
+modulate = Color(1, 1, 1, 0.53333336)
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99700004
+anchor_bottom = 1.0
+offset_left = 147.0
+offset_top = 11.0
+offset_right = -0.124053955
+offset_bottom = -11.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("2_nbsgv")
+patch_margin_left = 4
+patch_margin_right = 17
+axis_stretch_horizontal = 1

@@ -8,7 +8,7 @@ var bpm_events: Array[EventBPMChange] = []
 
 var paused = false
 
-var song_progress_seconds = -5: # This is the amount you need to put in a countdown script
+var song_progress_seconds = 0:
 	set(value):
 		var previous_beat = song_progress_beats
 		song_progress_seconds = value
@@ -97,6 +97,7 @@ func _process(delta: float) -> void:
 	
 	var mix_adj = (AudioServer.get_time_since_last_mix() - output_latency)
 	var true_prog = get_playback_position() + (mix_adj * pitch_scale)
+	
 	# if true_prog stutters (which it can do) it will be smoothed out so it still feels normal
 	song_progress_seconds = max(true_prog, song_progress_seconds + (delta * 0.9 * pitch_scale))
 	if force_sync:

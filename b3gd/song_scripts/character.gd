@@ -43,18 +43,23 @@ func _ready() -> void:
 	var note_manager = get_tree().get_first_node_in_group("NoteManager")
 	note_manager.note_press.connect(note_press)
 	note_manager.note_miss.connect(note_miss)
-	thing_to_animate.animation_changed.connect(animation_changed)
+	if thing_to_animate is AnimationPlayer:
+		thing_to_animate.current_animation_changed.connect(animation_player_animation_changed)
+	else:
+		thing_to_animate.animation_changed.connect(animated_sprite_animation_changed)
 
 func _process(delta: float) -> void:
 	if anim_changed != null:
 		anim_changed = null
 	if time_since_last_sing > sing_length and thing_to_animate.speed_scale != playback_speed:
 		thing_to_animate.speed_scale = playback_speed
-
+	
 	time_since_last_sing += delta
 
 func beat_hit(beat: int) -> void:
 	if time_since_last_sing < sing_length or ignore_idle:
+		return
+	if current_anim.type == AnimationType.ANIMATION_EXTERNAL:
 		return
 	if thing_to_animate.is_playing():
 		if current_anim.type == AnimationType.ANIMATION_IDLE:
@@ -65,30 +70,30 @@ func beat_hit(beat: int) -> void:
 	if beat % idle_divisor != 0:
 		return
 	idle_anim_idx = (idle_anim_idx + 1) % idle_anim_order.size()
-	thing_to_animate.stop()
+	play_animation(AnimationType.ANIMATION_NONE)
 	play_animation(AnimationType.ANIMATION_IDLE, idle_anim_idx, added_suffix)
 	current_anim.type = AnimationType.ANIMATION_IDLE
 	current_anim.id = idle_anim_idx
 
-func note_press(strum_line_id: int, receptor_id: int, note_data, _hold_delta: float) -> void:
+func note_press(strum_line_id: int, receptor_id: int, note: Note, _hold_delta: float) -> void:
 	if strumline != strum_line_id or ignore_sing:
 		return
-	if note_data == null or note_data is NoteIgnore:
+	if note == null or note is NoteIgnore:
 		return
-	time_since_last_sing = sing_length if note_data.hold_pressed else 0.0
-
+	time_since_last_sing = sing_length if note.hold_pressed else 0.0
+	
 	var suffix = added_suffix
-	if note_data is NoteSuffix:
-		suffix = note_data.suffix
-
-	if current_anim.type == AnimationType.ANIMATION_SING and note_data.hold_pressed:
+	if note is NoteSuffix:
+		suffix = note.suffix
+	
+	if current_anim.type == AnimationType.ANIMATION_SING and note.hold_pressed:
 		thing_to_animate.speed_scale = hold_speed * playback_speed
 	else:
 		play_animation(AnimationType.ANIMATION_NONE)
 		play_animation(AnimationType.ANIMATION_SING, receptor_id, suffix)
 
-func note_miss(strum_line_id: int, receptor_id: int) -> void:
-	if strumline != strum_line_id or ignore_miss:
+func note_miss(strum_line_id: int, receptor_id: int, _note: Note) -> void:
+	if strumline != strum_line_id or ignore_miss: 
 		return
 	if miss_sound != null:
 		miss_sound.play()
@@ -101,19 +106,24 @@ func play_animation(type: AnimationType, id:int = 0, suffix: String = ""):
 	var animation_name = ""
 	match type:
 		AnimationType.ANIMATION_NONE:
-			thing_to_animate.stop()
+			if thing_to_animate is AnimationPlayer:
+				thing_to_animate.stop(true)
+			else:
+				thing_to_animate.stop()
 		AnimationType.ANIMATION_IDLE:
 			animation_name = idle_anim_order[id]
 		AnimationType.ANIMATION_SING:
+			id = id % note_directions.size()
 			animation_name = sing_prefix + note_directions[id]
 		AnimationType.ANIMATION_MISS:
+			id = id % note_directions.size()
 			animation_name = miss_prefix + note_directions[id]
 		AnimationType.ANIMATION_EXTERNAL:
 			printerr("Trying to play an external animation here kinda just does nothing")
-
+	
 	if animation_name == "":
 		return
-
+	
 	var suffix_valid = true
 	if thing_to_animate is AnimatedSprite2D:
 		suffix_valid = thing_to_animate.sprite_frames.get_animation_names().has(animation_name + suffix)
@@ -125,6 +135,10 @@ func play_animation(type: AnimationType, id:int = 0, suffix: String = ""):
 	else:
 		thing_to_animate.play(animation_name)
 
-func animation_changed():
+func animated_sprite_animation_changed():
 	if anim_changed == null:
+		current_anim.type = AnimationType.ANIMATION_EXTERNAL
+
+func animation_player_animation_changed(anim_name):
+	if anim_changed == null and anim_name != "":
 		current_anim.type = AnimationType.ANIMATION_EXTERNAL

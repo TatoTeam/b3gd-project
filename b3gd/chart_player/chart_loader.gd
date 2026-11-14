@@ -29,6 +29,9 @@ func load_tracks():
 	var start_index = tracks.size() - 1
 	tracks.append_array(chart.tracks.vocal_layers)
 	vocal_layers = []
+	if chart.tracks.vocal_layers.size() == 0:
+		for i in chart.strum_lines.size():
+			vocal_layers.append(1)
 	for i in chart.tracks.vocal_layers.size():
 		vocal_layers.append(i + start_index)
 	

@@ -5,6 +5,7 @@ class_name EventTweenCustom extends EventTween
 @export var tween_node_path: String
 @export var tween_property: String
 @export var tween_value: Variant
+@export var tween_multiply: Variant
 
 func init():
 	var tween_node = parent.get_tree().current_scene.get_node(tween_node_path)
@@ -16,3 +17,4 @@ func init():
 	to_tween.node = tween_node
 	to_tween.property = tween_property
 	to_tween.value = tween_value
+	multiply = tween_multiply

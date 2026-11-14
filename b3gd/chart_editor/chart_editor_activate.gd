@@ -22,7 +22,7 @@ func erase_editor() -> void:
 	$UI.process_mode = Node.PROCESS_MODE_INHERIT
 	$UI.visible = true
 	
-	if $SongAudioPlayer.paused: 
+	if $SongAudioPlayer.paused:
 		$SongAudioPlayer.unpause()
 
 func add_editor() -> void:
@@ -32,4 +32,3 @@ func add_editor() -> void:
 	add_child(editor)
 	$UI.process_mode = Node.PROCESS_MODE_DISABLED
 	$UI.visible = false
-	
