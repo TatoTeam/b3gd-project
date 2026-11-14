@@ -29,21 +29,24 @@ func _ready() -> void:
 	note_color.texture = note_color.texture.duplicate_deep()
 
 func _input(event: InputEvent) -> void:
-	if event is not InputEventMouseButton:
-		return
 	var strum_line_id = int(%StrumLineLabel.text)
-	match event.button_index:
-		MOUSE_BUTTON_LEFT:
-			if event.is_pressed() and is_mouse_over:
-				creating_note = true
-				note_length = 0.0
-			if event.is_released() and creating_note:
-				creating_note = false
-				try_create_note.emit(strum_line_id, mouse_column, mouse_time, note_length)
-		MOUSE_BUTTON_RIGHT:
-			if !event.is_pressed() or !is_mouse_over:
-				return
-			try_remove_note.emit(strum_line_id, mouse_column, mouse_time)
+	
+	if event is InputEventMouseButton:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				if event.is_pressed() and is_mouse_over:
+					creating_note = true
+					note_length = 0.0
+				if event.is_released() and creating_note:
+					creating_note = false
+					try_create_note.emit(strum_line_id, mouse_column, mouse_time, note_length)
+	
+	if event is InputEventMouseButton or event is InputEventMouseMotion:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+				if !is_mouse_over:
+					return
+			
+				try_remove_note.emit(strum_line_id, mouse_column, mouse_time)
 
 func _process(_delta: float) -> void:
 	var mouse_rect_position = strum_line_rect.get_local_mouse_position()
