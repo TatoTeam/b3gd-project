@@ -12,12 +12,12 @@ func _ready() -> void:
 		if not ResourceLoader.exists(global_class.path):
 			continue
 		
-		var example = load(global_class.path).new()
 		var loaded_class := load(global_class.path)
-		if loaded_class != null && does_script_extend_class(loaded_class, script_path):
+		if loaded_class != null && does_script_extend_class(loaded_class, script_path) && !loaded_class.is_abstract():
 			if global_class.class in hidden_classes:
 				continue
 			
+			var example = load(global_class.path).new()
 			var class_icon = default_icon
 			var path = example.get_script().resource_path
 			var icon_path = path.substr(0, path.length() - 3) + ".png"

@@ -44,12 +44,12 @@ stream_0/stream = ExtResource("21_llafh")
 [node name="TestSpeaker" type="Node2D" unique_id=737532779 node_paths=PackedStringArray("thing_to_animate", "miss_sound")]
 script = ExtResource("1_5uds8")
 thing_to_animate = NodePath("TestSpeaker")
-miss_sound = NodePath("Ouo")
 strumline = 1
-ignore_sing = true
 note_directions = Array[String](["anim", "anim", "anim", "anim"])
+miss_sound = NodePath("Ouo")
 sing_prefix = ""
 miss_prefix = "sad_"
+ignore_sing = true
 
 [node name="TestSpeaker" type="AnimatedSprite2D" parent="." unique_id=1824398302]
 texture_filter = 1

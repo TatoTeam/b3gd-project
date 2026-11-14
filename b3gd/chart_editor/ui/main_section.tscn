@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dk3bhqjhxhv5b"]
 
-[ext_resource type="Script" uid="uid://cy0rk72xgrung" path="res://b3gd/chart_editor/ui/event_editing/event_class_box.gd" id="1_12xce"]
 [ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="1_y80lg"]
 [ext_resource type="Script" uid="uid://d07m3pj11l2ce" path="res://b3gd/chart_editor/ui/ui_scale.gd" id="1_yt480"]
 [ext_resource type="Theme" uid="uid://djr1hg1crhdfd" path="res://b3gd/chart_editor/theme.tres" id="2_1ap54"]
@@ -16,7 +15,7 @@
 [ext_resource type="Script" uid="uid://470bmkuhss05" path="res://b3gd/chart_editor/ui/mute_inst.gd" id="9_r27ga"]
 [ext_resource type="Script" uid="uid://b585c60ln25gs" path="res://b3gd/chart_editor/ui/editor_pitch_scale.gd" id="11_4qy52"]
 [ext_resource type="Script" uid="uid://bhvkv73cux2u0" path="res://b3gd/chart_editor/event_panel.gd" id="11_xba6y"]
-[ext_resource type="Script" uid="uid://cddem6pgulynf" path="res://b3gd/chart_editor/ui/note_type_box.gd" id="12_dtrep"]
+[ext_resource type="Script" uid="uid://cddem6pgulynf" path="res://b3gd/chart_editor/ui/class_selector_box.gd" id="12_dtrep"]
 [ext_resource type="Texture2D" uid="uid://kd73i3dkrn6l" path="res://b3gd/chart_editor/ui/charles.png" id="14_hq5hn"]
 [ext_resource type="Texture2D" uid="uid://cnjiglqj2tbq5" path="res://b3gd/im mad.png" id="15_ne4p2"]
 [ext_resource type="Script" uid="uid://c15k5evwc05ek" path="res://b3gd/chart_editor/ui/event_field_container.gd" id="18_xayn1"]
@@ -262,9 +261,8 @@ theme = ExtResource("2_1ap54")
 fit_to_longest_item = false
 search_bar_enabled = true
 search_bar_min_item_count = 9
-script = ExtResource("1_12xce")
-hidden_classes = PackedStringArray("Event", "EventTween")
-default_icon = ExtResource("8_pdjy3")
+script = ExtResource("12_dtrep")
+script_path = "res://b3gd/chart_data/note.gd"
 
 [node name="Arrow" type="NinePatchRect" parent="EditorUI/SubViewport/MarginContainer/UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" unique_id=1448948085]
 anchors_preset = -1
