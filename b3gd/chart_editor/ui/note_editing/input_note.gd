@@ -29,6 +29,8 @@ func _ready() -> void:
 	note_color.texture = note_color.texture.duplicate_deep()
 
 func _input(event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_SHIFT): return
+	
 	var strum_line_id = int(%StrumLineLabel.text)
 	
 	if event is InputEventMouseButton:
@@ -59,6 +61,7 @@ func _process(_delta: float) -> void:
 	var local_mouse_position = get_parent().get_local_mouse_position()
 	
 	var time_mouse_pos = local_mouse_position.y / 64
+	# print("input note ", time_mouse_pos, " ", local_mouse_position)
 	time_mouse_pos = song_scrubber.get_snapped_seconds(time_mouse_pos)
 	
 	if creating_note:
@@ -67,9 +70,10 @@ func _process(_delta: float) -> void:
 		mouse_time = time_mouse_pos
 		mouse_column = floor(local_mouse_position.x / 64)
 	
-	if !is_mouse_over and !creating_note:
+	if (!is_mouse_over and !creating_note) || Input.is_key_pressed(KEY_SHIFT):
 		hide()
-	show()
+	else:
+		show()
 	
 	#if mouse_column < 0:
 	#	is_mouse_over = false

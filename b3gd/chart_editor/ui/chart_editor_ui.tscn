@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d05nfs1bnke2y" path="res://b3gd/chart_editor/ui/event_editing/event_maker.gd" id="5_w761s"]
 [ext_resource type="Script" uid="uid://cddem6pgulynf" path="res://b3gd/chart_editor/ui/class_selector_box.gd" id="6_30g18"]
 [ext_resource type="Texture2D" uid="uid://cka5y22a126yx" path="res://b3gd/chart_editor/ui/event_editing/event_line.png" id="7_ja7vl"]
+[ext_resource type="Script" uid="uid://c7kfbcukipdqh" path="res://b3gd/chart_editor/ui/selection_box.gd" id="8_1jq7l"]
 [ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="8_fj1tq"]
 [ext_resource type="Script" uid="uid://bapfqr3m4v28h" path="res://b3gd/chart_editor/ui/sidebar/icons/time_bar.gd" id="9_6qroi"]
 [ext_resource type="Script" uid="uid://bsme726k4o1ru" path="res://b3gd/chart_editor/ui/value_input/no_focus_line_edit.gd" id="10_k1i7g"]
@@ -256,6 +257,22 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 alignment = 1
+
+[node name="SelectionBox" type="Node2D" parent="UIContainer/WorkAreaScroll/Container" unique_id=1141372798]
+script = ExtResource("8_1jq7l")
+
+[node name="SelectionPanel" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/SelectionBox" unique_id=831308645]
+visible = false
+offset_right = 18.0
+offset_bottom = 16.0
+texture = ExtResource("8_fj1tq")
+region_rect = Rect2(96, 16, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Scrubber" type="VScrollBar" parent="UIContainer" unique_id=1548452833]
 unique_name_in_owner = true

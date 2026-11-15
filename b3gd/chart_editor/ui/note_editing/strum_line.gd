@@ -1,11 +1,13 @@
 extends VBoxContainer
+class_name EditorStrumLine
+
+const TIMELINE_PRESENT_POINT = 0.333
 
 var strum_line_manager: Node
 var strum_line_idx = 0
 var current_time = 0
 var zoom = 1.0
 var strum_line: StrumLine
-var timeline_present_point = 0.333
 
 signal try_create_note(strum_line_id: int, receptor: int, time: float, length: float)
 signal try_remove_note(strum_line_id: int, receptor: int, time: float)
@@ -49,7 +51,7 @@ func _process(_delta: float) -> void:
 	zoom = strum_line_manager.zoom
 	
 	transform_y = get_viewport_rect().size.y
-	transform_y *= timeline_present_point
+	transform_y *= TIMELINE_PRESENT_POINT
 	
 	timeline_root.global_position.y = transform_y - (current_time * zoom * 64)
 	receptors.global_position.y = transform_y

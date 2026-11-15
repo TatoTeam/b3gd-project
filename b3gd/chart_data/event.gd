@@ -1,7 +1,6 @@
-@abstract class_name Event extends Resource
+@abstract class_name Event extends EditorSelectable
 
 var parent: Node
-@export var time: float = 0
 
 @export var lane: int = 0
 

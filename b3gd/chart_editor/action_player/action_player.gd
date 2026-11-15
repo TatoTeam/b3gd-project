@@ -11,6 +11,7 @@ extends Node
 @onready var event_actions = $EventActions
 @onready var strum_line_actions = $StrumLineActions
 @onready var song_data_actions = $SongDataActions
+@onready var selection_actions: EditorSelectionActions = $SelectionActions
 
 # called from else where
 @warning_ignore("unused_signal")
@@ -42,6 +43,9 @@ enum ActionType {
 	
 	SET_SONG_NAME,
 	SET_SCROLL_SPEED,
+	
+	SELECT_SELECTABLE,
+	DESELECT_SELECTABLE
 }
 
 func do_action(action: Dictionary, add_to_history: bool = true):
@@ -80,7 +84,12 @@ func do_action(action: Dictionary, add_to_history: bool = true):
 			song_data_actions.edit_song_name(action.old, action.new)
 		ActionType.SET_SCROLL_SPEED:
 			song_data_actions.edit_scroll_speed(action.old, action.new)
-
+		
+		ActionType.SELECT_SELECTABLE:
+			EditorSelectionActions._select(action.selectable)
+		ActionType.DESELECT_SELECTABLE:
+			EditorSelectionActions._deselect(action.selectable)
+		
 func undo_action(action: Dictionary):
 	match action.type:
 		ActionType.GROUP:
@@ -110,6 +119,12 @@ func undo_action(action: Dictionary):
 			song_data_actions.edit_song_name(action.new, action.old)
 		ActionType.SET_SCROLL_SPEED:
 			song_data_actions.edit_scroll_speed(action.new, action.old)
+			
+		
+		ActionType.SELECT_SELECTABLE:
+			EditorSelectionActions._deselect(action.selectable)
+		ActionType.DESELECT_SELECTABLE:
+			EditorSelectionActions._select(action.selectable)
 		
 		# These take special logic to make sure things are done in reverse.
 		ActionType.MOVE_NOTE:

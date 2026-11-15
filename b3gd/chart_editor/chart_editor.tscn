@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://cofbhgwsn8r2j" path="res://b3gd/chart_editor/metadata_editor.gd" id="3_qg7k1"]
 [ext_resource type="Script" uid="uid://cqyp5h5ij2gaa" path="res://b3gd/chart_editor/fake_note_manager.gd" id="4_45i1f"]
 [ext_resource type="Script" uid="uid://t0vp1qexowdw" path="res://b3gd/chart_editor/strum_line_actions.gd" id="5_ra5to"]
+[ext_resource type="Script" uid="uid://b6nwb3fiaybcl" path="res://b3gd/chart_editor/selection_actions.gd" id="5_u13mf"]
 [ext_resource type="AudioStream" uid="uid://nwgw3lpaxmje" path="res://b3gd/chart_editor/note_click.wav" id="5_wg2wr"]
+[ext_resource type="Script" uid="uid://cqx2lxk2ft2ox" path="res://b3gd/chart_editor/selection_editor.gd" id="5_yrq2n"]
 [ext_resource type="Script" uid="uid://b8qw62xl3ryi3" path="res://b3gd/chart_editor/chart_saver.gd" id="6_fvpyw"]
 [ext_resource type="PackedScene" uid="uid://dk3bhqjhxhv5b" path="res://b3gd/chart_editor/ui/main_section.tscn" id="7_cqpfm"]
 [ext_resource type="Script" uid="uid://66kk53a7rjqh" path="res://b3gd/chart_editor/song_data_actions.gd" id="8_747oa"]
@@ -29,7 +31,8 @@ script = ExtResource("3_046nn")
 [node name="MetadataEditor" type="Node" parent="DataEditors" unique_id=48491966]
 script = ExtResource("3_qg7k1")
 
-[node name="SelectionHandler" type="Node" parent="DataEditors" unique_id=1107748740]
+[node name="SelectionEditor" type="Node" parent="DataEditors" unique_id=582151840]
+script = ExtResource("5_yrq2n")
 
 [node name="ActionPlayer" type="Node" parent="." unique_id=294836472]
 unique_name_in_owner = true
@@ -46,6 +49,9 @@ script = ExtResource("3_5aops")
 
 [node name="SongDataActions" type="Node" parent="ActionPlayer" unique_id=2057934659]
 script = ExtResource("8_747oa")
+
+[node name="SelectionActions" type="Node" parent="ActionPlayer" unique_id=1107748740]
+script = ExtResource("5_u13mf")
 
 [node name="DataSaver" type="Node" parent="." unique_id=1195970071]
 script = ExtResource("6_fvpyw")
