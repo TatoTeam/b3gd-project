@@ -4,7 +4,9 @@ extends Control
 @export var event_list:Node2D
 var chart_source = null
 
+@warning_ignore("unused_signal")
 signal make_event(event: Event)
+@warning_ignore("unused_signal")
 signal move_event(event: Event)
 signal update_event_data_view(event_node, event_id:int, show_event_data:bool)
 
@@ -16,8 +18,6 @@ var event_selected = [null, -1, false]:
 		update_event_data_view.emit(event_selected[0], event_selected[1], event_selected[2])
 
 func update_events():
-	var region_textures = []
-	
 	var child_id = 0
 	for event in chart_source.chart.events:
 		var event_y = event.time

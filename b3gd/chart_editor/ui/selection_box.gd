@@ -1,36 +1,41 @@
 extends Node2D
 
+@export var strum_line_container: Node
+@export var event_holder: Node 
+
 @onready var selection_panel = $SelectionPanel
 
 var selection_start: Vector2
 var selection_end: Vector2
+var selection_rect: Rect2
 
 var selecting: bool = false
 
 func _ready():
 	EditorChartScrubber.inst.scrubbed.connect(func():
 		# ig bro
-		
 		await get_tree().process_frame
 		await get_tree().process_frame
 		update_selection_end()
 	)
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		if selecting:
 			update_selection_end()
 	
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed && Input.is_key_pressed(KEY_SHIFT):
-				selection_start = Vector2(event.global_position.x, y_to_sec(event.global_position.y))
-				
-				update_selection_end()
-				_start_selecting()
-			else:
-				update_selection_end()
-				_stop_selecting()
+	if event is not InputEventMouseButton or event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	
+	if event.pressed:
+		if Input.is_key_pressed(KEY_SHIFT) and !selecting:
+			selection_start = Vector2(event.global_position.x, y_to_sec(event.global_position.y))
+			
+			update_selection_end()
+			_start_selecting()
+	elif selecting:
+		print("pls ")
+		_stop_selecting()
 
 func update_selection_end():
 	selection_end = Vector2(get_global_mouse_position().x, y_to_sec(get_global_mouse_position().y))
@@ -70,7 +75,9 @@ func _update_selection_position():
 		end.y = start.y
 		start.y = og_end
 	
-	selection_panel.global_position = start
+	selection_rect = Rect2(start, end - start).abs()
+	
+	selection_panel.position = start
 	selection_panel.size = end - start 
 
 func _start_selecting():
@@ -80,3 +87,12 @@ func _start_selecting():
 func _stop_selecting():
 	selecting = false
 	selection_panel.visible = false
+	var selected_strum_lines: Array[Control] = []
+	
+	print("1:  ",selection_rect)
+	for child in strum_line_container.get_children():
+		print("2:  ",child.get_global_rect())
+		print("3: ", selection_rect.intersection(child.get_global_rect()))
+		if selection_rect.intersects(child.get_global_rect()):
+			selected_strum_lines.append(child)
+	print("yo:", selected_strum_lines)

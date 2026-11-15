@@ -258,8 +258,10 @@ size_flags_horizontal = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="SelectionBox" type="Node2D" parent="UIContainer/WorkAreaScroll/Container" unique_id=1141372798]
+[node name="SelectionBox" type="Node2D" parent="UIContainer/WorkAreaScroll/Container" unique_id=1141372798 node_paths=PackedStringArray("strum_line_container", "event_holder")]
 script = ExtResource("8_1jq7l")
+strum_line_container = NodePath("../StrumLineContainer")
+event_holder = NodePath("../EventContainer/Timeline/Events")
 
 [node name="SelectionPanel" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/SelectionBox" unique_id=831308645]
 visible = false

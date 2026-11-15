@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	while process_events():
 		i += 1
 		if i > 8000:
-			printerr(">8000 Events just tried to play in one frame. What")
+			printerr(">8000 Events just tried to play in one frame. What?")
 			return
 
 func init_events() -> void:
@@ -28,14 +28,18 @@ func process_events() -> bool:
 			last_played_event = max(events.size() - 1, -1)
 			events[last_played_event].play(song_audio_player.pitch_scale * -1)
 		return false
+	
 	if last_played_event != -1 and events[last_played_event].time > song_audio_player.song_progress_seconds:
 		events[last_played_event].play(song_audio_player.pitch_scale * -1)
 		last_played_event = max(last_played_event - 1, -1)
 		return true
+	
 	if last_played_event >= events.size() - 1:
 		return false
+	
 	if events[last_played_event + 1].time <= song_audio_player.song_progress_seconds:
 		last_played_event += 1
 		events[last_played_event].play(song_audio_player.pitch_scale * 1)
 		return true
+	
 	return false
