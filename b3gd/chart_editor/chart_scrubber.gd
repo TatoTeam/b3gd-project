@@ -1,8 +1,16 @@
 extends Node
+class_name EditorChartScrubber
+
+static var inst: EditorChartScrubber
 
 @onready var song_audio_player = get_tree().get_first_node_in_group("SongAudioPlayer")
 @onready var snap_slider = get_tree().get_first_node_in_group("ChartEditorUI").get_node("%Snap")
 @onready var scrubber = get_tree().get_first_node_in_group("ChartEditorUI").get_node("%Scrubber")
+
+signal scrubbed
+
+func _init():
+	inst = self
 
 func _ready() -> void:
 	scrubber.value_changed.connect(_on_editor_ui_scrubber_value_changed)
@@ -21,6 +29,7 @@ func _input(event: InputEvent) -> void:
 		var beat = song_audio_player.song_progress_beats
 		beat += step
 		song_audio_player.track_seek(song_audio_player.get_seconds_from_beat(beat), 0.5)
+		scrubbed.emit()
 	if event.is_action_pressed("editor_pause"):
 		if song_audio_player.paused:
 			song_audio_player.unpause()
@@ -36,3 +45,4 @@ func _process(_delta: float) -> void:
 
 func _on_editor_ui_scrubber_value_changed(value: float) -> void:
 	song_audio_player.track_seek(song_audio_player.stream.get_length() * (value / 100.0), 0.5)
+	scrubbed.emit()

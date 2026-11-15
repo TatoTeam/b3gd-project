@@ -7,24 +7,30 @@ var selection_end: Vector2
 
 var selecting: bool = false
 
+func _ready():
+	EditorChartScrubber.inst.scrubbed.connect(func():
+		update_selection_end()
+	)
+
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if selecting:
-			selection_end = Vector2(0, y_to_sec(event.global_position.y))
-			_update_selection_position()
+			update_selection_end()
 	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT && Input.is_key_pressed(KEY_SHIFT):
 			if event.pressed:
-				selection_start = Vector2(0, y_to_sec(event.global_position.y))
-				selection_end = selection_start
+				selection_start = Vector2(event.global_position.x, y_to_sec(event.global_position.y))
 				
-				_update_selection_position()
+				update_selection_end()
 				_start_selecting()
 			else:
-				selection_end = Vector2(0, y_to_sec(event.global_position.y))
-				_update_selection_position()
+				update_selection_end()
 				_stop_selecting()
+
+func update_selection_end():
+	selection_end = Vector2(get_global_mouse_position().x, y_to_sec(get_global_mouse_position().y))
+	_update_selection_position()
 
 func y_to_sec(y_pos: float) -> float:
 	var y_size = get_parent().get_viewport_rect().size.y
@@ -37,9 +43,18 @@ func y_to_sec(y_pos: float) -> float:
 	
 	return start_sec + (y_pos / EditorStrumLineEditor.inst.zoom / 64.0)
 
+func sec_to_y(sec: float) -> float:
+	var y_size = get_parent().get_viewport_rect().size.y
+	var offset_ratio := EditorStrumLine.TIMELINE_PRESENT_POINT
+	
+	var starting_offset_px = -(y_size * offset_ratio) 
+	var starting_offset_sec = (starting_offset_px / EditorStrumLineEditor.inst.zoom / 64.0)
+	
+	return (sec - EditorStrumLineEditor.inst.song_progress_seconds - starting_offset_sec) * EditorStrumLineEditor.inst.zoom * 64
+
 func _update_selection_position():
-	var start := selection_start
-	var end := selection_end
+	var start := Vector2(selection_start.x, sec_to_y(selection_start.y))
+	var end := Vector2(selection_end.x, sec_to_y(selection_end.y))
 	
 	if end.x < start.x:
 		var og_end := end.x
