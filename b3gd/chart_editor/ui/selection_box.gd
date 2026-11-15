@@ -9,6 +9,10 @@ var selecting: bool = false
 
 func _ready():
 	EditorChartScrubber.inst.scrubbed.connect(func():
+		# ig bro
+		
+		await get_tree().process_frame
+		await get_tree().process_frame
 		update_selection_end()
 	)
 
@@ -18,8 +22,8 @@ func _unhandled_input(event):
 			update_selection_end()
 	
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT && Input.is_key_pressed(KEY_SHIFT):
-			if event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed && Input.is_key_pressed(KEY_SHIFT):
 				selection_start = Vector2(event.global_position.x, y_to_sec(event.global_position.y))
 				
 				update_selection_end()
