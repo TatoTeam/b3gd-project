@@ -10,6 +10,10 @@
 [ext_resource type="Script" uid="uid://o1e3rmny0lrd" path="res://b3gd/chart_editor/editor_strum_line_container.gd" id="5_5aops"]
 [ext_resource type="Texture2D" uid="uid://cnjiglqj2tbq5" path="res://b3gd/im mad.png" id="5_cm7rd"]
 [ext_resource type="Script" uid="uid://ceksh73iln201" path="res://b3gd/chart_editor/song_scrubber.gd" id="8_4ei61"]
+[ext_resource type="Script" uid="uid://bw7313hxy48rr" path="res://b3gd/chart_editor/time_format_box.gd" id="9_046nn"]
+[ext_resource type="Script" uid="uid://jjehc0kg4qs7" path="res://b3gd/chart_editor/property_getter_setter_timer.gd" id="9_747oa"]
+[ext_resource type="Script" uid="uid://dcs8f3pk45yi2" path="res://b3gd/chart_editor/property_getter_setter_lineedit.gd" id="9_ra5to"]
+[ext_resource type="Script" uid="uid://cxtpf0xof2gla" path="res://b3gd/chart_editor/property_getter_setter_spinbox.gd" id="10_qg7k1"]
 
 [sub_resource type="Resource" id="Resource_5aops"]
 script = ExtResource("3_cm7rd")
@@ -325,6 +329,7 @@ popup/item_0/icon = SubResource("AtlasTexture_1ap54")
 popup/item_0/id = 0
 popup/item_1/icon = SubResource("AtlasTexture_y80lg")
 popup/item_1/id = 1
+script = ExtResource("9_046nn")
 
 [node name="CurrentTimeLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1627467009]
 layout_mode = 2
@@ -333,13 +338,36 @@ size_flags_vertical = 8
 text = "1:28.00"
 label_settings = SubResource("LabelSettings_o3yqt")
 
-[node name="TotalTimeLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=795274847]
+[node name="CurrentTimeLabelSetter" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/CurrentTimeLabel" unique_id=1559561382 node_paths=PackedStringArray("node")]
+script = ExtResource("9_747oa")
+node = NodePath("../../../../../../../../../../..")
+property_path = "song_audio_player:song_progress_seconds"
+metadata/_custom_type_script = "uid://csygtdgslp8op"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1936289161]
+layout_mode = 2
+
+[node name="SlashLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer" unique_id=795274847]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "/ 3:00.00"
+text = "/"
 label_settings = SubResource("LabelSettings_8stnh")
 horizontal_alignment = 2
+
+[node name="TotalTimeLabel2" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer" unique_id=833041527]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "3:00.00"
+label_settings = SubResource("LabelSettings_8stnh")
+horizontal_alignment = 2
+
+[node name="TotalTimeLabelSetter" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer/TotalTimeLabel2" unique_id=1260421629 node_paths=PackedStringArray("node")]
+script = ExtResource("9_747oa")
+node = NodePath("../../../../../../../../../../../..")
+property_path = "song_audio_player:song_length_seconds"
+metadata/_custom_type_script = "uid://csygtdgslp8op"
 
 [node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1579187594]
 layout_mode = 2
@@ -390,93 +418,35 @@ layout_mode = 2
 text = "Song Name:"
 horizontal_alignment = 2
 
-[node name="SongName" type="Control" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=247535462]
+[node name="SongName" type="LineEdit" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1952330055]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-metadata/_custom_type_script = "uid://bsme726k4o1ru"
+
+[node name="PropertyGetterSetterLineEdit" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer/SongName" unique_id=1518815315 node_paths=PackedStringArray("node")]
+script = ExtResource("9_ra5to")
+node = NodePath("../../../../../../../../..")
+property_path = "chart:metadata:name"
+metadata/_custom_type_script = "uid://dcs8f3pk45yi2"
 
 [node name="ScrollSpeedLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1467052819]
 layout_mode = 2
 text = "Scroll Speed: "
 
-[node name="ScrollSpeed" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1332384026]
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-oversampling_with_scale = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
+[node name="ScrollSpeed" type="SpinBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1243383033]
 custom_minimum_size = Vector2(0, 32)
-custom_maximum_size = Vector2(-1, -1)
-propagate_maximum_size = false
-clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-offset_transform_enabled = false
-offset_transform_position = Vector2(0, 0)
-offset_transform_position_ratio = Vector2(0, 0)
-offset_transform_scale = Vector2(1, 1)
-offset_transform_rotation = 0.0
-offset_transform_pivot = Vector2(0, 0)
-offset_transform_pivot_ratio = Vector2(0.5, 0.5)
-offset_transform_visual_only = true
-localize_numeral_system = true
-layout_direction = 0
-translation_context = &""
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 0
-focus_behavior_recursive = 0
-mouse_filter = 0
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 0
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
 min_value = 1.0
 max_value = 10.0
 step = 0.5
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 allow_greater = true
-allow_lesser = false
-script = null
-metadata/_custom_type_script = "uid://krqcacc7sq0o"
+
+[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer/ScrollSpeed" unique_id=1103619126 node_paths=PackedStringArray("node")]
+script = ExtResource("10_qg7k1")
+node = NodePath("../../../../../../../../..")
+property_path = "chart:scroll_speed"
+metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
 [node name="ChartInfoPanel2" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=1305931804]
 layout_mode = 2
@@ -876,6 +846,7 @@ layout_mode = 2
 [node name="Images" type="Control" parent="." unique_id=1867479190]
 layout_mode = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Charles" type="TextureRect" parent="Images" unique_id=314421251]
 modulate = Color(1, 1, 1, 0.09803922)
@@ -909,5 +880,6 @@ mouse_filter = 2
 texture = ExtResource("5_cm7rd")
 
 [connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" method="_on_class_box_item_selected"]
+[connection signal="item_selected" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
 [connection signal="value_changed" from="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" to="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" method="_on_value_changed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header/Button" to="UIContainer/FieldScroll/Container/EventPanel" method="remove_event"]

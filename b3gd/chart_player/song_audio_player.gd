@@ -27,6 +27,10 @@ var song_progress_seconds = 0:
 			else:
 				play()
 
+var song_length_seconds: float = 0:
+	get():
+		return stream.get_length()
+
 var paused_position = 0.0
 var force_sync = false
 
