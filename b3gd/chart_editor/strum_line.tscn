@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bamkxeltec4oa" path="res://b3gd/chart_editor/strum_line_drawer.gd" id="3_8s5n4"]
 [ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="3_mmr3a"]
 [ext_resource type="Script" uid="uid://d1cnb4hugwiyp" path="res://b3gd/chart_editor/property_getter_setter_checkbox.gd" id="3_to57n"]
+[ext_resource type="Script" uid="uid://d0j3bn53ed8sw" path="res://b3gd/chart_editor/note_placer.gd" id="6_g21tu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u30xk"]
 atlas = ExtResource("3_mmr3a")
@@ -110,6 +111,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.288518, 0.28851798, 0.28851798, 0.3764706)
+
+[node name="NotePlacer" type="Control" parent="StrumLineDrawer" unique_id=892793543]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_g21tu")
 
 [connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/ReceptorControl/RemoveReceptor" to="InfoPanel/InfoMargin/InfoVBox/ReceptorControl" method="_on_remove_receptor_pressed"]
 [connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/ReceptorControl/AddReceptor" to="InfoPanel/InfoMargin/InfoVBox/ReceptorControl" method="_on_add_receptor_pressed"]

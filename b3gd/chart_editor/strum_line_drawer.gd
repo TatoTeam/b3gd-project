@@ -1,4 +1,5 @@
 extends Control
+class_name EditorStrumlineDrawer
 
 const NOTES: CompressedTexture2D = preload("uid://bdkks2vfqiwwd")
 const NOTECOLOR: CompressedTexture2D = preload("uid://p6quxyfjutej")
@@ -6,7 +7,8 @@ const QUANT_LIST := [4, 8, 12, 16, 24, 32, 48, 64]
 
 @onready var strumline_object: EditorStrumLine = $".."
 
-var quant_colors: Array[Color] = [
+# lazy
+static var QUANT_COLORS: Array[Color] = [
 	Color.from_string("e01e00", Color.BLACK),
 	Color.from_string("003fed", Color.BLACK),
 	Color.from_string("8300e0", Color.BLACK),
@@ -18,7 +20,7 @@ var quant_colors: Array[Color] = [
 	Color.from_string("999999", Color.BLACK)
 ]
 
-var note_texture_arrays := {
+const NOTE_TEXTURE_ARRAYS := {
 	1: [4],
 	2: [5, 8],
 	3: [0, 4, 3],
@@ -63,10 +65,10 @@ func _draw():
 	
 	var note_texture_array: Array
 	
-	if strumline_object.strumline.receptors.size() > note_texture_arrays.size() - 1:
-		note_texture_array = note_texture_arrays[22]
+	if strumline_object.strumline.receptors.size() > NOTE_TEXTURE_ARRAYS.size() - 1:
+		note_texture_array = NOTE_TEXTURE_ARRAYS[22]
 	else:
-		note_texture_array = note_texture_arrays[strumline_object.strumline.receptors.size()]
+		note_texture_array = NOTE_TEXTURE_ARRAYS[strumline_object.strumline.receptors.size()]
 	
 	for dir in range(strumline_object.strumline.receptors.size()):
 		
@@ -75,7 +77,7 @@ func _draw():
 			var note_size_vec := Vector2.ONE * ChartEditor.inst.settings.NOTE_SIZE
 			var note_offset: float = note.time - ChartEditor.song_audio_player.song_progress_seconds
 			
-			var quant_color: Color = quant_colors[get_quant_id(note.time)]
+			var quant_color: Color = QUANT_COLORS[get_quant_id(note.time)]
 			
 			var sprite_x_pos: int = note_texture_array[dir % note_texture_array.size()] * ChartEditor.inst.settings.NOTE_SIZE
 			
