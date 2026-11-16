@@ -1,25 +1,13 @@
 [gd_scene format=3 uid="uid://bok4o5o3bpn34"]
 
-[ext_resource type="Theme" uid="uid://djr1hg1crhdfd" path="res://b3gd/chart_editor/theme.tres" id="1_7yymv"]
-[ext_resource type="Script" uid="uid://cqdqwytteipxn" path="res://b3gd/chart_editor/ui/event_editing/event_container.gd" id="2_1jq7l"]
-[ext_resource type="PackedScene" uid="uid://bsssdbp2x7c5k" path="res://b3gd/chart_editor/ui/event_editing/event.tscn" id="3_ea26n"]
-[ext_resource type="Script" uid="uid://cn74d3233l48t" path="res://b3gd/chart_editor/ui/event_editing/event_timeline.gd" id="4_qsagg"]
-[ext_resource type="Script" uid="uid://d05nfs1bnke2y" path="res://b3gd/chart_editor/ui/event_editing/event_maker.gd" id="5_w761s"]
-[ext_resource type="Script" uid="uid://cddem6pgulynf" path="res://b3gd/chart_editor/ui/class_selector_box.gd" id="6_30g18"]
-[ext_resource type="Texture2D" uid="uid://cka5y22a126yx" path="res://b3gd/chart_editor/ui/event_editing/event_line.png" id="7_ja7vl"]
-[ext_resource type="Script" uid="uid://c7kfbcukipdqh" path="res://b3gd/chart_editor/ui/selection_box.gd" id="8_1jq7l"]
-[ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="8_fj1tq"]
-[ext_resource type="Script" uid="uid://bapfqr3m4v28h" path="res://b3gd/chart_editor/ui/sidebar/icons/time_bar.gd" id="9_6qroi"]
-[ext_resource type="Script" uid="uid://bsme726k4o1ru" path="res://b3gd/chart_editor/ui/value_input/no_focus_line_edit.gd" id="10_k1i7g"]
-[ext_resource type="Script" uid="uid://krqcacc7sq0o" path="res://b3gd/chart_editor/ui/value_input/spin_slider.gd" id="11_fapty"]
-[ext_resource type="Texture2D" uid="uid://dhh476fdfywca" path="res://b3gd/chart_editor/note_unknown.png" id="12_yyyxq"]
-[ext_resource type="Script" uid="uid://b585c60ln25gs" path="res://b3gd/chart_editor/ui/editor_pitch_scale.gd" id="13_wak4q"]
-[ext_resource type="Script" uid="uid://470bmkuhss05" path="res://b3gd/chart_editor/ui/mute_inst.gd" id="14_77s4c"]
-[ext_resource type="Script" uid="uid://bhvkv73cux2u0" path="res://b3gd/chart_editor/event_panel.gd" id="15_62kli"]
-[ext_resource type="Script" uid="uid://c15k5evwc05ek" path="res://b3gd/chart_editor/ui/event_field_container.gd" id="16_hh114"]
+[ext_resource type="Theme" uid="uid://djr1hg1crhdfd" path="res://b3gd/chart_editor/theme.tres" id="1_kluv3"]
+[ext_resource type="Texture2D" uid="uid://kd73i3dkrn6l" path="res://b3gd/chart_editor/ui/charles.png" id="4_qub2c"]
+[ext_resource type="Texture2D" uid="uid://cnjiglqj2tbq5" path="res://b3gd/im mad.png" id="5_px4fx"]
+[ext_resource type="Texture2D" uid="uid://cka5y22a126yx" path="res://b3gd/chart_editor/ui/event_line.png" id="7_2a8kc"]
+[ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="9_l3p4e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkt7h"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(32, 96, 16, 16)
 
 [sub_resource type="FontVariation" id="FontVariation_akx1q"]
@@ -33,7 +21,7 @@ content_margin_left = 3.0
 content_margin_top = 1.0
 content_margin_right = 3.0
 content_margin_bottom = 1.0
-texture = ExtResource("8_fj1tq")
+texture = ExtResource("9_l3p4e")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
@@ -41,15 +29,15 @@ texture_margin_bottom = 4.0
 region_rect = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1koxw"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(35, 83, 12, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ap54"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(16, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y80lg"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(0, 80, 16, 16)
 
 [sub_resource type="FontVariation" id="FontVariation_yao2k"]
@@ -81,7 +69,7 @@ unicode = 115
 events = [SubResource("InputEventKey_dyjyi")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tpte"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(16, 64, 16, 16)
 
 [sub_resource type="InputEventKey" id="InputEventKey_xr37n"]
@@ -95,7 +83,7 @@ unicode = 122
 events = [SubResource("InputEventKey_xr37n")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r27ga"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(1, 63, 9, 9)
 
 [sub_resource type="InputEventKey" id="InputEventKey_cle1c"]
@@ -124,11 +112,11 @@ unicode = 122
 events = [SubResource("InputEventKey_cle1c"), SubResource("InputEventKey_yecj3"), SubResource("InputEventKey_xayn1")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xba6y"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(1, 71, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxk88"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xayn1"]
@@ -136,7 +124,7 @@ content_margin_left = 5.0
 content_margin_top = 2.0
 content_margin_right = 5.0
 content_margin_bottom = 2.0
-texture = ExtResource("8_fj1tq")
+texture = ExtResource("9_l3p4e")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
@@ -151,21 +139,18 @@ spacing_top = 2
 font = SubResource("FontVariation_csxqf")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhun1"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52wg0"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_48w3h"]
-atlas = ExtResource("8_fj1tq")
+atlas = ExtResource("9_l3p4e")
 region = Rect2(32, 48, 16, 16)
 
-[sub_resource type="LabelSettings" id="LabelSettings_xba6y"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_qvkre"]
-font_color = Color(1, 0, 0, 1)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_px4fx"]
 
 [node name="EditorUI" type="MarginContainer" unique_id=1207813288 groups=["ChartEditorUI"]]
 texture_filter = 1
@@ -182,10 +167,9 @@ theme_override_constants/margin_bottom = 4
 [node name="UIContainer" type="HBoxContainer" parent="." unique_id=1378123441]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_7yymv")
+theme = ExtResource("1_kluv3")
 
 [node name="WorkAreaScroll" type="ScrollContainer" parent="UIContainer" unique_id=486621149]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -199,13 +183,9 @@ size_flags_vertical = 3
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="EventContainer" type="Control" parent="UIContainer/WorkAreaScroll/Container" unique_id=1349188022 node_paths=PackedStringArray("event_list")]
-unique_name_in_owner = true
+[node name="EventContainer" type="Control" parent="UIContainer/WorkAreaScroll/Container" unique_id=1349188022]
 layout_mode = 2
 size_flags_horizontal = 10
-script = ExtResource("2_1jq7l")
-event_scene = ExtResource("3_ea26n")
-event_list = NodePath("Timeline/Events")
 
 [node name="Timeline" type="Control" parent="UIContainer/WorkAreaScroll/Container/EventContainer" unique_id=605001605]
 anchors_preset = 0
@@ -213,13 +193,10 @@ offset_left = -39.0
 offset_top = 128.0
 offset_right = -39.0
 offset_bottom = 128.0
-script = ExtResource("4_qsagg")
 
 [node name="Events" type="Node2D" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline" unique_id=1432781571]
 
 [node name="EventMaker" type="Node2D" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline" unique_id=1013244921]
-unique_name_in_owner = true
-script = ExtResource("5_w761s")
 
 [node name="ClassBox" type="OptionButton" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" unique_id=2080191140]
 anchors_preset = 9
@@ -230,12 +207,10 @@ offset_bottom = 18.0
 grow_vertical = 2
 size_flags_vertical = 0
 focus_mode = 0
-theme = ExtResource("1_7yymv")
+theme = ExtResource("1_kluv3")
 fit_to_longest_item = false
 search_bar_enabled = true
 search_bar_min_item_count = 9
-script = ExtResource("6_30g18")
-script_path = "res://b3gd/chart_data/note.gd"
 
 [node name="Arrow" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" unique_id=1985064699]
 anchors_preset = -1
@@ -247,27 +222,23 @@ offset_right = 39.0
 offset_bottom = 3.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
-texture = ExtResource("7_ja7vl")
+texture = ExtResource("7_2a8kc")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="StrumLineContainer" type="HBoxContainer" parent="UIContainer/WorkAreaScroll/Container" unique_id=545850274]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="SelectionBox" type="Node2D" parent="UIContainer/WorkAreaScroll/Container" unique_id=1141372798 node_paths=PackedStringArray("strum_line_container", "event_holder")]
-script = ExtResource("8_1jq7l")
-strum_line_container = NodePath("../StrumLineContainer")
-event_holder = NodePath("../EventContainer/Timeline/Events")
+[node name="SelectionBox" type="Node2D" parent="UIContainer/WorkAreaScroll/Container" unique_id=1141372798]
 
 [node name="SelectionPanel" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/SelectionBox" unique_id=831308645]
 visible = false
 offset_right = 18.0
 offset_bottom = 16.0
-texture = ExtResource("8_fj1tq")
+texture = ExtResource("9_l3p4e")
 region_rect = Rect2(96, 16, 16, 16)
 patch_margin_left = 3
 patch_margin_top = 3
@@ -277,7 +248,6 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="Scrubber" type="VScrollBar" parent="UIContainer" unique_id=1548452833]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -326,7 +296,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_dp8ci")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-script = ExtResource("9_6qroi")
 
 [node name="TimeFormatBox" type="OptionButton" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=2097590553]
 layout_mode = 2
@@ -372,7 +341,6 @@ layout_mode = 2
 alignment = 1
 
 [node name="SaveButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=2138865879]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -382,7 +350,6 @@ text = "Save"
 icon = SubResource("AtlasTexture_4tpte")
 
 [node name="UndoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1667046611]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -392,7 +359,6 @@ text = "Undo"
 icon = SubResource("AtlasTexture_r27ga")
 
 [node name="RedoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1341042153]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -411,10 +377,8 @@ text = "Song Name:"
 horizontal_alignment = 2
 
 [node name="SongName" type="Control" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=247535462]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("10_k1i7g")
 metadata/_custom_type_script = "uid://bsme726k4o1ru"
 
 [node name="ScrollSpeedLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1467052819]
@@ -422,7 +386,7 @@ layout_mode = 2
 text = "Scroll Speed: "
 
 [node name="ScrollSpeed" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1332384026]
-unique_name_in_owner = true
+unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
 process_physics_priority = 0
@@ -497,9 +461,7 @@ exp_edit = false
 rounded = false
 allow_greater = true
 allow_lesser = false
-script = ExtResource("11_fapty")
-show_range = true
-suffix = " x"
+script = null
 metadata/_custom_type_script = "uid://krqcacc7sq0o"
 
 [node name="ChartInfoPanel2" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=1305931804]
@@ -548,16 +510,12 @@ layout_mode = 2
 text = "Note Class:"
 
 [node name="NoteClass" type="OptionButton" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1824406232]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 search_bar_enabled = true
 search_bar_min_item_count = 8
-script = ExtResource("6_30g18")
-default_icon = ExtResource("12_yyyxq")
-script_path = "res://b3gd/chart_data/note.gd"
 
 [node name="SnapLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=584154372]
 layout_mode = 2
@@ -565,7 +523,7 @@ text = "Snap:"
 horizontal_alignment = 2
 
 [node name="Snap" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1408204639]
-unique_name_in_owner = true
+unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
 process_physics_priority = 0
@@ -640,12 +598,7 @@ exp_edit = false
 rounded = false
 allow_greater = true
 allow_lesser = false
-script = ExtResource("11_fapty")
-prefix = "4 / "
-show_range = true
-force_default_value = true
-default_value = 32.0
-metadata/_custom_type_script = "uid://krqcacc7sq0o"
+script = null
 
 [node name="FileSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=139084770]
 layout_mode = 2
@@ -667,7 +620,7 @@ text = "Pitch:"
 horizontal_alignment = 2
 
 [node name="PitchScale" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=75759367]
-unique_name_in_owner = true
+unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
 process_physics_priority = 0
@@ -742,9 +695,7 @@ exp_edit = false
 rounded = false
 allow_greater = true
 allow_lesser = false
-script = ExtResource("13_wak4q")
-show_range = true
-metadata/_custom_type_script = "uid://krqcacc7sq0o"
+script = null
 
 [node name="ZoomLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1545481226]
 layout_mode = 2
@@ -752,7 +703,7 @@ text = "Zoom:"
 horizontal_alignment = 2
 
 [node name="Zoom" type="Range" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1802225076]
-unique_name_in_owner = true
+unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
 process_physics_priority = 0
@@ -827,17 +778,13 @@ exp_edit = false
 rounded = false
 allow_greater = true
 allow_lesser = false
-script = ExtResource("11_fapty")
-show_range = true
-suffix = " x"
-metadata/_custom_type_script = "uid://krqcacc7sq0o"
+script = null
 
 [node name="HitSoundLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1777660297]
 layout_mode = 2
 text = "Hit Sound:"
 
 [node name="HitSound" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=876066071]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -850,18 +797,14 @@ layout_mode = 2
 text = "Mute Inst:"
 
 [node name="MuteInst" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=2110000863]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_mode = 0
 alignment = 1
-script = ExtResource("14_77s4c")
 
 [node name="EventPanel" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=2092374413]
-visible = false
 layout_mode = 2
-script = ExtResource("15_62kli")
 
 [node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/EventPanel" unique_id=734399009]
 layout_mode = 2
@@ -879,7 +822,6 @@ layout_mode = 2
 theme_override_constants/separation = 2
 
 [node name="EventID" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1899375433]
-unique_name_in_owner = true
 editor_description = "Its a button so it looks like that don't worry its not like a  functionality thing"
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
@@ -888,7 +830,6 @@ disabled = true
 text = "0"
 
 [node name="EventHeader" type="Label" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1116334053]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -916,15 +857,43 @@ icon = SubResource("AtlasTexture_48w3h")
 layout_mode = 2
 
 [node name="EventFieldContainer" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=1634332450]
-unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("16_hh114")
-header_label_settings = SubResource("LabelSettings_asiwl")
-property_label_settings = SubResource("LabelSettings_xba6y")
-error_label_settings = SubResource("LabelSettings_qvkre")
 
-[connection signal="update_event_data_view" from="UIContainer/WorkAreaScroll/Container/EventContainer" to="UIContainer/FieldScroll/Container/EventPanel" method="update_event_data_view"]
+[node name="Images" type="Control" parent="." unique_id=1867479190]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Charles" type="TextureRect" parent="Images" unique_id=314421251]
+modulate = Color(1, 1, 1, 0.09803922)
+light_mask = 0
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_px4fx")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -201.0
+offset_right = 246.0
+offset_bottom = -9.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4_qub2c")
+stretch_mode = 5
+
+[node name="MyMessage" type="TextureRect" parent="Images" unique_id=660431367]
+editor_description = "Godot hates"
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -723.0
+offset_top = 114.0
+offset_right = -214.54211
+offset_bottom = 504.0
+mouse_filter = 2
+texture = ExtResource("5_px4fx")
+
 [connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" method="_on_class_box_item_selected"]
 [connection signal="value_changed" from="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" to="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" method="_on_value_changed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header/Button" to="UIContainer/FieldScroll/Container/EventPanel" method="remove_event"]
-[connection signal="value_changed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/EventFieldContainer" to="UIContainer/FieldScroll/Container/EventPanel" method="value_changed"]

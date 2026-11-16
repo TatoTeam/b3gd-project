@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dk3bhqjhxhv5b"]
+
+[ext_resource type="PackedScene" uid="uid://bok4o5o3bpn34" path="res://b3gd/chart_editor/chart_editor_ui.tscn" id="2_x6ha0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yt480"]
+blend_mode = 4
+
+[node name="EditorCanvas" type="CanvasLayer" unique_id=1094420892]
+layer = 255
+
+[node name="EditorViewport" type="SubViewportContainer" parent="." unique_id=825030729]
+material = SubResource("CanvasItemMaterial_yt480")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="EditorViewport" unique_id=264156091]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="EditorUI" parent="EditorViewport/SubViewport" unique_id=1207813288 instance=ExtResource("2_x6ha0")]

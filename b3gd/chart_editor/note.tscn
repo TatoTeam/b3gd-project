@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://caf8inimxamen"]
 
-[ext_resource type="Texture2D" uid="uid://bdkks2vfqiwwd" path="res://b3gd/chart_editor/ui/note_editing/notes.png" id="1_8k6l5"]
+[ext_resource type="Texture2D" uid="uid://bdkks2vfqiwwd" path="res://b3gd/chart_editor/ui/notes.png" id="1_8k6l5"]
 [ext_resource type="Texture2D" uid="uid://dhh476fdfywca" path="res://b3gd/chart_editor/note_unknown.png" id="2_0uhgt"]
-[ext_resource type="Texture2D" uid="uid://p6quxyfjutej" path="res://b3gd/chart_editor/ui/note_editing/notecolor.png" id="2_i6xiv"]
+[ext_resource type="Texture2D" uid="uid://p6quxyfjutej" path="res://b3gd/chart_editor/ui/notecolor.png" id="2_i6xiv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnb0l"]
 atlas = ExtResource("1_8k6l5")

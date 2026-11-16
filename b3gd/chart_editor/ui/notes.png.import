@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p6quxyfjutej"
-path="res://.godot/imported/notecolor.png-d17fc6423741090ab43a75c55a31ee69.ctex"
+uid="uid://bdkks2vfqiwwd"
+path="res://.godot/imported/notes.png-1ce94ed86b0a010edff35a3d7b075014.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://b3gd/chart_editor/ui/note_editing/notecolor.png"
-dest_files=["res://.godot/imported/notecolor.png-d17fc6423741090ab43a75c55a31ee69.ctex"]
+source_file="res://b3gd/chart_editor/ui/notes.png"
+dest_files=["res://.godot/imported/notes.png-1ce94ed86b0a010edff35a3d7b075014.ctex"]
 
 [params]
 

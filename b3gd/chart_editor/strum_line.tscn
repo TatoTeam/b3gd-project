@@ -1,15 +1,7 @@
 [gd_scene format=3 uid="uid://b7l3q0pg1d1ir"]
 
-[ext_resource type="Script" uid="uid://sapj07jfvwt" path="res://b3gd/chart_editor/ui/note_editing/strum_line.gd" id="1_wb80q"]
-[ext_resource type="Script" uid="uid://cwjd57ij5ov63" path="res://b3gd/chart_editor/ui/note_editing/info_editor.gd" id="2_wb80q"]
 [ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="3_mmr3a"]
-[ext_resource type="Script" uid="uid://cy7lqfxqo8bem" path="res://b3gd/chart_editor/ui/note_editing/receptors.gd" id="3_u30xk"]
-[ext_resource type="Texture2D" uid="uid://bdkks2vfqiwwd" path="res://b3gd/chart_editor/ui/note_editing/notes.png" id="4_dx5gv"]
-[ext_resource type="Script" uid="uid://dew3pe57fou5p" path="res://b3gd/chart_editor/ui/note_editing/grid.gd" id="5_jjba0"]
-[ext_resource type="Script" uid="uid://cjnk8ao00qs60" path="res://b3gd/chart_editor/ui/note_editing/notes.gd" id="6_xjx7q"]
-[ext_resource type="PackedScene" uid="uid://caf8inimxamen" path="res://b3gd/chart_editor/ui/note_editing/note.tscn" id="7_nr8nb"]
-[ext_resource type="Script" uid="uid://bqudy2onh0for" path="res://b3gd/chart_editor/ui/note_editing/input_note.gd" id="8_s2wjm"]
-[ext_resource type="Texture2D" uid="uid://p6quxyfjutej" path="res://b3gd/chart_editor/ui/note_editing/notecolor.png" id="9_u30xk"]
+[ext_resource type="PackedScene" uid="uid://caf8inimxamen" path="res://b3gd/chart_editor/note.tscn" id="7_nr8nb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u30xk"]
 atlas = ExtResource("3_mmr3a")
@@ -22,11 +14,9 @@ region = Rect2(16, 96, 16, 16)
 [node name="StrumLine" type="VBoxContainer" unique_id=1600336989]
 size_flags_horizontal = 4
 size_flags_vertical = 3
-script = ExtResource("1_wb80q")
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=1958028117]
 layout_mode = 2
-script = ExtResource("2_wb80q")
 
 [node name="InfoMargin" type="MarginContainer" parent="InfoPanel" unique_id=1700282008]
 layout_mode = 2
@@ -111,28 +101,13 @@ color = Color(0.288518, 0.28851798, 0.28851798, 0.3764706)
 
 [node name="Receptors" type="Node2D" parent="StrumLineParent" unique_id=604188213]
 unique_name_in_owner = true
-script = ExtResource("3_u30xk")
-notes_texture = ExtResource("4_dx5gv")
 
 [node name="TimelineRoot" type="Node2D" parent="StrumLineParent" unique_id=425444741]
 unique_name_in_owner = true
 
 [node name="Grid" type="Node2D" parent="StrumLineParent/TimelineRoot" unique_id=1355278616]
-script = ExtResource("5_jjba0")
 
 [node name="Notes" type="Node2D" parent="StrumLineParent/TimelineRoot" unique_id=782084564]
-script = ExtResource("6_xjx7q")
-note_scene = ExtResource("7_nr8nb")
-notes_texture = ExtResource("4_dx5gv")
-notes_color_mask = ExtResource("9_u30xk")
-quant_colors = PackedColorArray(0.8784314, 0.11764706, 0, 1, 0, 0.24705882, 0.92941177, 1, 0.5137255, 0, 0.8784314, 1, 0.2901961, 0.70980394, 0.050980393, 1, 0.85882354, 0.12156863, 0.8235294, 1, 0.8784314, 0.73333335, 0, 1, 0.9019608, 0.4862745, 0.69411767, 1, 0.28235295, 0.8509804, 0.7647059, 1, 0.6, 0.6, 0.6, 1)
 
 [node name="NoteInput" parent="StrumLineParent/TimelineRoot" unique_id=2124841857 instance=ExtResource("7_nr8nb")]
 modulate = Color(1, 1, 1, 0.42745098)
-script = ExtResource("8_s2wjm")
-quant_colors = PackedColorArray(0.8784314, 0.11764706, 0, 1, 0, 0.24705882, 0.92941177, 1, 0.5137255, 0, 0.8784314, 1, 0.2901961, 0.70980394, 0.050980393, 1, 0.85882354, 0.12156863, 0.8235294, 1, 0.8784314, 0.73333335, 0, 1, 0.9019608, 0.4862745, 0.69411767, 1, 0.28235295, 0.8509804, 0.7647059, 1, 0.6, 0.6, 0.6, 1)
-
-[connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/HBoxContainer2/RemoveReceptor" to="." method="remove_receptor_pressed"]
-[connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/HBoxContainer2/AddReceptor" to="." method="add_receptor_pressed"]
-[connection signal="toggled" from="InfoPanel/InfoMargin/InfoVBox/MuteCheckBox" to="." method="_on_mute_check_box_toggled"]
-[connection signal="toggled" from="InfoPanel/InfoMargin/InfoVBox/CPUCheckBox" to="." method="_on_cpu_check_box_toggled"]
