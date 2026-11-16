@@ -1,4 +1,5 @@
 extends AudioStreamPlayer
+class_name SongAudioPlayer
 # I just stole this whole script from myself, it might need adjustment - gitgato
 
 

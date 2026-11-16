@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b7l3q0pg1d1ir"]
 
+[ext_resource type="Script" uid="uid://dp3c6qf8p0ime" path="res://b3gd/chart_editor/editor_strum_line.gd" id="1_jjdoy"]
+[ext_resource type="Script" uid="uid://bamkxeltec4oa" path="res://b3gd/chart_editor/strum_line_drawer.gd" id="3_8s5n4"]
 [ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="3_mmr3a"]
-[ext_resource type="PackedScene" uid="uid://caf8inimxamen" path="res://b3gd/chart_editor/note.tscn" id="7_nr8nb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u30xk"]
 atlas = ExtResource("3_mmr3a")
@@ -14,6 +15,7 @@ region = Rect2(16, 96, 16, 16)
 [node name="StrumLine" type="VBoxContainer" unique_id=1600336989]
 size_flags_horizontal = 4
 size_flags_vertical = 3
+script = ExtResource("1_jjdoy")
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=1958028117]
 layout_mode = 2
@@ -83,14 +85,15 @@ size_flags_vertical = 3
 focus_mode = 0
 text = "CPU"
 
-[node name="StrumLineParent" type="Control" parent="." unique_id=220299407]
+[node name="StrumLineDrawer" type="Control" parent="." unique_id=220299407]
 texture_repeat = 2
 custom_minimum_size = Vector2(150, 0)
-clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("3_8s5n4")
 
-[node name="ColorRect" type="ColorRect" parent="StrumLineParent" unique_id=1289471403]
+[node name="ColorRect" type="ColorRect" parent="StrumLineDrawer" unique_id=1289471403]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,16 +101,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.288518, 0.28851798, 0.28851798, 0.3764706)
-
-[node name="Receptors" type="Node2D" parent="StrumLineParent" unique_id=604188213]
-unique_name_in_owner = true
-
-[node name="TimelineRoot" type="Node2D" parent="StrumLineParent" unique_id=425444741]
-unique_name_in_owner = true
-
-[node name="Grid" type="Node2D" parent="StrumLineParent/TimelineRoot" unique_id=1355278616]
-
-[node name="Notes" type="Node2D" parent="StrumLineParent/TimelineRoot" unique_id=782084564]
-
-[node name="NoteInput" parent="StrumLineParent/TimelineRoot" unique_id=2124841857 instance=ExtResource("7_nr8nb")]
-modulate = Color(1, 1, 1, 0.42745098)

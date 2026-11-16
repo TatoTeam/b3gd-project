@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://dk3bhqjhxhv5b"]
 
-[ext_resource type="PackedScene" uid="uid://bok4o5o3bpn34" path="res://b3gd/chart_editor/chart_editor_ui.tscn" id="2_x6ha0"]
+[ext_resource type="Script" uid="uid://dtywfawbj6pqb" path="res://b3gd/chart_editor/chart_editor_canvas.gd" id="1_5b7pn"]
+[ext_resource type="PackedScene" uid="uid://0fmbhebqx5x3" path="res://b3gd/chart_editor/chart_editor.tscn" id="1_ihhhq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yt480"]
 blend_mode = 4
 
-[node name="EditorCanvas" type="CanvasLayer" unique_id=1094420892]
+[node name="ChartEditorCanvas" type="CanvasLayer" unique_id=1094420892 node_paths=PackedStringArray("chart_editor")]
 layer = 255
+script = ExtResource("1_5b7pn")
+chart_editor = NodePath("EditorViewport/SubViewport/EditorUI")
 
 [node name="EditorViewport" type="SubViewportContainer" parent="." unique_id=825030729]
 material = SubResource("CanvasItemMaterial_yt480")
@@ -24,4 +27,4 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="EditorUI" parent="EditorViewport/SubViewport" unique_id=1207813288 instance=ExtResource("2_x6ha0")]
+[node name="EditorUI" parent="EditorViewport/SubViewport" unique_id=1207813288 instance=ExtResource("1_ihhhq")]

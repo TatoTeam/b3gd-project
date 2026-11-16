@@ -32,7 +32,7 @@ func cpu_receptor_input(strum_line_id, receptor_id):
 
 func player_receptor_input(strum_line_id, receptor_id):
 	var input_name = "strumline_" + str(receptor_id)
-	assert(InputMap.has_action(input_name), "Action " + input_name + " does not exist.")
+	# assert(InputMap.has_action(input_name), "Action " + input_name + " does not exist.")
 	var is_pressed = Input.is_action_just_pressed(input_name)
 	var is_held = Input.is_action_pressed(input_name)
 	var receptor = strum_lines[strum_line_id].receptors[receptor_id]

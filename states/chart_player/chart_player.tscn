@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://dfywqgr404x2a"]
 
-[ext_resource type="Script" uid="uid://ce48x5d41hgyi" path="res://b3gd/chart_editor/chart_editor_activate.gd" id="1_5icij"]
 [ext_resource type="Script" uid="uid://223mam7be1wl" path="res://b3gd/chart_player/chart_loader.gd" id="1_62xbj"]
-[ext_resource type="Resource" uid="uid://bvc2ibsd0eloj" path="res://songs/test/chart.tres" id="3_cdfgl"]
 [ext_resource type="Script" uid="uid://bpt0v2hxb23lq" path="res://b3gd/chart_player/song_audio_player.gd" id="3_my5jg"]
 [ext_resource type="Script" uid="uid://cr3x8h58rufy1" path="res://b3gd/chart_player/event_player.gd" id="3_v3b1e"]
 [ext_resource type="Script" uid="uid://rypo2bh7qid7" path="res://b3gd/chart_player/note_manager.gd" id="4_t3y1r"]
+[ext_resource type="Script" uid="uid://dgeiwlewjhd38" path="res://states/chart_player/chart_editor_activate.gd" id="5_cmch3"]
 [ext_resource type="Script" uid="uid://dvjswg4e6wv1q" path="res://states/chart_player/note_renderers/gridrenderer/3dgridrenderer.gd" id="5_yp0gr"]
 [ext_resource type="Texture2D" uid="uid://bdnho2gsjp6c2" path="res://prefabs/noteskins/template.png" id="7_cdfgl"]
 [ext_resource type="Script" uid="uid://bctudmv5p4heo" path="res://states/chart_player/note_renderers/gridrenderer/noteskingriddata.gd" id="8_rbo3x"]
@@ -17,8 +16,7 @@ metadata/_custom_type_script = "uid://bctudmv5p4heo"
 [sub_resource type="Environment" id="Environment_v3b1e"]
 
 [node name="ChartPlayer" type="Node" unique_id=192656738 groups=["ChartSource"]]
-script = ExtResource("1_5icij")
-chart = ExtResource("3_cdfgl")
+script = ExtResource("5_cmch3")
 
 [node name="ChartLoader" type="Node" parent="." unique_id=2030037540 node_paths=PackedStringArray("chart_source", "song_audio_player", "note_manager", "event_player") groups=["ChartLoader"]]
 script = ExtResource("1_62xbj")
