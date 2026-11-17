@@ -110,6 +110,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.288518, 0.28851798, 0.28851798, 0.3764706)
 
 [node name="NotePlacer" type="Control" parent="StrumLineDrawer" unique_id=892793543]
@@ -119,7 +120,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 script = ExtResource("6_mcovw")
 
 [connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/ReceptorControl/RemoveReceptor" to="InfoPanel/InfoMargin/InfoVBox/ReceptorControl" method="_on_remove_receptor_pressed"]
