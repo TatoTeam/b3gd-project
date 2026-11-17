@@ -13,3 +13,23 @@ func _on_undo_button_pressed():
 
 func _on_redo_button_pressed():
 	ChartEditor.undo_redo.redo()
+
+func _on_save_button_pressed():
+	print(ChartEditor.inst.chart.resource_path.get_extension())
+	if ChartEditor.inst.chart.resource_path.get_extension() != "tres":
+		_on_save_as_button_pressed()
+	else:
+		ResourceSaver.save(ChartEditor.inst.chart, ChartEditor.inst.chart.resource_path)
+
+func _on_save_as_button_pressed():
+	var save_dialog := FileDialog.new()
+	save_dialog.filters = ["*.tres"]
+	save_dialog.title = "Save Chart"
+	
+	add_child(save_dialog)
+	save_dialog.show()
+	
+	save_dialog.file_selected.connect(func(path):
+		ResourceSaver.save(ChartEditor.inst.chart, path)
+		ChartEditor.inst.chart.take_over_path(path)
+	)

@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://djr1hg1crhdfd" path="res://b3gd/chart_editor/theme.tres" id="1_ck5jt"]
 [ext_resource type="Script" uid="uid://gncvxx0edcxe" path="res://b3gd/chart_editor/chart_editor.gd" id="1_sw2s4"]
-[ext_resource type="Resource" uid="uid://cd6ha62mo0uvg" path="res://songs/test/chart.tres" id="2_5aops"]
 [ext_resource type="Texture2D" uid="uid://cka5y22a126yx" path="res://b3gd/chart_editor/ui/event_line.png" id="2_sw2s4"]
 [ext_resource type="Script" uid="uid://ct2pwsm4nwavc" path="res://b3gd/chart_editor/chart_editor_settings.gd" id="3_cm7rd"]
 [ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="3_cqpfm"]
@@ -72,19 +71,35 @@ variation_embolden = 0.5
 [sub_resource type="LabelSettings" id="LabelSettings_piitt"]
 font = SubResource("FontVariation_aqojd")
 
-[sub_resource type="InputEventKey" id="InputEventKey_dyjyi"]
+[sub_resource type="InputEventKey" id="InputEventKey_u13mf"]
 device = -1
-command_or_control_autoremap = true
-pressed = true
+ctrl_pressed = true
 keycode = 83
 unicode = 115
 
-[sub_resource type="Shortcut" id="Shortcut_xr37n"]
-events = [SubResource("InputEventKey_dyjyi")]
+[sub_resource type="Shortcut" id="Shortcut_60gf8"]
+events = [SubResource("InputEventKey_u13mf")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tpte"]
 atlas = ExtResource("3_cqpfm")
 region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="InputEventKey" id="InputEventKey_yrq2n"]
+device = -1
+alt_pressed = true
+ctrl_pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="InputEventKey" id="InputEventKey_vrokq"]
+device = -1
+shift_pressed = true
+ctrl_pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_xr37n"]
+events = [SubResource("InputEventKey_yrq2n"), SubResource("InputEventKey_vrokq")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_xr37n"]
 device = -1
@@ -178,7 +193,6 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("1_sw2s4")
-chart = ExtResource("2_5aops")
 settings = SubResource("Resource_5aops")
 
 [node name="UIContainer" type="HBoxContainer" parent="." unique_id=1378123441]
@@ -389,8 +403,17 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 focus_mode = 0
-shortcut = SubResource("Shortcut_xr37n")
+shortcut = SubResource("Shortcut_60gf8")
 text = "Save"
+icon = SubResource("AtlasTexture_4tpte")
+
+[node name="SaveAsButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=222296806]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+shortcut = SubResource("Shortcut_xr37n")
+text = "Save As"
 icon = SubResource("AtlasTexture_4tpte")
 
 [node name="UndoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1667046611]
@@ -698,6 +721,8 @@ texture = ExtResource("5_cm7rd")
 
 [connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" method="_on_class_box_item_selected"]
 [connection signal="item_selected" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
+[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/SaveButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_button_pressed"]
+[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/SaveAsButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_as_button_pressed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/UndoButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/RedoButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header/Button" to="UIContainer/FieldScroll/Container/EventPanel" method="remove_event"]

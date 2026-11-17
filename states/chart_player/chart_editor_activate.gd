@@ -44,6 +44,7 @@ func add_editor() -> void:
 	
 	editor_canvas = load(CHART_EDITOR_CANVAS).instantiate()
 	editor_canvas.chart_editor._song_audio_player = song_audio_player
+	editor_canvas.chart_editor.chart = chart
 	add_child(editor_canvas)
 	
 	ui.process_mode = Node.PROCESS_MODE_DISABLED
