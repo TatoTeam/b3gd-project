@@ -32,10 +32,10 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func time_to_y(time: float) -> float:
-	return receptor_y_pos + (time - ChartEditor.song_audio_player.song_progress_seconds) * pixels_per_second
+	return receptor_y_pos + (time - ChartEditor.song_audio_player.song_position_seconds) * pixels_per_second
 
 func y_to_time(y: float) -> float:
-	return ChartEditor.song_audio_player.song_progress_seconds + (y - receptor_y_pos) / pixels_per_second
+	return ChartEditor.song_audio_player.song_position_seconds + (y - receptor_y_pos) / pixels_per_second
 
 func y_to_snapped_time(y: float) -> float:
 	return ChartEditor.instance.settings.snap_time(y_to_time(y))

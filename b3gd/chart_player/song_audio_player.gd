@@ -2,28 +2,36 @@ extends AudioStreamPlayer
 class_name SongAudioPlayer
 # I just stole this whole script from myself, it might need adjustment - gitgato
 
-
 signal beat_hit(beat: int)
 
 var bpm_events: Array[EventBPMChange] = []
 
 var paused = false
 
-var song_progress_seconds = 0:
+var _song_position_raw: float:
+	get():
+		var mix_adj = (AudioServer.get_time_since_last_mix() - output_latency)
+		var true_prog = get_playback_position() + (mix_adj * pitch_scale)
+		return true_prog
+
+var song_position_seconds = 0:
 	set(value):
-		var previous_beat = song_progress_beats
-		song_progress_seconds = value
-		var new_beat = song_progress_beats
+		var previous_beat = song_position_beats
+		song_position_seconds = value
+		var new_beat = song_position_beats
 		if floor(previous_beat) != floor(new_beat):
 			beat_hit.emit(floor(new_beat))
-		if song_progress_seconds >= 0 and playing:
+		
+		if song_position_seconds >= 0 and playing:
 			return
-		if song_progress_seconds < 0 and playing:
+		
+		if song_position_seconds < 0 and playing:
 			stop()
-		elif song_progress_seconds >= 0 and !paused and !playing:
-			if song_progress_seconds > 0.08: # if its only a little off it just retimes it
-				play(song_progress_seconds)
-				force_sync = true
+		
+		elif song_position_seconds >= 0 and !paused and !playing:
+			if song_position_seconds > 0.08: # if its only a little off it just retimes it
+				play(song_position_seconds)
+				force_resync.call_deferred()
 			else:
 				play()
 
@@ -31,14 +39,14 @@ var song_length_seconds: float = 0:
 	get():
 		return stream.get_length()
 
-var paused_position = 0.0
+var _paused_position = 0.0
 var force_sync = false
 
 var bpm_events_index:
 	get():
 		var result = 0
 		for bpm_index_check in range(bpm_events.size()):
-			if bpm_events[bpm_index_check].time < song_progress_seconds:
+			if bpm_events[bpm_index_check].time < song_position_seconds:
 				result = bpm_index_check
 		return result
 
@@ -50,9 +58,9 @@ var bpm_start_second:
 	get():
 		return bpm_events[bpm_events_index].time
 
-var song_progress_beats:
+var song_position_beats:
 	get():
-		var beat_since_beat_start = (bpm / 60) * (song_progress_seconds - bpm_start_second)
+		var beat_since_beat_start = (bpm / 60) * (song_position_seconds - bpm_start_second)
 		return beat_since_beat_start + get_beat_carry(bpm_events_index)
 
 @onready var output_latency = AudioServer.get_output_latency()
@@ -89,63 +97,60 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if paused:
-		song_progress_seconds = paused_position
+		song_position_seconds = _paused_position
 		return
 	
-	if song_progress_seconds < 0:
-		var next_prog = song_progress_seconds + (delta * int(!paused) * pitch_scale)
-		if next_prog > 0:
-			song_progress_seconds = 0
-		else:
-			song_progress_seconds = next_prog
+	if song_position_seconds < 0:
+		var next_prog = song_position_seconds + (delta * int(!paused) * pitch_scale)
+		song_position_seconds = min(next_prog, 0)
 		return
 	
+	song_position_seconds = max(_song_position_raw, song_position_seconds + (delta * 0.9 * pitch_scale))
+
+func force_resync():
 	var mix_adj = (AudioServer.get_time_since_last_mix() - output_latency)
 	var true_prog = get_playback_position() + (mix_adj * pitch_scale)
 	
-	# if true_prog stutters (which it can do) it will be smoothed out so it still feels normal
-	song_progress_seconds = max(true_prog, song_progress_seconds + (delta * 0.9 * pitch_scale))
-	if force_sync:
-		print("resync", song_progress_seconds, true_prog)
-		song_progress_seconds = max(true_prog, 0)
-		force_sync = false
-	
+	print("resync", song_position_seconds, true_prog)
+	song_position_seconds = max(true_prog, 0)
+
 func pause():
 	if paused:
 		return
 	paused = true
-	if song_progress_seconds >= 0:
-		paused_position = get_playback_position()
+	if song_position_seconds >= 0:
+		_paused_position = get_playback_position()
 		stop()
 	else:
-		paused_position = song_progress_seconds
+		_paused_position = song_position_seconds
 
 func unpause():
 	if !paused:
 		return
 	paused = false
-	song_progress_seconds = paused_position
-	if paused_position >= 0:
-		play(song_progress_seconds)
-		force_sync = true
+	song_position_seconds = _paused_position
+	if _paused_position >= 0:
+		play(song_position_seconds)
+		force_resync.call_deferred()
 
-func track_seek(new_position, paused_scrub_time:float = 0):
-	paused_position = new_position
-	if paused_position < 0:
-		song_progress_seconds = paused_position
+func track_seek(new_position: float, paused_scrub_time:float = 0):
+	_paused_position = new_position
+	if _paused_position < 0:
+		song_position_seconds = _paused_position
 		return
-	force_sync = true
+	
+	force_resync.call_deferred()
 	if paused:
 		if !scrub_timer.is_stopped():
 			scrub_timer.timeout.emit()
 			scrub_timer.stop()
-		play(paused_position)
+		play(_paused_position)
 		scrub_timer.start(paused_scrub_time)
 		await scrub_timer.timeout
 		if paused:
 			stop()
 	else:
-		play(paused_position)
+		play(_paused_position)
 
 func on_finished() -> void:
 	force_sync = true

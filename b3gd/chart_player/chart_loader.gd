@@ -86,7 +86,7 @@ func remove_notes_from_past():
 			var note_id = 0
 			
 			while note_id < receptor.notes.size() and !future_id_found:
-				if receptor.notes[note_id].time >= song_audio_player.song_progress_seconds:
+				if receptor.notes[note_id].time >= song_audio_player.song_position_seconds:
 					future_id_found = true
 					continue
 				note_id += 1

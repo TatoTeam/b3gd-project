@@ -24,12 +24,12 @@ func init_events() -> void:
 
 func process_events() -> bool:
 	if last_played_event >= events.size():
-		if events[-1].time <= song_audio_player.song_progress_seconds:
+		if events[-1].time <= song_audio_player.song_position_seconds:
 			last_played_event = max(events.size() - 1, -1)
 			events[last_played_event].play(song_audio_player.pitch_scale * -1)
 		return false
 	
-	if last_played_event != -1 and events[last_played_event].time > song_audio_player.song_progress_seconds:
+	if last_played_event != -1 and events[last_played_event].time > song_audio_player.song_position_seconds:
 		events[last_played_event].play(song_audio_player.pitch_scale * -1)
 		last_played_event = max(last_played_event - 1, -1)
 		return true
@@ -37,7 +37,7 @@ func process_events() -> bool:
 	if last_played_event >= events.size() - 1:
 		return false
 	
-	if events[last_played_event + 1].time <= song_audio_player.song_progress_seconds:
+	if events[last_played_event + 1].time <= song_audio_player.song_position_seconds:
 		last_played_event += 1
 		events[last_played_event].play(song_audio_player.pitch_scale * 1)
 		return true

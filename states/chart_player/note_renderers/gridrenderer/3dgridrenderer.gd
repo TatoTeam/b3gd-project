@@ -71,7 +71,7 @@ func add_notes_to_mesh(mesh_array: Array, notes: Array[Note], receptor_id: int, 
 	var scroll_speed = chart_source.chart.scroll_speed
 	var note_frame = noteskin_data.note_frames[idle_frames.note_frames]
 	for note in notes:
-		var note_distance = (note.time - song_audio_player.song_progress_seconds) * note_speed * scroll_speed
+		var note_distance = (note.time - song_audio_player.song_position_seconds) * note_speed * scroll_speed
 		if cutoff_distance > 0.0 and note_distance > cutoff_distance:
 			return
 		if note.length > 0:
@@ -177,7 +177,7 @@ func update_idle_frames(delta: float) -> void:
 
 func get_receptor_frame(receptor: Receptor) -> int:
 	var receptor_frame = noteskin_data.receptor_frames[idle_frames.receptor_frames]
-	var time_since_last_input = song_audio_player.song_progress_seconds - receptor.last_press.input_time
+	var time_since_last_input = song_audio_player.song_position_seconds - receptor.last_press.input_time
 	if time_since_last_input < 0:
 		return receptor_frame
 	if !receptor.last_press.ignore_draw:

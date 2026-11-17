@@ -9,9 +9,9 @@ func _unhandled_input(event):
 		if event.is_action_pressed("editor_time_up"):
 			time *= -1
 		
-		var seek_time := ChartEditor.instance.settings.snap_time(ChartEditor.song_audio_player.song_progress_seconds + time)
+		var seek_time := ChartEditor.instance.settings.snap_time(ChartEditor.song_audio_player.song_position_seconds + time)
 		ChartEditor.song_audio_player.track_seek(seek_time)
-		value = ChartEditor.song_audio_player.song_progress_seconds
+		value = ChartEditor.song_audio_player.song_position_seconds
 	
 	if event.is_action_pressed("editor_pause"):
 		if ChartEditor.song_audio_player.paused:

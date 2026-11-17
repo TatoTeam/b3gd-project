@@ -26,7 +26,7 @@ func cpu_receptor_input(strum_line_id, receptor_id):
 	if receptor.notes.size() == 0:
 		return
 	
-	while receptor.notes[0].time <= song_audio_player.song_progress_seconds:
+	while receptor.notes[0].time <= song_audio_player.song_position_seconds:
 		hit_note(strum_line_id, receptor_id)
 		receptor.last_press.ignore_draw = false
 		if receptor.notes.size() == 0 or receptor.notes[0].hold_pressed:
@@ -42,7 +42,7 @@ func player_receptor_input(strum_line_id, receptor_id):
 	
 	var note_distance = 100000
 	if receptor.notes.size() > 0:
-		note_distance = receptor.notes[0].time - song_audio_player.song_progress_seconds
+		note_distance = receptor.notes[0].time - song_audio_player.song_position_seconds
 	
 	if note_distance > hit_window * 0.5:
 		if is_pressed:
@@ -57,17 +57,17 @@ func player_receptor_input(strum_line_id, receptor_id):
 			hit_note(strum_line_id, receptor_id)
 
 func hit_dummy(strum_line_id, receptor_id):
-	strum_lines[strum_line_id].receptors[receptor_id].last_press.input_time = song_audio_player.song_progress_seconds
+	strum_lines[strum_line_id].receptors[receptor_id].last_press.input_time = song_audio_player.song_position_seconds
 	strum_lines[strum_line_id].receptors[receptor_id].last_press.dummy = true
 	note_press.emit(strum_line_id, receptor_id, null, 1.0)
 
 func hit_note(strum_line_id, receptor_id):
 	var receptor = strum_lines[strum_line_id].receptors[receptor_id]
-	receptor.last_press.input_time = song_audio_player.song_progress_seconds
+	receptor.last_press.input_time = song_audio_player.song_position_seconds
 	receptor.last_press.dummy = false
 	var note = receptor.notes[0]
 	
-	var time_difference = song_audio_player.song_progress_seconds - note.time
+	var time_difference = song_audio_player.song_position_seconds - note.time
 	
 	if note.note_hit():
 		note_press.emit(strum_line_id, receptor_id, note, time_difference)
