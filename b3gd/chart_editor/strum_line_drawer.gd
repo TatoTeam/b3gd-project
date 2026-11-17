@@ -45,11 +45,13 @@ const NOTE_TEXTURE_ARRAYS := {
 	22: [10]
 }
 
-func _process(_delta):
-	# honestly no reason not to do this here since notes will be usually redrawn every frame due to the song yknow.. playing
-	queue_redraw()
+static func get_note_vector_array(receptor_count: int) -> Array:
+	if receptor_count > NOTE_TEXTURE_ARRAYS.size() - 1:
+		return NOTE_TEXTURE_ARRAYS[22]
+	else:
+		return NOTE_TEXTURE_ARRAYS[receptor_count]
 
-func get_quant_id(note_time: float) -> int:
+static func get_quant_id(note_time: float) -> int:
 	var note_beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_time)
 	var note_beat_sm: int = round(note_beat * 48.0)
 	for i in QUANT_LIST.size():
@@ -58,17 +60,17 @@ func get_quant_id(note_time: float) -> int:
 	
 	return 8
 
+func _process(_delta):
+	# honestly no reason not to do this here since notes will be usually redrawn every frame due to the song yknow.. playing
+	queue_redraw()
+
+
 func _draw():
 	if strumline_object.strumline == null: return
 	
 	custom_minimum_size.x = strumline_object.strumline.receptors.size() * ChartEditor.inst.settings.NOTE_SIZE
 	
-	var note_texture_array: Array
-	
-	if strumline_object.strumline.receptors.size() > NOTE_TEXTURE_ARRAYS.size() - 1:
-		note_texture_array = NOTE_TEXTURE_ARRAYS[22]
-	else:
-		note_texture_array = NOTE_TEXTURE_ARRAYS[strumline_object.strumline.receptors.size()]
+	var note_texture_array := get_note_vector_array(strumline_object.strumline.receptors.size())
 	
 	for dir in range(strumline_object.strumline.receptors.size()):
 		

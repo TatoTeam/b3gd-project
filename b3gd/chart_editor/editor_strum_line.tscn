@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://b7l3q0pg1d1ir"]
 
-[ext_resource type="Script" uid="uid://dp3c6qf8p0ime" path="res://b3gd/chart_editor/editor_strum_line.gd" id="1_jjdoy"]
-[ext_resource type="Script" uid="uid://bdttvldel5y85" path="res://b3gd/chart_editor/receptor_control.gd" id="2_hjjx0"]
-[ext_resource type="Script" uid="uid://bamkxeltec4oa" path="res://b3gd/chart_editor/strum_line_drawer.gd" id="3_8s5n4"]
-[ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="3_mmr3a"]
-[ext_resource type="Script" uid="uid://d1cnb4hugwiyp" path="res://b3gd/chart_editor/property_getter_setter_checkbox.gd" id="3_to57n"]
-[ext_resource type="Script" uid="uid://d0j3bn53ed8sw" path="res://b3gd/chart_editor/note_placer.gd" id="6_g21tu"]
+[ext_resource type="Script" uid="uid://dp3c6qf8p0ime" path="res://b3gd/chart_editor/editor_strum_line.gd" id="1_6wfxj"]
+[ext_resource type="Script" uid="uid://bdttvldel5y85" path="res://b3gd/chart_editor/receptor_control.gd" id="2_cq5xl"]
+[ext_resource type="Texture2D" uid="uid://hwm18sid4ysu" path="res://b3gd/chart_editor/ui/atlas.png" id="3_t2trj"]
+[ext_resource type="Script" uid="uid://d1cnb4hugwiyp" path="res://b3gd/chart_editor/property_getter_setter_checkbox.gd" id="4_mbbuy"]
+[ext_resource type="Script" uid="uid://bamkxeltec4oa" path="res://b3gd/chart_editor/strum_line_drawer.gd" id="5_4c10p"]
+[ext_resource type="Script" uid="uid://d0j3bn53ed8sw" path="res://b3gd/chart_editor/note_placer.gd" id="6_mcovw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u30xk"]
-atlas = ExtResource("3_mmr3a")
+atlas = ExtResource("3_t2trj")
 region = Rect2(0, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wb80q"]
-atlas = ExtResource("3_mmr3a")
+atlas = ExtResource("3_t2trj")
 region = Rect2(16, 96, 16, 16)
 
 [node name="StrumLine" type="VBoxContainer" unique_id=1600336989]
 size_flags_horizontal = 4
 size_flags_vertical = 3
-script = ExtResource("1_jjdoy")
+script = ExtResource("1_6wfxj")
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=1958028117]
 layout_mode = 2
@@ -44,7 +44,7 @@ text = "0"
 
 [node name="ReceptorControl" type="HBoxContainer" parent="InfoPanel/InfoMargin/InfoVBox" unique_id=1483075279 node_paths=PackedStringArray("editor_strumline")]
 layout_mode = 2
-script = ExtResource("2_hjjx0")
+script = ExtResource("2_cq5xl")
 editor_strumline = NodePath("../../../..")
 
 [node name="Label" type="Label" parent="InfoPanel/InfoMargin/InfoVBox/ReceptorControl" unique_id=549249472]
@@ -90,7 +90,7 @@ focus_mode = 0
 text = "CPU"
 
 [node name="PropertyGetterSetterCheckBox" type="Node" parent="InfoPanel/InfoMargin/InfoVBox/HBoxContainer/CPUCheckBox" unique_id=572545642 node_paths=PackedStringArray("node")]
-script = ExtResource("3_to57n")
+script = ExtResource("4_mbbuy")
 node = NodePath("../../../../../..")
 property_path = "strumline:cpu"
 metadata/_custom_type_script = "uid://d1cnb4hugwiyp"
@@ -100,7 +100,7 @@ texture_repeat = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("3_8s5n4")
+script = ExtResource("5_4c10p")
 
 [node name="ColorRect" type="ColorRect" parent="StrumLineDrawer" unique_id=1289471403]
 show_behind_parent = true
@@ -120,7 +120,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("6_g21tu")
+script = ExtResource("6_mcovw")
 
 [connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/ReceptorControl/RemoveReceptor" to="InfoPanel/InfoMargin/InfoVBox/ReceptorControl" method="_on_remove_receptor_pressed"]
 [connection signal="pressed" from="InfoPanel/InfoMargin/InfoVBox/ReceptorControl/AddReceptor" to="InfoPanel/InfoMargin/InfoVBox/ReceptorControl" method="_on_add_receptor_pressed"]

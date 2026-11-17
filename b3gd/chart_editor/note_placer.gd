@@ -23,14 +23,7 @@ func _draw():
 	if strumline_object.strumline == null: return
 	if !mouse_inside: return
 	
-	custom_minimum_size.x = strumline_object.strumline.receptors.size() * ChartEditor.inst.settings.NOTE_SIZE
-	
-	var note_texture_array: Array
-	
-	if strumline_object.strumline.receptors.size() > EditorStrumlineDrawer.NOTE_TEXTURE_ARRAYS.size() - 1:
-		note_texture_array = EditorStrumlineDrawer.NOTE_TEXTURE_ARRAYS[22]
-	else:
-		note_texture_array = EditorStrumlineDrawer.NOTE_TEXTURE_ARRAYS[strumline_object.strumline.receptors.size()]
+	var note_texture_array := EditorStrumlineDrawer.get_note_vector_array(strumline_object.strumline.receptors.size())
 	
 	var step := get_rect().size.x / (strumline_object.strumline.receptors.size())
 	var dir := floori(get_local_mouse_position().x / step)
@@ -38,8 +31,14 @@ func _draw():
 	var note_size_vec := Vector2.ONE * ChartEditor.inst.settings.NOTE_SIZE
 	var note_time = ChartEditor.song_audio_player.song_progress_seconds + (get_local_mouse_position().y / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom)
 	
-	var note_offset: float = note_time - ChartEditor.song_audio_player.song_progress_seconds
+	var beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_time)
+	beat = snapped(beat, 4.0 / ChartEditor.inst.settings.snapping)
+	note_time = ChartEditor.song_audio_player.get_seconds_from_beat(beat)
 	
+	var quant_color: Color = EditorStrumlineDrawer.QUANT_COLORS[EditorStrumlineDrawer.get_quant_id(note_time)]
+	quant_color.a = 0.75
+	
+	var note_offset: float = note_time - ChartEditor.song_audio_player.song_progress_seconds
 	
 	var sprite_x_pos: int = note_texture_array[dir % note_texture_array.size()] * ChartEditor.inst.settings.NOTE_SIZE
 	
@@ -56,7 +55,7 @@ func _draw():
 		note_size_vec
 	)
 	
-	draw_texture_rect_region(NOTES, note_draw_rect, src_rect)
+	draw_texture_rect_region(NOTES, note_draw_rect, src_rect, quant_color)
 	
 	#if note.length > 0.0:
 	#	draw_set_transform(note_draw_pos + Vector2(0, ChartEditor.inst.settings.NOTE_SIZE / 2.0), 0.0, Vector2.ONE)
