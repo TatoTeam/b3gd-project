@@ -30,26 +30,53 @@ func _gui_input(event):
 			placing_note = event.pressed
 			accept_event()
 
-func remove_note(receptor, time):
+func remove_note(receptor: int, time: float, create_new_action: bool = true):
 	if receptor > strumline_object.strumline.receptors.size() - 1 || receptor < 0: return
 	
 	var notes = strumline_object.strumline.receptors[receptor].notes
 	for note in notes:
 		if abs(note.time - time) < 0.05:
-			notes.remove_at(notes.find(note)) # Only removes one at a time
+			if create_new_action:
+				ChartEditor.undo_redo.create_action("Remove Note")
+			
+			ChartEditor.undo_redo.add_do_reference(note)
+			
+			ChartEditor.undo_redo.add_do_method(func():
+				notes.append(note)
+			)
+			
+			ChartEditor.undo_redo.add_undo_method(func():
+				notes.erase(note)
+			)
+			
+			if create_new_action: ChartEditor.undo_redo.commit_action()
+			
 			break
 
 func add_note():
 	if note_dir > strumline_object.strumline.receptors.size() - 1 || note_dir < 0: return
 	
-	remove_note(note_dir, note_time)
+	ChartEditor.undo_redo.create_action("Place Note")
+	
+	remove_note(note_dir, note_time, false)
 	
 	var receptor: Receptor = strumline_object.strumline.receptors.get(note_dir)
+	
 	var new_note := Note.new()
 	new_note.time = note_time
 	new_note.length = note_length
 	
-	receptor.notes.append(new_note)
+	ChartEditor.undo_redo.add_do_reference(new_note)
+	ChartEditor.undo_redo.add_do_method(func():
+		receptor.notes.append(new_note)
+	)
+	
+	ChartEditor.undo_redo.add_undo_method(func():
+		receptor.notes.erase(new_note)
+	)
+	
+	ChartEditor.undo_redo.commit_action()
+	
 
 func _process(_delta):
 	if strumline_object.strumline == null: return
