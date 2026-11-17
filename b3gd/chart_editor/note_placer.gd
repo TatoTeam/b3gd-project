@@ -42,11 +42,11 @@ func remove_note(receptor: int, time: float, create_new_action: bool = true):
 			ChartEditor.undo_redo.add_do_reference(note)
 			
 			ChartEditor.undo_redo.add_do_method(func():
-				notes.append(note)
+				notes.erase(note)
 			)
 			
 			ChartEditor.undo_redo.add_undo_method(func():
-				notes.erase(note)
+				notes.append(note)
 			)
 			
 			if create_new_action: ChartEditor.undo_redo.commit_action()
