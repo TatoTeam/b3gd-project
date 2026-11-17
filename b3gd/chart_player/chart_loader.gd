@@ -1,4 +1,7 @@
 extends Node
+class_name ChartLoader
+
+static var inst: ChartLoader
 
 signal tracks_loaded()
 signal notes_loaded()
@@ -9,6 +12,9 @@ signal events_loaded()
 @export var song_audio_player:AudioStreamPlayer
 @export var note_manager:Node
 @export var event_player:Node
+
+func _init():
+	inst = self
 
 func _ready() -> void:
 	load_chart()

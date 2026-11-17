@@ -82,6 +82,12 @@ focus_mode = 0
 text = "Mute
 "
 
+[node name="PropertyGetterSetterCheckBox" type="Node" parent="InfoPanel/InfoMargin/InfoVBox/HBoxContainer/MuteCheckBox" unique_id=1208058604 node_paths=PackedStringArray("node")]
+script = ExtResource("4_mbbuy")
+node = NodePath("../../../../../..")
+property_path = "muted"
+metadata/_custom_type_script = "uid://d1cnb4hugwiyp"
+
 [node name="CPUCheckBox" type="CheckBox" parent="InfoPanel/InfoMargin/InfoVBox/HBoxContainer" unique_id=468590135]
 layout_mode = 2
 size_flags_horizontal = 6

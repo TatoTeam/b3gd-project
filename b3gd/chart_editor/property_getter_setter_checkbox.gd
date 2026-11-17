@@ -11,7 +11,7 @@ func _ready():
 func set_incoming_value(value: Variant):
 	var parent: CheckBox = get_parent()
 	
-	parent.button_pressed = bool(value)
+	parent.set_pressed_no_signal(bool(value))
 
 func get_outgoing_value() -> Variant:
 	var parent: CheckBox = get_parent()
