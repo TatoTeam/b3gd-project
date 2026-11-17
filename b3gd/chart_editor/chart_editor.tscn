@@ -583,7 +583,7 @@ metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
 [node name="HitSoundLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1777660297]
 layout_mode = 2
-text = "Hit Sound:"
+text = "Hit Sounds:"
 
 [node name="HitSound" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=876066071]
 layout_mode = 2
