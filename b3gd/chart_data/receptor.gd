@@ -11,3 +11,6 @@ class ReceptorInput extends RefCounted:
 	@export var dummy: bool = false
 
 var last_press:ReceptorInput
+
+func sort_notes():
+	notes.sort_custom(func(a: Note, b: Note): return a.time < b.time)

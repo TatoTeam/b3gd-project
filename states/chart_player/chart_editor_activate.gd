@@ -1,11 +1,12 @@
 extends Node
+class_name ChartPlayer
 
 @export var chart: Chart
 
 @onready var ui = $UI
 @onready var note_manager = $NoteManager
-@onready var song_audio_player = $SongAudioPlayer
-@onready var chart_loader = $ChartLoader
+@onready var song_audio_player: SongAudioPlayer = $SongAudioPlayer
+@onready var chart_loader: ChartLoader = $ChartLoader
 
 const CHART_EDITOR_CANVAS := "uid://dk3bhqjhxhv5b"
 
@@ -24,6 +25,11 @@ func _input(event: InputEvent) -> void:
 func erase_editor() -> void:
 	editor_canvas.queue_free()
 	editor_canvas = null
+	
+	chart_loader.load_tracks()
+	chart_loader.load_notes(true)
+	chart_loader.load_events()
+	
 	
 	note_manager.process_mode = Node.PROCESS_MODE_INHERIT
 	ui.process_mode = Node.PROCESS_MODE_INHERIT

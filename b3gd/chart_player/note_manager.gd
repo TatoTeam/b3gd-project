@@ -1,4 +1,5 @@
 extends Node
+class_name NoteManager
 
 signal note_press(strum_line_id: int, receptor_id: int, note: Note, hold_delta: float)
 signal note_miss(strum_line_id: int, receptor_id: int, note: Note)
@@ -7,8 +8,9 @@ signal note_miss(strum_line_id: int, receptor_id: int, note: Note)
 ## (e.g. a hit window of 0.2 means 0.1 seconds before and after.)
 @export var hit_window = 0.2
 @export var hold_end_window = 0.12
+
 @export_group("Node References")
-@export var chart_loader: Node
+@export var chart_loader: ChartLoader
 @export var song_audio_player: AudioStreamPlayer
 
 var strum_lines: Array[StrumLine] = []

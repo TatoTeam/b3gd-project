@@ -18,9 +18,9 @@ metadata/_custom_type_script = "uid://bctudmv5p4heo"
 [node name="ChartPlayer" type="Node" unique_id=192656738 groups=["ChartSource"]]
 script = ExtResource("5_cmch3")
 
-[node name="ChartLoader" type="Node" parent="." unique_id=2030037540 node_paths=PackedStringArray("chart_source", "song_audio_player", "note_manager", "event_player") groups=["ChartLoader"]]
+[node name="ChartLoader" type="Node" parent="." unique_id=2030037540 node_paths=PackedStringArray("chart_player", "song_audio_player", "note_manager", "event_player") groups=["ChartLoader"]]
 script = ExtResource("1_62xbj")
-chart_source = NodePath("..")
+chart_player = NodePath("..")
 song_audio_player = NodePath("../SongAudioPlayer")
 note_manager = NodePath("../NoteManager")
 event_player = NodePath("../EventPlayer")
