@@ -3,6 +3,7 @@ extends Control
 const NOTES: CompressedTexture2D = preload("uid://bdkks2vfqiwwd")
 
 @onready var strumline_object: EditorStrumLine = $"../.."
+@onready var strum_line_drawer = $".."
 
 var mouse_inside: bool = false
 
@@ -55,10 +56,13 @@ func add_note():
 func _process(_delta):
 	if strumline_object.strumline == null: return
 	
+	var receptor_offset_sec: float = strum_line_drawer.receptor_y_pos / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom
+	
 	if !placing_note:
 		var step := get_rect().size.x / (strumline_object.strumline.receptors.size())
 		note_dir = floori(get_local_mouse_position().x / step)
 		note_time = ChartEditor.song_audio_player.song_progress_seconds + (get_local_mouse_position().y / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom)
+		note_time -= receptor_offset_sec
 		
 		var beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_time)
 		beat = snapped(beat, 4.0 / ChartEditor.inst.settings.snapping)
@@ -70,6 +74,8 @@ func _process(_delta):
 			(ChartEditor.song_audio_player.song_progress_seconds + (get_local_mouse_position().y / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom)) - note_time,
 			0
 		)
+		
+		note_length -= receptor_offset_sec
 		
 		var beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_length)
 		beat = snapped(beat, 4.0 / ChartEditor.inst.settings.snapping)
@@ -100,6 +106,8 @@ func _draw():
 		(note_dir * ChartEditor.inst.settings.NOTE_SIZE),
 		(note_offset * ChartEditor.inst.settings.NOTE_SIZE * ChartEditor.inst.settings.editor_zoom) - ChartEditor.inst.settings.NOTE_SIZE / 2.0
 	)
+	
+	note_draw_pos.y += strum_line_drawer.receptor_y_pos
 	
 	draw_set_transform(note_draw_pos, 0.0, Vector2.ONE)
 	
