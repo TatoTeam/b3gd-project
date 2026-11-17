@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://jjehc0kg4qs7" path="res://b3gd/chart_editor/property_getter_setter_timer.gd" id="9_747oa"]
 [ext_resource type="Script" uid="uid://dcs8f3pk45yi2" path="res://b3gd/chart_editor/property_getter_setter_lineedit.gd" id="9_ra5to"]
 [ext_resource type="Script" uid="uid://cxtpf0xof2gla" path="res://b3gd/chart_editor/property_getter_setter_spinbox.gd" id="10_qg7k1"]
+[ext_resource type="Script" uid="uid://xaasgffpm80p" path="res://b3gd/chart_editor/file_buttons.gd" id="11_u13mf"]
 
 [sub_resource type="Resource" id="Resource_5aops"]
 script = ExtResource("3_cm7rd")
@@ -381,6 +382,7 @@ horizontal_alignment = 1
 [node name="FileButtons" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1240845874]
 layout_mode = 2
 alignment = 1
+script = ExtResource("11_u13mf")
 
 [node name="SaveButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=2138865879]
 layout_mode = 2
@@ -881,5 +883,7 @@ texture = ExtResource("5_cm7rd")
 
 [connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" method="_on_class_box_item_selected"]
 [connection signal="item_selected" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
+[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/UndoButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/RedoButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_redo_button_pressed"]
 [connection signal="value_changed" from="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" to="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" method="_on_value_changed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header/Button" to="UIContainer/FieldScroll/Container/EventPanel" method="remove_event"]
