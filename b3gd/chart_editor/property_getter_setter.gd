@@ -4,7 +4,7 @@ class_name PropertyGetterSetter
 @export var node: Node
 @export_multiline("monospace", "no_wrap") var property_path: String
 
-const TIMER_RESET = 5
+const TIMER_RESET = 2
 
 var debounce: int = 0
 
