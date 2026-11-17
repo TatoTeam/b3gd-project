@@ -1,3 +1,4 @@
+@icon("uid://chipaa5ecf1yk")
 class_name EventCameraRotate extends EventTween
 
 @export_range(-360, 360, 0.0) var target_rotation: float = 0.0

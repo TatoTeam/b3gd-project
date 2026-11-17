@@ -1,3 +1,4 @@
+@icon("uid://u533g6m2i1ea")
 class_name EventTweenCustom extends EventTween
 
 @export var tween_tracker_path: String

@@ -1,4 +1,5 @@
 extends HBoxContainer
+class_name EditorStrumLineContainer
 
 const STRUM_LINE = preload("uid://b7l3q0pg1d1ir")
 

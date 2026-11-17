@@ -1,3 +1,4 @@
+@icon("uid://b2oiqeqfiemmm")
 class_name EventCameraMovement extends EventTween
 
 @export_range(0.0, 40.0, 1.0, "or_greater", "camera_targets") var target_idx: int = 0

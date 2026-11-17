@@ -94,6 +94,8 @@ func remove_notes_from_past():
 			receptor.notes = receptor.notes.slice(note_id)
 
 func load_events():
+	chart_player.chart.sort_events()
+	
 	event_player.events = chart_player.chart.events
 	event_player.init_events()
 	

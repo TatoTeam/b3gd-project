@@ -8,3 +8,6 @@ const abstract = false
 @export var events:Array[Event]
 
 @export_range(0.0, 8.0, 0.1, "or_greater") var scroll_speed: float
+
+func sort_events():
+	events.sort_custom(func(a: Event, b: Event): return a.time < b.time or a.lane < b.lane)

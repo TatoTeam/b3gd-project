@@ -1,3 +1,4 @@
+@icon("uid://drbn861q6bcpl")
 class_name EventCameraZoom extends EventTween
 
 @export var target_zoom: Vector2 = Vector2.ONE

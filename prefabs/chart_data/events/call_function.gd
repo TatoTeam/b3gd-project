@@ -1,3 +1,4 @@
+@icon("uid://4rtugq7o46f2")
 class_name EventCallFunction extends Event
 
 @export var node_path: String = ""

@@ -242,13 +242,14 @@ anchors_preset = 0
 script = ExtResource("4_u13mf")
 
 [node name="Arrow" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline/EventMaker" unique_id=1985064699]
+z_index = -1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.99700004
 anchor_bottom = 1.0
-offset_left = -1.0
+offset_left = 32.0
 offset_top = -3.0
-offset_right = 39.0
+offset_right = 80.0
 offset_bottom = 3.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
