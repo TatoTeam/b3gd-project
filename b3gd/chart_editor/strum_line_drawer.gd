@@ -78,6 +78,9 @@ func time_to_y(time: float) -> float:
 func y_to_time(y: float) -> float:
 	return ChartEditor.song_audio_player.song_progress_seconds + (y - receptor_y_pos) / pixels_per_second
 
+func y_to_snapped_time(y: float) -> float:
+	return ChartEditor.instance.settings.snap_time(y_to_time(y))
+
 func get_note_position(dir: int, time: float) -> Vector2:
 	var note_size := ChartEditor.instance.settings.NOTE_SIZE
 	return Vector2(dir * note_size, time_to_y(time) - note_size / 2.0)

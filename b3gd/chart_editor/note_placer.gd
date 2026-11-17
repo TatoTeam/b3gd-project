@@ -88,7 +88,7 @@ func _process(_delta):
 	if !placing_note:
 		var step := size.x / strumline_object.strumline.receptors.size()
 		note_dir = floori(mouse_position.x / step)
-		note_time = ChartEditor.instance.settings.snap_time(mouse_time)
+		note_time = strum_line_drawer.y_to_snapped_time(mouse_position.y)
 		note_length = 0.0
 	else:
 		note_length = maxf(ChartEditor.instance.settings.snap_time(maxf(mouse_time - note_time, 0.0)), 0.0)
