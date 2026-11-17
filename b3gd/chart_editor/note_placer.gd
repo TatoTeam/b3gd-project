@@ -1,9 +1,7 @@
 extends Control
 
-const NOTES: CompressedTexture2D = preload("uid://bdkks2vfqiwwd")
-
 @onready var strumline_object: EditorStrumLine = $"../.."
-@onready var strum_line_drawer = $".."
+@onready var strum_line_drawer: EditorStrumlineDrawer = $".."
 
 var mouse_inside: bool = false
 
@@ -56,31 +54,18 @@ func add_note():
 func _process(_delta):
 	if strumline_object.strumline == null: return
 	
-	var receptor_offset_sec: float = strum_line_drawer.receptor_y_pos / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom
-	
+	if strumline_object.strumline.receptors.is_empty(): return
+
+	var mouse_position := get_local_mouse_position()
+	var mouse_time := strum_line_drawer.y_to_time(mouse_position.y)
 	if !placing_note:
-		var step := get_rect().size.x / (strumline_object.strumline.receptors.size())
-		note_dir = floori(get_local_mouse_position().x / step)
-		note_time = ChartEditor.song_audio_player.song_progress_seconds + (get_local_mouse_position().y / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom)
-		note_time -= receptor_offset_sec
-		
-		var beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_time)
-		beat = snapped(beat, 4.0 / ChartEditor.inst.settings.snapping)
-		note_time = ChartEditor.song_audio_player.get_seconds_from_beat(beat)
-		
-		note_length = 0
+		var step := size.x / strumline_object.strumline.receptors.size()
+		note_dir = floori(mouse_position.x / step)
+		note_time = strum_line_drawer.snap_time(mouse_time)
+		note_length = 0.0
 	else:
-		note_length = max(
-			(ChartEditor.song_audio_player.song_progress_seconds + (get_local_mouse_position().y / ChartEditor.inst.settings.NOTE_SIZE / ChartEditor.inst.settings.editor_zoom)) - note_time,
-			0
-		)
-		
-		note_length -= receptor_offset_sec
-		
-		var beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_length)
-		beat = snapped(beat, 4.0 / ChartEditor.inst.settings.snapping)
-		note_length = ChartEditor.song_audio_player.get_seconds_from_beat(beat)
-	
+		note_length = maxf(strum_line_drawer.snap_time(maxf(mouse_time - note_time, 0.0)), 0.0)
+
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !placing_note && mouse_inside:
 		remove_note(note_dir, note_time)
 	
@@ -91,39 +76,4 @@ func _draw():
 	if strumline_object.strumline == null: return
 	if !mouse_inside && !placing_note: return
 	
-	var note_texture_array := EditorStrumlineDrawer.get_note_vector_array(strumline_object.strumline.receptors.size())
-	
-	var note_size_vec := Vector2.ONE * ChartEditor.inst.settings.NOTE_SIZE
-	
-	var quant_color: Color = EditorStrumlineDrawer.QUANT_COLORS[EditorStrumlineDrawer.get_quant_id(note_time)]
-	quant_color.a = 0.75
-	
-	var note_offset: float = note_time - ChartEditor.song_audio_player.song_progress_seconds
-	
-	var sprite_x_pos: int = note_texture_array[note_dir % note_texture_array.size()] * ChartEditor.inst.settings.NOTE_SIZE
-	
-	var note_draw_pos := Vector2(
-		(note_dir * ChartEditor.inst.settings.NOTE_SIZE),
-		(note_offset * ChartEditor.inst.settings.NOTE_SIZE * ChartEditor.inst.settings.editor_zoom) - ChartEditor.inst.settings.NOTE_SIZE / 2.0
-	)
-	
-	note_draw_pos.y += strum_line_drawer.receptor_y_pos
-	
-	draw_set_transform(note_draw_pos, 0.0, Vector2.ONE)
-	
-	var note_draw_rect := Rect2(Vector2.ZERO, note_size_vec)
-	var src_rect := Rect2(
-		Vector2(sprite_x_pos, ChartEditor.inst.settings.NOTE_SIZE * 1), 
-		note_size_vec
-	)
-	
-	draw_texture_rect_region(NOTES, note_draw_rect, src_rect, quant_color)
-	
-	if note_length > 0.0:
-		draw_set_transform(note_draw_pos + Vector2(0, ChartEditor.inst.settings.NOTE_SIZE / 2.0), 0.0, Vector2.ONE)
-		src_rect.position.y = ChartEditor.inst.settings.NOTE_SIZE * 2
-		
-		note_draw_rect.size.y = note_length * ChartEditor.inst.settings.NOTE_SIZE * ChartEditor.inst.settings.editor_zoom
-		
-		draw_texture_rect_region(NOTES, note_draw_rect, src_rect, quant_color)
-		
+	strum_line_drawer.draw_note(self, note_dir, note_time, note_length, true)
