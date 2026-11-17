@@ -16,11 +16,18 @@
 [ext_resource type="Script" uid="uid://jjehc0kg4qs7" path="res://b3gd/chart_editor/property_getter_setter_timer.gd" id="9_747oa"]
 [ext_resource type="Script" uid="uid://dcs8f3pk45yi2" path="res://b3gd/chart_editor/property_getter_setter_lineedit.gd" id="9_ra5to"]
 [ext_resource type="Script" uid="uid://cxtpf0xof2gla" path="res://b3gd/chart_editor/property_getter_setter_spinbox.gd" id="10_qg7k1"]
+[ext_resource type="Script" uid="uid://b8gjbx3i2jm2l" path="res://b3gd/chart_editor/property_getter_setter_strumline_vertical_placement.gd" id="11_2t1h5"]
 [ext_resource type="Script" uid="uid://xaasgffpm80p" path="res://b3gd/chart_editor/file_buttons.gd" id="11_u13mf"]
 
 [sub_resource type="Resource" id="Resource_5aops"]
 script = ExtResource("3_cm7rd")
 metadata/_custom_type_script = "uid://ct2pwsm4nwavc"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxfdp"]
+atlas = ExtResource("3_cqpfm")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rr88o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkt7h"]
 atlas = ExtResource("3_cqpfm")
@@ -224,9 +231,7 @@ size_flags_horizontal = 10
 [node name="Timeline" type="Control" parent="UIContainer/WorkAreaScroll/Container/EventContainer" unique_id=605001605]
 anchors_preset = 0
 offset_left = -39.0
-offset_top = 128.0
 offset_right = -39.0
-offset_bottom = 128.0
 
 [node name="EventDrawer" type="Control" parent="UIContainer/WorkAreaScroll/Container/EventContainer/Timeline" unique_id=495256783]
 layout_mode = 1
@@ -278,10 +283,30 @@ script_path = "res://b3gd/chart_data/event.gd"
 
 [node name="StrumLineContainer" type="HBoxContainer" parent="UIContainer/WorkAreaScroll/Container" unique_id=545850274]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 alignment = 1
 script = ExtResource("5_5aops")
+
+[node name="VSlider" type="VSlider" parent="UIContainer/WorkAreaScroll/Container" unique_id=170603655]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_icons/grabber = SubResource("AtlasTexture_qxfdp")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_qxfdp")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_qxfdp")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_rr88o")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_rr88o")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_rr88o")
+max_value = 1.0
+step = 0.0
+value = 1.0
+scrollable = false
+
+[node name="PropertyGetterSetter" type="Node" parent="UIContainer/WorkAreaScroll/Container/VSlider" unique_id=759534241 node_paths=PackedStringArray("node")]
+script = ExtResource("11_2t1h5")
+node = NodePath("../../../../..")
+property_path = "settings:receptor_offset"
+metadata/_custom_type_script = "uid://db4chh8t0wooi"
 
 [node name="SelectionBox" type="Node2D" parent="UIContainer/WorkAreaScroll/Container" unique_id=1141372798]
 

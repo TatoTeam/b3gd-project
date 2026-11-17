@@ -6,7 +6,8 @@ const EVENT_ICON: Texture2D = preload("uid://bt0p345u448ww")
 const EVENT_LINE: Texture2D = preload("uid://cka5y22a126yx")
 const BUTTON_SIZE := Vector2(42.0, 36.0)
 
-@onready var strum_line_container: EditorStrumLineContainer = $"../../../StrumLineContainer"
+@onready var main_container = $"../../.."
+
 
 var line_style: StyleBoxTexture
 var _class_icon_paths: Dictionary = {}
@@ -15,11 +16,7 @@ var _icons_initialized := false
 
 var receptor_y_pos: float:
 	get():
-		if strum_line_container.strumlines.size() > 0:
-			var drawer: EditorStrumlineDrawer = strum_line_container.strumlines[0].strum_line_drawer
-			return (get_global_transform().affine_inverse() * drawer.get_global_transform() * Vector2(0.0, drawer.receptor_y_pos)).y
-		
-		return size.y * ChartEditor.instance.settings.receptor_offset
+		return main_container.size.y * ChartEditor.instance.settings.receptor_offset
 
 var pixels_per_second: float:
 	get():

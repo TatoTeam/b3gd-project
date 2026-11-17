@@ -44,10 +44,11 @@ const NOTE_TEXTURE_ARRAYS := {
 }
 
 @onready var strumline_object: EditorStrumLine = $".."
+@onready var main_container = $"../../.."
 
 var receptor_y_pos: float:
 	get():
-		return size.y * ChartEditor.instance.settings.receptor_offset
+		return (main_container.size.y * ChartEditor.instance.settings.receptor_offset) - position.y
 
 var pixels_per_second: float:
 	get():
