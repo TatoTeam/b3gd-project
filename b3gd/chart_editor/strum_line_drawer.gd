@@ -47,11 +47,11 @@ const NOTE_TEXTURE_ARRAYS := {
 
 var receptor_y_pos: float:
 	get():
-		return size.y * ChartEditor.inst.settings.receptor_offset
+		return size.y * ChartEditor.instance.settings.receptor_offset
 
 var pixels_per_second: float:
 	get():
-		return ChartEditor.inst.settings.NOTE_SIZE * ChartEditor.inst.settings.editor_zoom
+		return ChartEditor.instance.settings.NOTE_SIZE * ChartEditor.instance.settings.editor_zoom
 
 static func get_note_vector_array(receptor_count: int) -> Array:
 	if receptor_count > NOTE_TEXTURE_ARRAYS.size() - 1:
@@ -79,12 +79,12 @@ func y_to_time(y: float) -> float:
 	return ChartEditor.song_audio_player.song_progress_seconds + (y - receptor_y_pos) / pixels_per_second
 
 func get_note_position(dir: int, time: float) -> Vector2:
-	var note_size := ChartEditor.inst.settings.NOTE_SIZE
+	var note_size := ChartEditor.instance.settings.NOTE_SIZE
 	return Vector2(dir * note_size, time_to_y(time) - note_size / 2.0)
 
 func get_note_source_rect(dir: int, row: int) -> Rect2:
 	var texture_array := get_note_vector_array(strumline_object.strumline.receptors.size())
-	var note_size := ChartEditor.inst.settings.NOTE_SIZE
+	var note_size := ChartEditor.instance.settings.NOTE_SIZE
 	return Rect2(Vector2(texture_array[dir % texture_array.size()] * note_size, row * note_size), Vector2.ONE * note_size)
 
 
@@ -93,7 +93,7 @@ func draw_note(target: CanvasItem, dir: int, time: float, length: float, preview
 	if strumline_object.strumline == null: return
 	if dir < 0 || dir >= strumline_object.strumline.receptors.size(): return
 	
-	var note_size := ChartEditor.inst.settings.NOTE_SIZE
+	var note_size := ChartEditor.instance.settings.NOTE_SIZE
 	var note_position := get_note_position(dir, time)
 	var note_draw_rect := Rect2(Vector2.ZERO, Vector2.ONE * note_size)
 	var source_rect := get_note_source_rect(dir, 1)
@@ -123,7 +123,7 @@ func _draw_note_region(target: CanvasItem, note_draw_rect: Rect2, source_rect: R
 func _draw():
 	if strumline_object.strumline == null: return
 	
-	var note_size := ChartEditor.inst.settings.NOTE_SIZE
+	var note_size := ChartEditor.instance.settings.NOTE_SIZE
 	custom_minimum_size.x = strumline_object.strumline.receptors.size() * note_size
 	var note_draw_rect := Rect2(Vector2.ZERO, Vector2.ONE * note_size)
 	

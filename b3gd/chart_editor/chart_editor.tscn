@@ -580,7 +580,7 @@ allow_greater = true
 [node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" unique_id=483446045 node_paths=PackedStringArray("node")]
 script = ExtResource("10_qg7k1")
 node = NodePath("../../../../../../../../..")
-property_path = "inst:song_audio_player:pitch_scale"
+property_path = "instance:song_audio_player:pitch_scale"
 metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
 [node name="ZoomLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1545481226]

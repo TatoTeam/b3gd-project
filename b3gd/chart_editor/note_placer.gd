@@ -88,10 +88,10 @@ func _process(_delta):
 	if !placing_note:
 		var step := size.x / strumline_object.strumline.receptors.size()
 		note_dir = floori(mouse_position.x / step)
-		note_time = ChartEditor.inst.settings.snap_time(mouse_time)
+		note_time = ChartEditor.instance.settings.snap_time(mouse_time)
 		note_length = 0.0
 	else:
-		note_length = maxf(ChartEditor.inst.settings.snap_time(maxf(mouse_time - note_time, 0.0)), 0.0)
+		note_length = maxf(ChartEditor.instance.settings.snap_time(maxf(mouse_time - note_time, 0.0)), 0.0)
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !placing_note && mouse_inside:
 		remove_note(note_dir, note_time)

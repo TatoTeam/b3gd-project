@@ -1,7 +1,7 @@
 extends Node
 class_name ChartLoader
 
-static var inst: ChartLoader
+static var instance: ChartLoader
 
 signal tracks_loaded()
 signal notes_loaded()
@@ -14,7 +14,7 @@ signal events_loaded()
 @export var event_player: Node
 
 func _init():
-	inst = self
+	instance = self
 
 func _ready() -> void:
 	load_chart()
