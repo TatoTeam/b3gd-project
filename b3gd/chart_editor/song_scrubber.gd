@@ -4,6 +4,7 @@ extends VScrollBar
 func _unhandled_input(event):
 	if event.is_action_pressed("editor_time_down") || event.is_action_pressed("editor_time_up"):
 		var time := 4.0 / ChartEditor.instance.settings.snapping
+		time *= 0.5 # ??? why do i need to do this
 		
 		if event.is_action_pressed("editor_time_up"):
 			time *= -1
