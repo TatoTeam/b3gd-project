@@ -13,7 +13,8 @@ var tween_tracker = {
 var to_tween = {
 	"node": null,
 	"property": null,
-	"value": null
+	"value_node": null,
+	"value_property": null,
 }
 
 var force_ignore = false
@@ -30,7 +31,7 @@ func play(speed: float = 1.0):
 		tween_tracker.node.get(tween_tracker.property).kill()
 		tween_tracker.node.set(tween_tracker.property, null)
 	
-	var tween_value = to_tween.value
+	var tween_value = to_tween.value_node.get(to_tween.value_property)
 	if multiply:
 		tween_value = to_tween.node.get(to_tween.property) * tween_value
 	

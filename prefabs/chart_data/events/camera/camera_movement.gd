@@ -19,4 +19,5 @@ func init():
 	
 	to_tween.node = parent.get_tree().get_first_node_in_group("SceneCamera")
 	to_tween.property = "position"
-	to_tween.value = target
+	to_tween.value_node = self
+	to_tween.value_property = "target"
