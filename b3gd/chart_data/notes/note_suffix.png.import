@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl6dwenj0cnkl"
-path="res://.godot/imported/note_ignore.png-eb99b17dc8ff39cb51a27689ef691e7c.ctex"
+uid="uid://fqdjk4wjoxty"
+path="res://.godot/imported/note_suffix.png-f2be7c91fb0e2b2acb94a0867bb82888.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/chart_data/notes/note_ignore.png"
-dest_files=["res://.godot/imported/note_ignore.png-eb99b17dc8ff39cb51a27689ef691e7c.ctex"]
+source_file="res://b3gd/chart_data/notes/note_suffix.png"
+dest_files=["res://.godot/imported/note_suffix.png-f2be7c91fb0e2b2acb94a0867bb82888.ctex"]
 
 [params]
 

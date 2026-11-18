@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dry7kpcv8y0k1"
-path="res://.godot/imported/bpm.png-6b3fe046e1f579a8b0ea814571fee0b3.ctex"
+uid="uid://cl6dwenj0cnkl"
+path="res://.godot/imported/note_ignore.png-75debfbd18a78316dd448ad09a710d71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/chart_data/events/song_playback/bpm.png"
-dest_files=["res://.godot/imported/bpm.png-6b3fe046e1f579a8b0ea814571fee0b3.ctex"]
+source_file="res://b3gd/chart_data/notes/note_ignore.png"
+dest_files=["res://.godot/imported/note_ignore.png-75debfbd18a78316dd448ad09a710d71.ctex"]
 
 [params]
 

@@ -10,7 +10,7 @@ static var song_audio_player: SongAudioPlayer:
 	get():
 		return instance._song_audio_player
 
-static var selection: Array[EditorSelectable] = []
+static var selection: Array[TimelinePoint] = []
 
 @export var chart: Chart
 @export var settings: ChartEditorSettings
@@ -23,7 +23,7 @@ var _song_audio_player: SongAudioPlayer
 
 var _undo_redo: UndoRedo
 
-static func select_only(selectable: EditorSelectable):
+static func select_only(selectable: TimelinePoint):
 	undo_redo.create_action("Select Selectable Only")
 	
 	var old_selection_array := selection.duplicate()
@@ -42,7 +42,7 @@ static func select_only(selectable: EditorSelectable):
 	
 	undo_redo.commit_action()
 
-static func add_to_selection(selectable: EditorSelectable):
+static func add_to_selection(selectable: TimelinePoint):
 	if selection.has(selectable): return
 	undo_redo.create_action("Select Selectable")
 	
@@ -58,7 +58,7 @@ static func add_to_selection(selectable: EditorSelectable):
 	
 	undo_redo.commit_action()
 
-static func remove_from_selection(selectable: EditorSelectable):
+static func remove_from_selection(selectable: TimelinePoint):
 	if !selection.has(selectable): return
 	undo_redo.create_action("Deselect Selectable")
 	

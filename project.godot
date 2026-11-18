@@ -31,12 +31,12 @@ enabled=PackedStringArray()
 folder_colors={
 "res://b3gd/": "red",
 "res://b3gd/chart_data/": "gray",
-"res://b3gd/chart_data/events/": "pink",
-"res://b3gd/chart_data/notes/": "pink",
+"res://b3gd/chart_data/events/": "red",
+"res://b3gd/chart_data/notes/": "red",
 "res://b3gd/chart_data/notetypes/": "pink",
 "res://b3gd/chart_editor/": "gray",
 "res://b3gd/chart_player/": "gray",
-"res://b3gd/song_scripts/": "pink",
+"res://b3gd/chart_player/note_renderers/": "gray",
 "res://prefabs/": "green",
 "res://prefabs/chart_data/": "gray",
 "res://prefabs/chart_data/events/": "red",
@@ -44,7 +44,7 @@ folder_colors={
 "res://songs/": "blue",
 "res://states/": "yellow",
 "res://states/chart_player/": "red",
-"res://states/chart_player/note_renderers/": "gray"
+"res://states/chart_player/note_renderer/": "gray"
 }
 
 [global_group]

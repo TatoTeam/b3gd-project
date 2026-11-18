@@ -1,4 +1,4 @@
-@abstract class_name Event extends EditorSelectable
+@abstract class_name Event extends TimelinePoint
 
 var parent: Node
 

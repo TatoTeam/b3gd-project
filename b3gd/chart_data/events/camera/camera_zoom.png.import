@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fqdjk4wjoxty"
-path="res://.godot/imported/note_suffix.png-7708ac520c17435138e12b76485327ea.ctex"
+uid="uid://drbn861q6bcpl"
+path="res://.godot/imported/camera_zoom.png-af447800d3d9bebd9e3d7f5553e2e930.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/chart_data/notes/note_suffix.png"
-dest_files=["res://.godot/imported/note_suffix.png-7708ac520c17435138e12b76485327ea.ctex"]
+source_file="res://b3gd/chart_data/events/camera/camera_zoom.png"
+dest_files=["res://.godot/imported/camera_zoom.png-af447800d3d9bebd9e3d7f5553e2e930.ctex"]
 
 [params]
 

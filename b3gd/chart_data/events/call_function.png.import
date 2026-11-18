@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drbn861q6bcpl"
-path="res://.godot/imported/camera_zoom.png-d96b862653fd3b4a31bdb2fd7d8b2730.ctex"
+uid="uid://4rtugq7o46f2"
+path="res://.godot/imported/call_function.png-f9de59622d6b34b634981acc1db82ea6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/chart_data/events/camera/camera_zoom.png"
-dest_files=["res://.godot/imported/camera_zoom.png-d96b862653fd3b4a31bdb2fd7d8b2730.ctex"]
+source_file="res://b3gd/chart_data/events/call_function.png"
+dest_files=["res://.godot/imported/call_function.png-f9de59622d6b34b634981acc1db82ea6.ctex"]
 
 [params]
 

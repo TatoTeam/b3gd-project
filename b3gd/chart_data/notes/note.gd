@@ -1,4 +1,4 @@
-class_name Note extends EditorSelectable
+class_name Note extends TimelinePoint
 
 # Needed for chart data
 ## The length of the note, if zero this is not a hold note. 

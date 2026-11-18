@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5788qcu5udwe"]
 
-[ext_resource type="Script" uid="uid://brcd74t0yv5qo" path="res://b3gd/song_scripts/character.gd" id="1_dxawe"]
+[ext_resource type="Script" uid="uid://brcd74t0yv5qo" path="res://b3gd/character.gd" id="1_dxawe"]
 [ext_resource type="Texture2D" uid="uid://0ge8yegmmpci" path="res://prefabs/characters/test/frames/idle0000.png" id="2_fwh4l"]
 [ext_resource type="Texture2D" uid="uid://c7cwjycycdpx" path="res://prefabs/characters/test/frames/idle0001.png" id="3_mxfvw"]
 [ext_resource type="Texture2D" uid="uid://ba8kg4ooyf2cn" path="res://prefabs/characters/test/frames/idle0002.png" id="4_5m03k"]
