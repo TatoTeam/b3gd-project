@@ -34,16 +34,20 @@ func _gui_input(event):
 			accept_event()
 
 func _has_point(point: Vector2) -> bool:
-	if !Rect2(Vector2.ZERO, size).has_point(point): return false
+	if !Rect2(Vector2.ZERO, size).has_point(point): 
+		return false
 	
 	var mouse_position = get_global_transform() * point
 	for node: EditorNote in ChartEditor.instance.timeline.note_nodes.values():
-		if node.head.mouse_filter == Control.MOUSE_FILTER_IGNORE: continue
-		if node.head.get_global_rect().has_point(mouse_position): return false
+		if node.head.mouse_filter == Control.MOUSE_FILTER_IGNORE: 
+			continue
+		if node.head.get_global_rect().has_point(mouse_position): 
+			return false
 	return true
 
 func remove_note(receptor: int, time: float, create_new_action: bool = true):
-	if receptor > strumline_object.strumline.receptors.size() - 1 || receptor < 0: return
+	if receptor > strumline_object.strumline.receptors.size() - 1 || receptor < 0: 
+		return
 	
 	var notes = strumline_object.strumline.receptors[receptor].notes
 	for note in notes:
@@ -62,12 +66,14 @@ func remove_note(receptor: int, time: float, create_new_action: bool = true):
 				notes.append(note)
 			)
 			
-			if create_new_action: ChartEditor.undo_redo.commit_action()
+			if create_new_action: 
+				ChartEditor.undo_redo.commit_action()
 			
 			break
 
 func add_note():
-	if note_dir > strumline_object.strumline.receptors.size() - 1 || note_dir < 0: return
+	if note_dir > strumline_object.strumline.receptors.size() - 1 || note_dir < 0: 
+		return
 	
 	ChartEditor.undo_redo.create_action("Place Note")
 	ChartEditor.clear_selection()
@@ -75,7 +81,6 @@ func add_note():
 	remove_note(note_dir, note_time, false)
 	
 	var receptor: Receptor = strumline_object.strumline.receptors.get(note_dir)
-	
 	var new_note := Note.new()
 	new_note.time = note_time
 	new_note.length = note_length
@@ -84,13 +89,10 @@ func add_note():
 	ChartEditor.undo_redo.add_do_method(func():
 		receptor.notes.append(new_note)
 	)
-	
 	ChartEditor.undo_redo.add_undo_method(func():
 		receptor.notes.erase(new_note)
 	)
-	
 	ChartEditor.undo_redo.commit_action()
-	
 
 func _process(_delta):
 	if strumline_object.strumline == null or strumline_object.strumline.receptors.is_empty():
