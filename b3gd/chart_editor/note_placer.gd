@@ -1,7 +1,8 @@
-extends Control
+extends ColorRect
 
-@onready var strumline_object: EditorStrumLine = $"../.."
-@onready var strum_line_drawer: EditorStrumlineDrawer = $".."
+@onready var strumline_object: EditorStrumLine = $".."
+
+var preview: EditorNote
 
 var mouse_inside: bool = false
 
@@ -13,6 +14,8 @@ var note_length: float = 0.0
 var note_dir: int = 0
 
 func _ready():
+	_create_preview.call_deferred()
+
 	mouse_entered.connect(func():
 		mouse_inside = true
 	)
@@ -79,16 +82,19 @@ func add_note():
 	
 
 func _process(_delta):
-	if strumline_object.strumline == null: return
-	
-	if strumline_object.strumline.receptors.is_empty(): return
+	if strumline_object.strumline == null or strumline_object.strumline.receptors.is_empty():
+		if is_instance_valid(preview):
+			preview.hide()
+		return
 
 	var mouse_position := get_local_mouse_position()
-	var mouse_time := strum_line_drawer.y_to_time(mouse_position.y)
+	var timeline := ChartEditor.instance.timeline
+	var timeline_mouse := timeline.global_to_timeline(get_global_mouse_position())
+	var mouse_time := timeline.y_to_time(timeline_mouse.y)
 	if !placing_note:
 		var step := size.x / strumline_object.strumline.receptors.size()
 		note_dir = floori(mouse_position.x / step)
-		note_time = strum_line_drawer.y_to_snapped_time(mouse_position.y)
+		note_time = timeline.y_to_snapped_time(timeline_mouse.y)
 		note_length = 0.0
 	else:
 		note_length = maxf(ChartEditor.instance.settings.snap_time(maxf(mouse_time - note_time, 0.0)), 0.0)
@@ -96,11 +102,31 @@ func _process(_delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !placing_note && mouse_inside:
 		remove_note(note_dir, note_time)
 	
-	# honestly no reason not to do this here since notes will be usually redrawn every frame due to the song yknow.. playing
-	queue_redraw()
+	_update_preview()
 
-func _draw():
-	if strumline_object.strumline == null: return
-	if !mouse_inside && !placing_note: return
-	
-	strum_line_drawer.draw_note(self, note_dir, note_time, note_length, true)
+func _create_preview() -> void:
+	preview = EditorTimeline.NOTE_SCENE.instantiate()
+	preview.note = Note.new()
+	preview.visible = false
+	preview.z_index = 1
+	ChartEditor.instance.timeline.add_child(preview)
+
+func _exit_tree() -> void:
+	if is_instance_valid(preview):
+		preview.queue_free()
+
+func _update_preview() -> void:
+	if not is_instance_valid(preview):
+		return
+
+	preview.visible = (mouse_inside or placing_note) and note_dir >= 0 and note_dir < strumline_object.strumline.receptors.size()
+	if not preview.visible:
+		return
+
+	var timeline := ChartEditor.instance.timeline
+	preview.note.time = note_time
+	preview.note.length = note_length
+	preview.direction = note_dir
+
+	preview.position = Vector2(timeline.global_to_timeline(global_position).x + note_dir * ChartEditor.instance.settings.NOTE_SIZE, note_time * timeline.pixels_per_second)
+	preview.update_visuals(strumline_object.strumline.receptors.size(), timeline.pixels_per_second, timeline.timing_revision, true)

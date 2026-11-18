@@ -13,6 +13,8 @@ static var song_audio_player: SongAudioPlayer:
 @export var chart: Chart
 @export var settings: ChartEditorSettings
 
+@onready var timeline: EditorTimeline = $UIContainer/WorkAreaScroll/Container/EventContainer/Timeline
+
 var _song_audio_player: SongAudioPlayer
 
 var _undo_redo: UndoRedo
