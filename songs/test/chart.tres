@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Chart" format=3 uid="uid://bvc2ibsd0eloj"]
+[gd_resource type="Resource" script_class="Chart" format=3 uid="uid://y5vmocmd0tr1"]
 
-[ext_resource type="Script" uid="uid://uba06rj25tk5" path="res://b3gd/chart_data/event.gd" id="1_y1qrp"]
-[ext_resource type="Script" uid="uid://cxewr41xtv111" path="res://prefabs/chart_data/events/camera/camera_movement.gd" id="2_vfrlu"]
-[ext_resource type="Script" uid="uid://d10klgni64d7f" path="res://prefabs/chart_data/events/song_playback/bpm.gd" id="3_s0yfo"]
+[ext_resource type="Script" uid="uid://uba06rj25tk5" path="res://b3gd/chart_data/events/event.gd" id="1_y1qrp"]
+[ext_resource type="Script" uid="uid://cxewr41xtv111" path="res://b3gd/chart_data/events/camera/camera_movement.gd" id="2_vfrlu"]
+[ext_resource type="Script" uid="uid://d10klgni64d7f" path="res://b3gd/chart_data/events/song_playback/bpm.gd" id="3_s0yfo"]
 [ext_resource type="Script" uid="uid://tsakffm2k03s" path="res://b3gd/chart_data/chart.gd" id="3_vfrlu"]
-[ext_resource type="Script" uid="uid://cyqa68xim30d1" path="res://prefabs/chart_data/events/camera/camera_zoom.gd" id="4_2wgma"]
+[ext_resource type="Script" uid="uid://cyqa68xim30d1" path="res://b3gd/chart_data/events/camera/camera_zoom.gd" id="4_2wgma"]
 [ext_resource type="Script" uid="uid://dcj6ncvkdmib8" path="res://b3gd/chart_data/strum_line.gd" id="4_s0yfo"]
 [ext_resource type="Script" uid="uid://dmjgm4x8wfbgo" path="res://b3gd/chart_data/chart_metadata.gd" id="4_vfrlu"]
 [ext_resource type="Script" uid="uid://mae25nhr3e8c" path="res://b3gd/chart_data/receptor.gd" id="5_y1qrp"]
-[ext_resource type="Script" uid="uid://b76ir6ro7hxf0" path="res://b3gd/chart_data/note.gd" id="6_g0e3h"]
+[ext_resource type="Script" uid="uid://b76ir6ro7hxf0" path="res://b3gd/chart_data/notes/note.gd" id="6_g0e3h"]
 [ext_resource type="AudioStream" uid="uid://cjq120guoyf7v" path="res://songs/test/tracks/inst.ogg" id="7_gervv"]
 [ext_resource type="Script" uid="uid://s3o71xaa5bt8" path="res://b3gd/chart_data/chart_tracks.gd" id="8_3e5jf"]
 [ext_resource type="AudioStream" uid="uid://5bio5lcgqfea" path="res://songs/test/tracks/opp.ogg" id="9_s2f6i"]
@@ -16,6 +16,7 @@
 
 [sub_resource type="Resource" id="Resource_m45sv"]
 script = ExtResource("2_vfrlu")
+target_idx = 1
 duration = 2.0
 transition = 6
 time = -2.0
@@ -39,7 +40,6 @@ metadata/_custom_type_script = "uid://cyqa68xim30d1"
 
 [sub_resource type="Resource" id="Resource_0drvw"]
 script = ExtResource("2_vfrlu")
-target_idx = 1
 time = 8.0
 metadata/_custom_type_script = "uid://cxewr41xtv111"
 
@@ -74,8 +74,8 @@ time = 4.75
 
 [sub_resource type="Resource" id="Resource_pif5e"]
 script = ExtResource("6_g0e3h")
-time = 7.0
 length = 0.5
+time = 7.0
 
 [sub_resource type="Resource" id="Resource_2wgma"]
 script = ExtResource("6_g0e3h")
@@ -91,8 +91,8 @@ time = 17.333333333333332
 
 [sub_resource type="Resource" id="Resource_s2f6i"]
 script = ExtResource("6_g0e3h")
-time = 19.0
 length = 0.5
+time = 19.0
 
 [sub_resource type="Resource" id="Resource_aeoum"]
 script = ExtResource("6_g0e3h")
@@ -115,8 +115,8 @@ time = 24.75
 
 [sub_resource type="Resource" id="Resource_atmq6"]
 script = ExtResource("6_g0e3h")
-time = 25.25
 length = 0.25
+time = 25.25
 
 [sub_resource type="Resource" id="Resource_mlp50"]
 script = ExtResource("6_g0e3h")
@@ -124,8 +124,8 @@ time = 25.625
 
 [sub_resource type="Resource" id="Resource_46lt8"]
 script = ExtResource("6_g0e3h")
-time = 28.0
 length = 1.0
+time = 28.0
 metadata/_custom_type_script = "uid://b76ir6ro7hxf0"
 
 [sub_resource type="Resource" id="Resource_hj4t8"]
@@ -162,18 +162,18 @@ time = 19.5
 
 [sub_resource type="Resource" id="Resource_mtphv"]
 script = ExtResource("6_g0e3h")
-time = 19.75
 length = 0.25
+time = 19.75
 
 [sub_resource type="Resource" id="Resource_mersg"]
 script = ExtResource("6_g0e3h")
-time = 26.0
 length = 0.5
+time = 26.0
 
 [sub_resource type="Resource" id="Resource_l2ll4"]
 script = ExtResource("6_g0e3h")
-time = 27.5
 length = 0.5
+time = 27.5
 
 [sub_resource type="Resource" id="Resource_jx4dp"]
 script = ExtResource("5_y1qrp")
@@ -206,8 +206,8 @@ time = 17.666666666666664
 
 [sub_resource type="Resource" id="Resource_rt85n"]
 script = ExtResource("6_g0e3h")
-time = 18.5
 length = 1.0
+time = 18.5
 
 [sub_resource type="Resource" id="Resource_igx53"]
 script = ExtResource("6_g0e3h")
@@ -223,8 +223,8 @@ time = 25.875
 
 [sub_resource type="Resource" id="Resource_n3t7f"]
 script = ExtResource("6_g0e3h")
-time = 27.0
 length = 0.5
+time = 27.0
 
 [sub_resource type="Resource" id="Resource_dfst8"]
 script = ExtResource("5_y1qrp")
@@ -241,8 +241,8 @@ time = 4.25
 
 [sub_resource type="Resource" id="Resource_5mggj"]
 script = ExtResource("6_g0e3h")
-time = 5.5
 length = 0.5
+time = 5.5
 
 [sub_resource type="Resource" id="Resource_msnhh"]
 script = ExtResource("6_g0e3h")
@@ -250,8 +250,8 @@ time = 6.75
 
 [sub_resource type="Resource" id="Resource_tb2p0"]
 script = ExtResource("6_g0e3h")
-time = 7.5
 length = 0.5
+time = 7.5
 
 [sub_resource type="Resource" id="Resource_bgo3y"]
 script = ExtResource("6_g0e3h")
@@ -268,13 +268,13 @@ time = 17.5
 
 [sub_resource type="Resource" id="Resource_ecruf"]
 script = ExtResource("6_g0e3h")
-time = 18.0
 length = 1.5
+time = 18.0
 
 [sub_resource type="Resource" id="Resource_43lu7"]
 script = ExtResource("6_g0e3h")
-time = 20.0
 length = 0.5
+time = 20.0
 
 [sub_resource type="Resource" id="Resource_uqx3w"]
 script = ExtResource("6_g0e3h")
@@ -282,8 +282,8 @@ time = 24.625
 
 [sub_resource type="Resource" id="Resource_4tk4n"]
 script = ExtResource("6_g0e3h")
-time = 25.0
 length = 0.25
+time = 25.0
 
 [sub_resource type="Resource" id="Resource_pqasf"]
 script = ExtResource("6_g0e3h")
@@ -295,8 +295,8 @@ time = 25.75
 
 [sub_resource type="Resource" id="Resource_1huog"]
 script = ExtResource("6_g0e3h")
-time = 26.5
 length = 0.5
+time = 26.5
 
 [sub_resource type="Resource" id="Resource_8dxfr"]
 script = ExtResource("5_y1qrp")

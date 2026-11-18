@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5788qcu5udwe"]
 
-[ext_resource type="Script" uid="uid://brcd74t0yv5qo" path="res://b3gd/song_scripts/character.gd" id="1_dxawe"]
+[ext_resource type="Script" uid="uid://brcd74t0yv5qo" path="res://b3gd/character.gd" id="1_dxawe"]
 [ext_resource type="Texture2D" uid="uid://0ge8yegmmpci" path="res://prefabs/characters/test/frames/idle0000.png" id="2_fwh4l"]
 [ext_resource type="Texture2D" uid="uid://c7cwjycycdpx" path="res://prefabs/characters/test/frames/idle0001.png" id="3_mxfvw"]
 [ext_resource type="Texture2D" uid="uid://ba8kg4ooyf2cn" path="res://prefabs/characters/test/frames/idle0002.png" id="4_5m03k"]
@@ -37,7 +37,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_5m03k")
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 12.0
 }, {
@@ -48,7 +48,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_4xmi7")
 }],
-"loop": false,
+"loop": 0,
 "name": &"miss_down",
 "speed": 12.0
 }, {
@@ -59,7 +59,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_dxofm")
 }],
-"loop": false,
+"loop": 0,
 "name": &"miss_left",
 "speed": 12.0
 }, {
@@ -70,7 +70,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_u330n")
 }],
-"loop": false,
+"loop": 0,
 "name": &"miss_right",
 "speed": 12.0
 }, {
@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_icvkn")
 }],
-"loop": false,
+"loop": 0,
 "name": &"miss_up",
 "speed": 12.0
 }, {
@@ -92,7 +92,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_k38wl")
 }],
-"loop": false,
+"loop": 0,
 "name": &"sing_down",
 "speed": 12.0
 }, {
@@ -103,7 +103,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_s2iek")
 }],
-"loop": false,
+"loop": 0,
 "name": &"sing_left",
 "speed": 12.0
 }, {
@@ -114,7 +114,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_saqak")
 }],
-"loop": false,
+"loop": 0,
 "name": &"sing_right",
 "speed": 12.0
 }, {
@@ -125,7 +125,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("20_vhmt2")
 }],
-"loop": false,
+"loop": 0,
 "name": &"sing_up",
 "speed": 12.0
 }]
@@ -138,8 +138,8 @@ stream_0/stream = ExtResource("21_fwh4l")
 [node name="TestJoe" type="Node2D" unique_id=737532779 node_paths=PackedStringArray("thing_to_animate", "miss_sound")]
 script = ExtResource("1_dxawe")
 thing_to_animate = NodePath("TestJoe")
-miss_sound = NodePath("Ouo")
 strumline = 1
+miss_sound = NodePath("Ouo")
 
 [node name="TestJoe" type="AnimatedSprite2D" parent="." unique_id=1824398302]
 texture_filter = 1

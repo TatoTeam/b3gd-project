@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://d3y5cqp5dcgd4"]
 
-[ext_resource type="PackedScene" uid="uid://dfywqgr404x2a" path="res://states/chart_player/chart_player.tscn" id="1_03yvb"]
+[ext_resource type="PackedScene" uid="uid://dfywqgr404x2a" path="res://b3gd/chart_player/chart_player.tscn" id="1_03yvb"]
 [ext_resource type="PackedScene" uid="uid://bt4wd4ck4gv3f" path="res://prefabs/stages/test/test.tscn" id="2_iai5w"]
+[ext_resource type="Resource" path="res://songs/test/chart.tres" id="2_u5eyn"]
 [ext_resource type="PackedScene" uid="uid://5788qcu5udwe" path="res://prefabs/characters/test/test.tscn" id="3_u5eyn"]
 [ext_resource type="PackedScene" uid="uid://cj3squ17mo2kj" path="res://prefabs/characters/speaker/speaker.tscn" id="4_iai5w"]
-[ext_resource type="Script" uid="uid://hj40rstc3h3m" path="res://b3gd/song_scripts/camera.gd" id="4_m7tut"]
 
 [node name="Test" type="Node2D" unique_id=400532570]
 
 [node name="ChartPlayer" parent="." unique_id=192656738 instance=ExtResource("1_03yvb")]
+chart = ExtResource("2_u5eyn")
 
-[node name="Camera3D" parent="ChartPlayer/UI/Strumlines/SubViewport" parent_id_path=PackedInt32Array(192656738, 8042913) index="2" unique_id=955848793]
+[node name="Camera3D" parent="ChartPlayer/UI/Strumlines/StrumlinesSubViewport" parent_id_path=PackedInt32Array(192656738, 8042913) index="2" unique_id=955848793]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 fov = 19.0
 
@@ -33,7 +34,6 @@ strumline = 0
 note_directions = Array[String](["right", "down", "up", "left"])
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1923340605 groups=["SceneCamera"]]
-script = ExtResource("4_m7tut")
 
 [node name="CameraTargets" type="Node" parent="." unique_id=1455999995 groups=["CameraTargets"]]
 
