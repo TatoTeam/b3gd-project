@@ -1,0 +1,3 @@
+[submodule "b3gd"]
+	path = b3gd
+	url = https://github.com/TatoTeam/b3gd-core.git
