@@ -18,9 +18,11 @@ region = Rect2(16, 96, 16, 16)
 size_flags_horizontal = 4
 size_flags_vertical = 3
 mouse_filter = 2
+theme_override_constants/separation = -4
 script = ExtResource("1_6wfxj")
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=1958028117]
+z_index = 1
 layout_mode = 2
 
 [node name="InfoMargin" type="MarginContainer" parent="InfoPanel" unique_id=1700282008]
@@ -106,6 +108,7 @@ texture_repeat = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 color = Color(0.288518, 0.28851798, 0.28851798, 0.3764706)
 script = ExtResource("6_mcovw")
 

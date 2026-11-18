@@ -110,8 +110,6 @@ func _process(delta: float) -> void:
 func force_resync():
 	var mix_adj = (AudioServer.get_time_since_last_mix() - output_latency)
 	var true_prog = get_playback_position() + (mix_adj * pitch_scale)
-	
-	print("resync", song_position_seconds, true_prog)
 	song_position_seconds = max(true_prog, 0)
 
 func pause():
