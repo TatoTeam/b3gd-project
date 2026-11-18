@@ -224,15 +224,15 @@ size_flags_vertical = 3
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="EventContainer" type="Control" parent="UIContainer/WorkAreaScroll/Container" unique_id=1349188022]
+[node name="TimelineContainer" type="Control" parent="UIContainer/WorkAreaScroll/Container" unique_id=1349188022]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="EventMaker" type="Control" parent="UIContainer/WorkAreaScroll/Container/EventContainer" unique_id=324489559]
+[node name="EventMaker" type="Control" parent="UIContainer/WorkAreaScroll/Container/TimelineContainer" unique_id=324489559]
 anchors_preset = 0
 script = ExtResource("4_u13mf")
 
-[node name="Arrow" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/EventContainer/EventMaker" unique_id=1985064699]
+[node name="Arrow" type="NinePatchRect" parent="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker" unique_id=1985064699]
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -248,7 +248,7 @@ texture = ExtResource("2_sw2s4")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="ClassBox" type="OptionButton" parent="UIContainer/WorkAreaScroll/Container/EventContainer/EventMaker" unique_id=2080191140]
+[node name="ClassBox" type="OptionButton" parent="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker" unique_id=2080191140]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -267,7 +267,7 @@ script = ExtResource("5_yrq2n")
 hidden_classes = PackedStringArray("Event", "EventTween")
 script_path = "res://b3gd/chart_data/event.gd"
 
-[node name="Timeline" type="Control" parent="UIContainer/WorkAreaScroll/Container/EventContainer" unique_id=264450829]
+[node name="Timeline" type="Control" parent="UIContainer/WorkAreaScroll/Container/TimelineContainer" unique_id=264450829]
 process_physics_priority = -10
 z_index = 1
 anchors_preset = 0
@@ -756,7 +756,7 @@ offset_bottom = 504.0
 mouse_filter = 2
 texture = ExtResource("5_cm7rd")
 
-[connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/EventContainer/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/EventContainer/EventMaker" method="_on_class_box_item_selected"]
+[connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker" method="_on_class_box_item_selected"]
 [connection signal="item_selected" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/SaveButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_button_pressed"]
 [connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/SaveAsButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_as_button_pressed"]
