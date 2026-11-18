@@ -184,6 +184,7 @@ theme = ExtResource("1_ck5jt")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 vertical_scroll_mode = 0
 scroll_hint_mode = 1
 
@@ -364,7 +365,7 @@ label_settings = SubResource("LabelSettings_o3yqt")
 [node name="CurrentTimeLabelSetter" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/CurrentTimeLabel" unique_id=1559561382 node_paths=PackedStringArray("node")]
 script = ExtResource("9_747oa")
 node = NodePath("../../../../../../../../../../..")
-property_path = "song_audio_player:song_progress_seconds"
+property_path = "song_audio_player:song_position_seconds"
 metadata/_custom_type_script = "uid://csygtdgslp8op"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1936289161]
@@ -672,6 +673,7 @@ mouse_filter = 2
 texture = ExtResource("5_cm7rd")
 
 [connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker" method="_on_class_box_item_selected"]
+[connection signal="value_changed" from="UIContainer/SongScrubber" to="UIContainer/SongScrubber" method="_on_value_changed"]
 [connection signal="item_selected" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
 [connection signal="pressed" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons/SaveButton" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_button_pressed"]
 [connection signal="pressed" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons/SaveAsButton" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_as_button_pressed"]

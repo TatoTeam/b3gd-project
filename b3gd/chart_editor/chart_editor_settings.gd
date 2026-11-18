@@ -14,3 +14,17 @@ func snap_time(time: float) -> float:
 	var beat: float = ChartEditor.song_audio_player.get_beat_from_seconds(time)
 	beat = snappedf(beat, 4.0 / ChartEditor.instance.settings.snapping)
 	return ChartEditor.song_audio_player.get_seconds_from_beat(beat)
+
+func snap_beat(beat: float) -> float:
+	if ChartEditor.song_audio_player == null:
+		return -1 # you have bigger problems if the song is gone man
+	
+	beat = snappedf(beat, 4.0 / ChartEditor.instance.settings.snapping)
+	return beat
+
+func snap_beat_return_seconds(beat: float) -> float:
+	if ChartEditor.song_audio_player == null:
+		return -1
+	
+	beat = snappedf(beat, 4.0 / ChartEditor.instance.settings.snapping)
+	return ChartEditor.song_audio_player.get_seconds_from_beat(beat)
