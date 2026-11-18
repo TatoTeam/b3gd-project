@@ -15,7 +15,6 @@ func _on_redo_button_pressed():
 	ChartEditor.undo_redo.redo()
 
 func _on_save_button_pressed():
-	print(ChartEditor.instance.chart.resource_path.get_extension())
 	if ChartEditor.instance.chart.resource_path.get_extension() != "tres":
 		_on_save_as_button_pressed()
 	else:

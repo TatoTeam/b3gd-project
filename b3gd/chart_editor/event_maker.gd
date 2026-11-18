@@ -30,3 +30,4 @@ func _on_class_box_item_selected(index):
 	event.lane = lane
 	
 	ChartEditor.instance.chart.events.append(event)
+	ChartEditor.select_only(event)

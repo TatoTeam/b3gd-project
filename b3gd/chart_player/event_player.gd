@@ -1,4 +1,7 @@
 extends Node
+class_name EventPlayer
+
+static var instance: EventPlayer
 
 signal pre_init_events()
 
@@ -7,6 +10,9 @@ var events:Array[Event]
 
 @export_group("Node References")
 @export var song_audio_player: Node
+
+func _init():
+	instance = self
 
 func _process(_delta: float) -> void:
 	var i = 0

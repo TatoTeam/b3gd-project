@@ -33,3 +33,6 @@ size_flags_vertical = 4
 texture = ExtResource("3_ylqe5")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
+[connection signal="toggled" from="Button" to="." method="_on_button_toggled"]

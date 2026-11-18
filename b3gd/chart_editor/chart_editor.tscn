@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cxtpf0xof2gla" path="res://b3gd/chart_editor/property_getter_setter_spinbox.gd" id="10_qg7k1"]
 [ext_resource type="Script" uid="uid://b8gjbx3i2jm2l" path="res://b3gd/chart_editor/property_getter_setter_strumline_vertical_placement.gd" id="11_2t1h5"]
 [ext_resource type="Script" uid="uid://xaasgffpm80p" path="res://b3gd/chart_editor/file_buttons.gd" id="11_u13mf"]
+[ext_resource type="Script" uid="uid://8qdewobvxyvx" path="res://b3gd/chart_editor/right_bar_scroll.gd" id="12_60gf8"]
 [ext_resource type="Script" uid="uid://dg70d3jxftqvr" path="res://b3gd/chart_editor/editor_timeline.gd" id="18_bgg50"]
 
 [sub_resource type="Resource" id="Resource_5aops"]
@@ -158,37 +159,6 @@ region = Rect2(1, 71, 9, 9)
 atlas = ExtResource("3_cqpfm")
 region = Rect2(0, 48, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xayn1"]
-content_margin_left = 5.0
-content_margin_top = 2.0
-content_margin_right = 5.0
-content_margin_bottom = 2.0
-texture = ExtResource("3_cqpfm")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-region_rect = Rect2(96, 0, 16, 16)
-
-[sub_resource type="FontVariation" id="FontVariation_csxqf"]
-variation_embolden = 1.0
-spacing_top = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_4huly"]
-font = SubResource("FontVariation_csxqf")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yhun1"]
-atlas = ExtResource("3_cqpfm")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_52wg0"]
-atlas = ExtResource("3_cqpfm")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_48w3h"]
-atlas = ExtResource("3_cqpfm")
-region = Rect2(32, 48, 16, 16)
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_px4fx"]
 
 [node name="ChartEditor" type="MarginContainer" unique_id=1207813288]
@@ -321,53 +291,54 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 script = ExtResource("8_4ei61")
 
-[node name="FieldScroll" type="ScrollContainer" parent="UIContainer" unique_id=1377599752]
+[node name="RightBarScroll" type="ScrollContainer" parent="UIContainer" unique_id=1377599752]
 layout_mode = 2
 focus_behavior_recursive = 2
 horizontal_scroll_mode = 0
+script = ExtResource("12_60gf8")
 
-[node name="Container" type="VBoxContainer" parent="UIContainer/FieldScroll" unique_id=226811258]
+[node name="RightBarContainer" type="VBoxContainer" parent="UIContainer/RightBarScroll" unique_id=226811258]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
-[node name="ChartInfoPanel" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=247241107]
+[node name="ChartInfoPanel" type="PanelContainer" parent="UIContainer/RightBarScroll/RightBarContainer" unique_id=247241107]
 layout_mode = 2
 
-[node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel" unique_id=1917482177]
+[node name="Margin" type="MarginContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel" unique_id=1917482177]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBox" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin" unique_id=1820234870]
+[node name="VBox" type="VBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin" unique_id=1820234870]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1559987340]
+[node name="Header" type="HBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox" unique_id=1559987340]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header" unique_id=235205154]
+[node name="Icon" type="TextureRect" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header" unique_id=235205154]
 layout_mode = 2
 texture = SubResource("AtlasTexture_wkt7h")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header" unique_id=43372625]
+[node name="Label" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header" unique_id=43372625]
 layout_mode = 2
 text = "Chart Info"
 label_settings = SubResource("LabelSettings_asiwl")
 
-[node name="PanelContainer" type="PanelContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header" unique_id=1902985513]
+[node name="PanelContainer" type="PanelContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header" unique_id=1902985513]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/panel = SubResource("StyleBoxTexture_dp8ci")
 
-[node name="TimeBar" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer" unique_id=487894124]
+[node name="TimeBar" type="HBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer" unique_id=487894124]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="TimeFormatBox" type="OptionButton" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=2097590553]
+[node name="TimeFormatBox" type="OptionButton" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=2097590553]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
@@ -383,23 +354,23 @@ popup/item_1/icon = SubResource("AtlasTexture_y80lg")
 popup/item_1/id = 1
 script = ExtResource("9_046nn")
 
-[node name="CurrentTimeLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1627467009]
+[node name="CurrentTimeLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1627467009]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "1:28.00"
 label_settings = SubResource("LabelSettings_o3yqt")
 
-[node name="CurrentTimeLabelSetter" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/CurrentTimeLabel" unique_id=1559561382 node_paths=PackedStringArray("node")]
+[node name="CurrentTimeLabelSetter" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/CurrentTimeLabel" unique_id=1559561382 node_paths=PackedStringArray("node")]
 script = ExtResource("9_747oa")
 node = NodePath("../../../../../../../../../../..")
 property_path = "song_audio_player:song_progress_seconds"
 metadata/_custom_type_script = "uid://csygtdgslp8op"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1936289161]
+[node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar" unique_id=1936289161]
 layout_mode = 2
 
-[node name="SlashLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer" unique_id=795274847]
+[node name="SlashLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer" unique_id=795274847]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -407,7 +378,7 @@ text = "/"
 label_settings = SubResource("LabelSettings_8stnh")
 horizontal_alignment = 2
 
-[node name="TotalTimeLabel2" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer" unique_id=833041527]
+[node name="TotalTimeLabel2" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer" unique_id=833041527]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -415,27 +386,27 @@ text = "3:00.00"
 label_settings = SubResource("LabelSettings_8stnh")
 horizontal_alignment = 2
 
-[node name="TotalTimeLabelSetter" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer/TotalTimeLabel2" unique_id=1260421629 node_paths=PackedStringArray("node")]
+[node name="TotalTimeLabelSetter" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/HBoxContainer/TotalTimeLabel2" unique_id=1260421629 node_paths=PackedStringArray("node")]
 script = ExtResource("9_747oa")
 node = NodePath("../../../../../../../../../../../..")
 property_path = "song_audio_player:song_length_seconds"
 metadata/_custom_type_script = "uid://csygtdgslp8op"
 
-[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1579187594]
+[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox" unique_id=1579187594]
 layout_mode = 2
 
-[node name="FileGroupLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=2007275514]
+[node name="FileGroupLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox" unique_id=2007275514]
 layout_mode = 2
 text = "File"
 label_settings = SubResource("LabelSettings_piitt")
 horizontal_alignment = 1
 
-[node name="FileButtons" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=1240845874]
+[node name="FileButtons" type="HBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox" unique_id=1240845874]
 layout_mode = 2
 alignment = 1
 script = ExtResource("11_u13mf")
 
-[node name="SaveButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=2138865879]
+[node name="SaveButton" type="Button" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=2138865879]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -444,7 +415,7 @@ shortcut = SubResource("Shortcut_60gf8")
 text = "Save"
 icon = SubResource("AtlasTexture_4tpte")
 
-[node name="SaveAsButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=222296806]
+[node name="SaveAsButton" type="Button" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=222296806]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -453,7 +424,7 @@ shortcut = SubResource("Shortcut_xr37n")
 text = "Save As"
 icon = SubResource("AtlasTexture_4tpte")
 
-[node name="UndoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1667046611]
+[node name="UndoButton" type="Button" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1667046611]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -462,7 +433,7 @@ shortcut = SubResource("Shortcut_cle1c")
 text = "Undo"
 icon = SubResource("AtlasTexture_r27ga")
 
-[node name="RedoButton" type="Button" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1341042153]
+[node name="RedoButton" type="Button" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" unique_id=1341042153]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -471,30 +442,30 @@ shortcut = SubResource("Shortcut_kkbay")
 text = "Redo"
 icon = SubResource("AtlasTexture_xba6y")
 
-[node name="HBoxContainer" type="GridContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox" unique_id=777782342]
+[node name="HBoxContainer" type="GridContainer" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox" unique_id=777782342]
 layout_mode = 2
 columns = 2
 
-[node name="SongNameLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1562207007]
+[node name="SongNameLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1562207007]
 layout_mode = 2
 text = "Song Name:"
 horizontal_alignment = 2
 
-[node name="SongName" type="LineEdit" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1952330055]
+[node name="SongName" type="LineEdit" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1952330055]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="PropertyGetterSetterLineEdit" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer/SongName" unique_id=1518815315 node_paths=PackedStringArray("node")]
+[node name="PropertyGetterSetterLineEdit" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/HBoxContainer/SongName" unique_id=1518815315 node_paths=PackedStringArray("node")]
 script = ExtResource("9_ra5to")
 node = NodePath("../../../../../../../../..")
 property_path = "chart:metadata:name"
 metadata/_custom_type_script = "uid://dcs8f3pk45yi2"
 
-[node name="ScrollSpeedLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1467052819]
+[node name="ScrollSpeedLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1467052819]
 layout_mode = 2
 text = "Scroll Speed: "
 
-[node name="ScrollSpeed" type="SpinBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1243383033]
+[node name="ScrollSpeed" type="SpinBox" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/HBoxContainer" unique_id=1243383033]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -504,58 +475,58 @@ step = 0.5
 value = 1.0
 allow_greater = true
 
-[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/HBoxContainer/ScrollSpeed" unique_id=1103619126 node_paths=PackedStringArray("node")]
+[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/HBoxContainer/ScrollSpeed" unique_id=1103619126 node_paths=PackedStringArray("node")]
 script = ExtResource("10_qg7k1")
 node = NodePath("../../../../../../../../..")
 property_path = "chart:scroll_speed"
 metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
-[node name="ChartInfoPanel2" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=1305931804]
+[node name="EditorOptionsPanel" type="PanelContainer" parent="UIContainer/RightBarScroll/RightBarContainer" unique_id=1305931804]
 layout_mode = 2
 
-[node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2" unique_id=1036352485]
+[node name="Margin" type="MarginContainer" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel" unique_id=1036352485]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBox" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin" unique_id=1574012326]
+[node name="VBox" type="VBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin" unique_id=1574012326]
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1675264666]
+[node name="Header" type="HBoxContainer" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=1675264666]
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/Header" unique_id=1486874149]
+[node name="Icon" type="TextureRect" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/Header" unique_id=1486874149]
 layout_mode = 2
 texture = SubResource("AtlasTexture_oxk88")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/Header" unique_id=1527823580]
+[node name="Label" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/Header" unique_id=1527823580]
 layout_mode = 2
 text = "Editor Options"
 label_settings = SubResource("LabelSettings_asiwl")
 
-[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1687273222]
+[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=1687273222]
 layout_mode = 2
 
-[node name="InputGroupLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1854837320]
+[node name="InputGroupLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=1854837320]
 layout_mode = 2
 text = "Input"
 label_settings = SubResource("LabelSettings_piitt")
 horizontal_alignment = 1
 
-[node name="EditorFieldContainer" type="GridContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=489970749]
+[node name="EditorFieldContainer" type="GridContainer" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=489970749]
 layout_mode = 2
 size_flags_vertical = 4
 columns = 2
 
-[node name="NoteClassLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1547029802]
+[node name="NoteClassLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/EditorFieldContainer" unique_id=1547029802]
 layout_mode = 2
 text = "Note Class:"
 
-[node name="NoteClass" type="OptionButton" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1824406232]
+[node name="NoteClass" type="OptionButton" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/EditorFieldContainer" unique_id=1824406232]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -563,12 +534,12 @@ focus_mode = 0
 search_bar_enabled = true
 search_bar_min_item_count = 8
 
-[node name="SnapLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=584154372]
+[node name="SnapLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/EditorFieldContainer" unique_id=584154372]
 layout_mode = 2
 text = "Snap:"
 horizontal_alignment = 2
 
-[node name="Snap" type="SpinBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer" unique_id=1637248586]
+[node name="Snap" type="SpinBox" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/EditorFieldContainer" unique_id=1637248586]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 min_value = 1.0
@@ -578,32 +549,32 @@ page = 1.0
 value = 8.0
 custom_arrow_step = 1.0
 
-[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/EditorFieldContainer/Snap" unique_id=1988415271 node_paths=PackedStringArray("node")]
+[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/EditorFieldContainer/Snap" unique_id=1988415271 node_paths=PackedStringArray("node")]
 script = ExtResource("10_qg7k1")
 node = NodePath("../../../../../../../../..")
 property_path = "settings:snapping"
 metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
-[node name="FileSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=139084770]
+[node name="FileSeperator" type="HSeparator" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=139084770]
 layout_mode = 2
 
-[node name="PlaybackGroupLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=455287605]
+[node name="PlaybackGroupLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=455287605]
 layout_mode = 2
 text = "Playback"
 label_settings = SubResource("LabelSettings_piitt")
 horizontal_alignment = 1
 
-[node name="PlaybackFieldContainer" type="GridContainer" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox" unique_id=1177214077]
+[node name="PlaybackFieldContainer" type="GridContainer" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox" unique_id=1177214077]
 layout_mode = 2
 size_flags_vertical = 4
 columns = 2
 
-[node name="PitchScaleLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=529360905]
+[node name="PitchScaleLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=529360905]
 layout_mode = 2
 text = "Pitch:"
 horizontal_alignment = 2
 
-[node name="PitchScale" type="SpinBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1981752417]
+[node name="PitchScale" type="SpinBox" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=1981752417]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -614,18 +585,18 @@ step = 0.1
 value = 1.0
 allow_greater = true
 
-[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/PitchScale" unique_id=483446045 node_paths=PackedStringArray("node")]
+[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer/PitchScale" unique_id=483446045 node_paths=PackedStringArray("node")]
 script = ExtResource("10_qg7k1")
 node = NodePath("../../../../../../../../..")
 property_path = "instance:song_audio_player:pitch_scale"
 metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
-[node name="ZoomLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1545481226]
+[node name="ZoomLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=1545481226]
 layout_mode = 2
 text = "Zoom:"
 horizontal_alignment = 2
 
-[node name="Zoom" type="SpinBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1452148070]
+[node name="Zoom" type="SpinBox" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=1452148070]
 custom_minimum_size = Vector2(130, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -635,17 +606,17 @@ step = 0.05
 value = 8.0
 allow_greater = true
 
-[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer/Zoom" unique_id=1528539947 node_paths=PackedStringArray("node")]
+[node name="PropertyGetterSetterSpinBox" type="Node" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer/Zoom" unique_id=1528539947 node_paths=PackedStringArray("node")]
 script = ExtResource("10_qg7k1")
 node = NodePath("../../../../../../../../..")
 property_path = "settings:editor_zoom"
 metadata/_custom_type_script = "uid://cxtpf0xof2gla"
 
-[node name="HitSoundLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=1777660297]
+[node name="HitSoundLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=1777660297]
 layout_mode = 2
 text = "Hit Sounds:"
 
-[node name="HitSound" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=876066071]
+[node name="HitSound" type="CheckBox" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=876066071]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -653,72 +624,16 @@ focus_mode = 0
 button_pressed = true
 alignment = 1
 
-[node name="MuteInstLabel" type="Label" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=793198647]
+[node name="MuteInstLabel" type="Label" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=793198647]
 layout_mode = 2
 text = "Mute Inst:"
 
-[node name="MuteInst" type="CheckBox" parent="UIContainer/FieldScroll/Container/ChartInfoPanel2/Margin/VBox/PlaybackFieldContainer" unique_id=2110000863]
+[node name="MuteInst" type="CheckBox" parent="UIContainer/RightBarScroll/RightBarContainer/EditorOptionsPanel/Margin/VBox/PlaybackFieldContainer" unique_id=2110000863]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_mode = 0
 alignment = 1
-
-[node name="EventPanel" type="PanelContainer" parent="UIContainer/FieldScroll/Container" unique_id=2092374413]
-layout_mode = 2
-
-[node name="Margin" type="MarginContainer" parent="UIContainer/FieldScroll/Container/EventPanel" unique_id=734399009]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="EventContainer" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin" unique_id=431886376]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-
-[node name="Header" type="HBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=694557060]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="EventID" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1899375433]
-editor_description = "Its a button so it looks like that don't worry its not like a  functionality thing"
-layout_mode = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_styles/disabled = SubResource("StyleBoxTexture_xayn1")
-disabled = true
-text = "0"
-
-[node name="EventHeader" type="Label" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1116334053]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Event"
-label_settings = SubResource("LabelSettings_4huly")
-clip_text = true
-
-[node name="Button2" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1455645227]
-layout_mode = 2
-size_flags_horizontal = 8
-icon = SubResource("AtlasTexture_yhun1")
-
-[node name="Button3" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=2102690130]
-layout_mode = 2
-size_flags_horizontal = 8
-disabled = true
-icon = SubResource("AtlasTexture_52wg0")
-
-[node name="Button" type="Button" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header" unique_id=1064398345]
-layout_mode = 2
-size_flags_horizontal = 8
-icon = SubResource("AtlasTexture_48w3h")
-
-[node name="HeaderSeperator" type="HSeparator" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=382725732]
-layout_mode = 2
-
-[node name="EventFieldContainer" type="VBoxContainer" parent="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer" unique_id=1634332450]
-layout_mode = 2
 
 [node name="Images" type="Control" parent="." unique_id=1867479190]
 layout_mode = 2
@@ -757,9 +672,8 @@ mouse_filter = 2
 texture = ExtResource("5_cm7rd")
 
 [connection signal="item_selected" from="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker/ClassBox" to="UIContainer/WorkAreaScroll/Container/TimelineContainer/EventMaker" method="_on_class_box_item_selected"]
-[connection signal="item_selected" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
-[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/SaveButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_button_pressed"]
-[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/SaveAsButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_as_button_pressed"]
-[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/UndoButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_undo_button_pressed"]
-[connection signal="pressed" from="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons/RedoButton" to="UIContainer/FieldScroll/Container/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_redo_button_pressed"]
-[connection signal="pressed" from="UIContainer/FieldScroll/Container/EventPanel/Margin/EventContainer/Header/Button" to="UIContainer/FieldScroll/Container/EventPanel" method="remove_event"]
+[connection signal="item_selected" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/Header/PanelContainer/TimeBar/TimeFormatBox" method="_on_item_selected"]
+[connection signal="pressed" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons/SaveButton" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_button_pressed"]
+[connection signal="pressed" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons/SaveAsButton" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_save_as_button_pressed"]
+[connection signal="pressed" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons/UndoButton" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons/RedoButton" to="UIContainer/RightBarScroll/RightBarContainer/ChartInfoPanel/Margin/VBox/FileButtons" method="_on_redo_button_pressed"]

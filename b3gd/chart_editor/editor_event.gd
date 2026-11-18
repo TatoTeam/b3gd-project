@@ -10,13 +10,25 @@ var event: Event
 @onready var arrow: NinePatchRect = $Arrow
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	button.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	arrow.z_index = -1
+	
+	ChartEditor.instance.selection_updated.connect(func():
+		button.set_pressed_no_signal(ChartEditor.selection.has(event))
+	)
 
 func update_visuals(icon: Texture2D) -> void:
 	if button.icon != icon:
 		button.icon = icon
 
 	arrow.offset_right = 39.0 + event.lane * LANE_WIDTH
+
+func _on_button_toggled(toggled_on):
+	if toggled_on:
+		ChartEditor.select_only(event)
+	else:
+		ChartEditor.remove_from_selection(event)
+
+func _on_button_gui_input(input_event):
+	if input_event is InputEventMouseButton:
+		if input_event.pressed && input_event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
+			ChartEditor.instance.remove_event(event)

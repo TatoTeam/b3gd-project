@@ -1,7 +1,7 @@
 @icon("uid://chipaa5ecf1yk")
 class_name EventCameraRotate extends EventTween
 
-@export_range(-360, 360, 0.0) var target_rotation: float = 0.0
+@export_range(-360, 360, 1.0) var target_rotation: float = 0.0
 
 func init():
 	if parent.get_tree().get_first_node_in_group("SceneCamera") == null:
