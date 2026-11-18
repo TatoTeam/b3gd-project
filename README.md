@@ -12,7 +12,7 @@ Essentially, you can use this for any free projects, as long as you credit B3GD 
 
 ## What is it?
 
-Core for an FNF=Styled rhythm game in godot, designed to be easy to work off and expand.
+Core for an FNF-Styled rhythm game in godot, designed to be easy to work off and expand.
 Originally designed for [Beta 3](https://gamebanana.com/mods/639119), but cleaned up and expanded for generic use with an example project provided.
 
 ## Why use it?
