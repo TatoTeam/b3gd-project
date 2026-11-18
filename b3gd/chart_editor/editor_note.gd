@@ -128,7 +128,7 @@ func _on_note_gui_input(event):
 			else:
 				ChartEditor.add_to_selection(note)
 			accept_event()
-		elif event.pressed && event.button_index in [MouseButton.MOUSE_BUTTON_LEFT, MouseButton.MOUSE_BUTTON_RIGHT]:
+		elif event.pressed && event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
 			var notes = receptor.notes
 			var removed_note = note
 			ChartEditor.undo_redo.create_action("Remove Note")
