@@ -36,6 +36,22 @@ func _process(_delta: float) -> void:
 	_sync_notes()
 	_sync_events()
 
+func _input(event):
+	if event is InputEventMouse:
+		var editing_notes = event.shift_pressed || event.button_mask & MOUSE_BUTTON_MASK_RIGHT
+		if event is InputEventMouseButton:
+			editing_notes = editing_notes || (event.pressed && event.button_index == MOUSE_BUTTON_RIGHT)
+		for node: EditorNote in note_nodes.values():
+			node.head.mouse_filter = Control.MOUSE_FILTER_STOP if editing_notes else Control.MOUSE_FILTER_IGNORE
+	
+	if event is InputEventMouseMotion && event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
+		if !is_visible_in_tree(): return
+		if !work_area.get_global_rect().has_point(event.position): return
+		
+		for node: EditorNote in note_nodes.values():
+			if node.head.get_global_rect().has_point(event.position):
+				node.remove_note()
+
 func _update_timing_revision() -> void:
 	var state: Array = []
 	for bpm_event in ChartEditor.song_audio_player.bpm_events:
@@ -71,6 +87,7 @@ func _sync_notes() -> void:
 					note_nodes[note] = node
 				
 				node.receptor = receptor
+				node.note_placer = strumline.note_area
 				node.direction = dir
 				node.position = Vector2(origin_x + dir * ChartEditor.instance.settings.NOTE_SIZE, note.time * pixels_per_second)
 				node.update_visuals(receptors.size(), pixels_per_second, timing_revision)

@@ -43,6 +43,7 @@ const NOTE_TEXTURE_ARRAYS := {
 
 var note: Note
 var receptor: Receptor
+var note_placer: ColorRect
 var direction: int
 var _visual_state: Array = []
 
@@ -129,17 +130,10 @@ func _on_note_gui_input(event):
 				ChartEditor.add_to_selection(note)
 			accept_event()
 		elif event.pressed && event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
-			var notes = receptor.notes
-			var removed_note = note
-			ChartEditor.undo_redo.create_action("Remove Note")
-			ChartEditor.remove_from_selection(note)
-			ChartEditor.undo_redo.add_do_reference(note)
-			ChartEditor.undo_redo.add_do_method(func():
-				notes.erase(removed_note)
-			)
-			
-			ChartEditor.undo_redo.add_undo_method(func():
-				notes.append(removed_note)
-			)
-			ChartEditor.undo_redo.commit_action()
+			remove_note()
 			accept_event()
+
+func remove_note():
+	if !receptor.notes.has(note): return
+	
+	note_placer.remove_note(direction, note.time)

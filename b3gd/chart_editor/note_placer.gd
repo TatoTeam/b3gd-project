@@ -38,6 +38,7 @@ func _has_point(point: Vector2) -> bool:
 	
 	var mouse_position = get_global_transform() * point
 	for node: EditorNote in ChartEditor.instance.timeline.note_nodes.values():
+		if node.head.mouse_filter == Control.MOUSE_FILTER_IGNORE: continue
 		if node.head.get_global_rect().has_point(mouse_position): return false
 	return true
 
@@ -46,10 +47,11 @@ func remove_note(receptor: int, time: float, create_new_action: bool = true):
 	
 	var notes = strumline_object.strumline.receptors[receptor].notes
 	for note in notes:
-		if abs(note.time - time) < 0.05:
+		if is_equal_approx(note.time, time):
 			if create_new_action:
 				ChartEditor.undo_redo.create_action("Remove Note")
 			
+			ChartEditor.remove_from_selection(note)
 			ChartEditor.undo_redo.add_do_reference(note)
 			
 			ChartEditor.undo_redo.add_do_method(func():
