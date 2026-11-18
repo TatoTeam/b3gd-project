@@ -235,7 +235,6 @@ fit_to_longest_item = false
 search_bar_enabled = true
 search_bar_min_item_count = 9
 script = ExtResource("5_yrq2n")
-hidden_classes = PackedStringArray("Event", "EventTween")
 script_path = "res://b3gd/chart_data/event.gd"
 
 [node name="Timeline" type="Control" parent="UIContainer/WorkAreaScroll/Container/TimelineContainer" unique_id=264450829]

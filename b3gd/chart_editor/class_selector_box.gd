@@ -1,7 +1,6 @@
 extends OptionButton
 
 
-@export var hidden_classes: PackedStringArray
 @export var script_path: String
 
 var class_paths = []
@@ -13,7 +12,7 @@ func _ready() -> void:
 		
 		var loaded_class := load(global_class.path)
 		if loaded_class != null && does_script_extend_class(loaded_class, script_path):
-			if global_class.class in hidden_classes:
+			if global_class.is_abstract == true:
 				continue
 			
 			if global_class.get("icon", "") != "":
