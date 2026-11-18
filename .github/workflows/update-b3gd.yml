@@ -1,0 +1,42 @@
+name: Update b3gd core
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .gitmodules
+      - .github/workflows/update-b3gd.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-b3gd
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          submodules: recursive
+
+      - name: Update core and commit its new revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          git submodule update --init --remote --checkout -- b3gd
+          if git diff --quiet -- b3gd; then
+            echo "b3gd is already up to date."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- b3gd
+          git commit -m "chore: update b3gd core"
+          git push origin HEAD:main
