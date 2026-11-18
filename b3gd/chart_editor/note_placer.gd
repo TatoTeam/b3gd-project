@@ -30,8 +30,16 @@ func _gui_input(event):
 			if placing_note && event.pressed == false:
 				add_note()
 			
-			placing_note = event.pressed
+			placing_note = event.pressed && !event.shift_pressed
 			accept_event()
+
+func _has_point(point: Vector2) -> bool:
+	if !Rect2(Vector2.ZERO, size).has_point(point): return false
+	
+	var mouse_position = get_global_transform() * point
+	for node: EditorNote in ChartEditor.instance.timeline.note_nodes.values():
+		if node.head.get_global_rect().has_point(mouse_position): return false
+	return true
 
 func remove_note(receptor: int, time: float, create_new_action: bool = true):
 	if receptor > strumline_object.strumline.receptors.size() - 1 || receptor < 0: return
@@ -60,6 +68,7 @@ func add_note():
 	if note_dir > strumline_object.strumline.receptors.size() - 1 || note_dir < 0: return
 	
 	ChartEditor.undo_redo.create_action("Place Note")
+	ChartEditor.clear_selection()
 	
 	remove_note(note_dir, note_time, false)
 	
@@ -86,7 +95,7 @@ func _process(_delta):
 		if is_instance_valid(preview):
 			preview.hide()
 		return
-
+	
 	var mouse_position := get_local_mouse_position()
 	var timeline := ChartEditor.instance.timeline
 	var timeline_mouse := timeline.global_to_timeline(get_global_mouse_position())
@@ -98,9 +107,6 @@ func _process(_delta):
 		note_length = 0.0
 	else:
 		note_length = maxf(ChartEditor.instance.settings.snap_time(maxf(mouse_time - note_time, 0.0)), 0.0)
-
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) && !placing_note && mouse_inside:
-		remove_note(note_dir, note_time)
 	
 	_update_preview()
 
@@ -109,6 +115,8 @@ func _create_preview() -> void:
 	preview.note = Note.new()
 	preview.visible = false
 	preview.z_index = 1
+	for control in [preview, preview.get_node("Note"), preview.get_node("Note/Color"), preview.get_node("Hold"), preview.get_node("Hold/Color")]:
+		control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ChartEditor.instance.timeline.add_child(preview)
 
 func _exit_tree() -> void:

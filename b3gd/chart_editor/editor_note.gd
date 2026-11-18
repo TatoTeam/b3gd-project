@@ -67,11 +67,22 @@ static func get_quant_id(note_time: float) -> int:
 	return 8
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-
 	for rect: TextureRect in [head, head_color, hold, hold_color]:
 		rect.texture = rect.texture.duplicate()
-		rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	ChartEditor.instance.selection_updated.connect(func():
+		queue_redraw()
+	)
+	queue_redraw()
+
+func _draw():
+	if !ChartEditor.selection.has(note): return
+	
+	var rect = Rect2(head.position, head.size)
+	if hold.visible:
+		rect = rect.merge(Rect2(hold.position, hold.size))
+	
+	draw_rect(rect, Color.WHITE, false, 2.0)
 
 func update_visuals(columns: int, pixels_per_second: float, timing_revision: int, preview: bool = false) -> void:
 	var state := [direction, columns, note.time, note.length, pixels_per_second, timing_revision, preview]
@@ -104,3 +115,31 @@ func update_visuals(columns: int, pixels_per_second: float, timing_revision: int
 	hold.visible = note.length > 0.0
 	hold.size = Vector2(note_size, maxf(0.0, note.length * pixels_per_second))
 	hold_color.size = hold.size
+	queue_redraw()
+
+# THIS IS SO GAYY
+func _on_note_gui_input(event):
+	if !note: return
+	
+	if event is InputEventMouseButton:
+		if event.pressed && event.button_index == MouseButton.MOUSE_BUTTON_LEFT && event.shift_pressed:
+			if ChartEditor.selection.has(note):
+				ChartEditor.remove_from_selection(note)
+			else:
+				ChartEditor.add_to_selection(note)
+			accept_event()
+		elif event.pressed && event.button_index in [MouseButton.MOUSE_BUTTON_LEFT, MouseButton.MOUSE_BUTTON_RIGHT]:
+			var notes = receptor.notes
+			var removed_note = note
+			ChartEditor.undo_redo.create_action("Remove Note")
+			ChartEditor.remove_from_selection(note)
+			ChartEditor.undo_redo.add_do_reference(note)
+			ChartEditor.undo_redo.add_do_method(func():
+				notes.erase(removed_note)
+			)
+			
+			ChartEditor.undo_redo.add_undo_method(func():
+				notes.append(removed_note)
+			)
+			ChartEditor.undo_redo.commit_action()
+			accept_event()

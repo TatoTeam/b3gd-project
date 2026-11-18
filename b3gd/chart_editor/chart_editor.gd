@@ -74,6 +74,23 @@ static func remove_from_selection(selectable: EditorSelectable):
 	
 	undo_redo.commit_action()
 
+static func clear_selection():
+	undo_redo.create_action("Select Selectable Only")
+	
+	var old_selection_array := selection.duplicate()
+	
+	undo_redo.add_do_method(func():
+		selection.clear()
+		if instance: instance.selection_updated.emit()
+	)
+	
+	undo_redo.add_undo_method(func():
+		selection = old_selection_array.duplicate()
+		if instance: instance.selection_updated.emit()
+	)
+	
+	undo_redo.commit_action()
+
 func remove_event(event: Event):
 	ChartEditor.undo_redo.create_action("Remove Event")
 	
@@ -97,3 +114,8 @@ func _init():
 
 func _ready():
 	song_audio_player.pause()
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.pressed && event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			clear_selection()

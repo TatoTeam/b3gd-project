@@ -24,7 +24,10 @@ func update_visuals(icon: Texture2D) -> void:
 
 func _on_button_toggled(toggled_on):
 	if toggled_on:
-		ChartEditor.select_only(event)
+		if Input.is_key_pressed(KEY_SHIFT):
+			ChartEditor.add_to_selection(event)
+		else:
+			ChartEditor.select_only(event)
 	else:
 		ChartEditor.remove_from_selection(event)
 

@@ -17,6 +17,7 @@ region = Rect2(16, 96, 16, 16)
 [node name="StrumLine" type="VBoxContainer" unique_id=1600336989]
 size_flags_horizontal = 4
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_6wfxj")
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=1958028117]

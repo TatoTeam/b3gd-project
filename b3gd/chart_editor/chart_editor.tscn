@@ -249,6 +249,7 @@ script = ExtResource("18_bgg50")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+mouse_filter = 2
 alignment = 1
 script = ExtResource("5_5aops")
 
