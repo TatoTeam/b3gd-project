@@ -16,30 +16,7 @@ static var QUANT_COLORS: Array[Color] = [
 	Color.from_string("999999", Color.BLACK)
 ]
 
-const NOTE_TEXTURE_ARRAYS := {
-	1: [4],
-	2: [5, 8],
-	3: [0, 4, 3],
-	4: [0, 1, 2, 3],
-	5: [0, 1, 4, 2, 3],
-	6: [0, 1, 3, 0, 2, 3],
-	7: [0, 1, 3, 4, 0, 2, 3],
-	8: [0, 1, 2, 3, 0, 1, 2, 3],
-	9: [0, 1, 2, 3, 4, 0, 1, 2, 3],
-	10: [0, 1, 2, 3, 5, 8, 0, 1, 2, 3],
-	11: [0, 1, 2, 3, 5, 9, 8, 0, 1, 2, 3],
-	12: [0, 1, 2, 3, 5, 6, 7, 8, 0, 1, 2, 3],
-	13: [0, 1, 2, 3, 5, 6, 4, 7, 8, 0, 1, 2, 3],
-	14: [0, 1, 2, 3, 5, 6, 8, 5, 7, 8, 0, 1, 2, 3],
-	15: [0, 1, 2, 3, 5, 6, 8, 4, 5, 7, 8, 0, 1, 2, 3],
-	16: [0, 1, 2, 3, 5, 6, 7, 8, 5, 6, 7, 8, 0, 1, 2, 3],
-	17: [0, 1, 2, 3, 5, 6, 7, 8, 4, 5, 6, 7, 8, 0, 1, 2, 3],
-	18: [0, 1, 2, 3, 5, 6, 7, 8, 0, 3, 5, 6, 7, 8, 0, 1, 2, 3],
-	19: [0, 1, 2, 3, 5, 6, 7, 8, 0, 9, 3, 5, 6, 7, 8, 0, 1, 2, 3],
-	20: [0, 1, 2, 3, 5, 6, 7, 8, 0, 1, 2, 3, 5, 6, 7, 8, 0, 1, 2, 3],
-	21: [0, 1, 2, 3, 5, 6, 7, 8, 0, 1, 4, 2, 3, 5, 6, 7, 8, 0, 1, 2, 3],
-	22: [10]
-}
+static var note_texture_arrays = preload("res://b3gd/multikey.json").data
 
 var note: Note
 var receptor: Receptor
@@ -52,10 +29,7 @@ var _visual_state: Array = []
 @onready var hold_color: TextureRect = $Hold/Color
 
 static func get_note_vector_array(receptor_count: int) -> Array:
-	if receptor_count > NOTE_TEXTURE_ARRAYS.size() - 1:
-		return NOTE_TEXTURE_ARRAYS[22]
-	else:
-		return NOTE_TEXTURE_ARRAYS[receptor_count]
+	return note_texture_arrays[str(min(receptor_count, note_texture_arrays.size()))]
 
 static func get_quant_id(note_time: float) -> int:
 	var note_beat = ChartEditor.song_audio_player.get_beat_from_seconds(note_time)
@@ -71,18 +45,15 @@ func _ready() -> void:
 		rect.texture = rect.texture.duplicate()
 	
 	ChartEditor.instance.selection_updated.connect(func():
-		queue_redraw()
+		update_selection()
 	)
-	queue_redraw()
+	update_selection()
 
-func _draw():
-	if !ChartEditor.selection.has(note): return
-	
-	var rect = Rect2(head.position, head.size)
-	if hold.visible:
-		rect = rect.merge(Rect2(hold.position, hold.size))
-	
-	draw_rect(rect, Color.WHITE, false, 2.0)
+func update_selection():
+	#modulate.a = 0.75 if ChartEditor.selection.has(note) else 1.0
+	#print("pls", ChartEditor.selection.has(note))
+	for node in [head, head_color, hold, hold_color]:
+		node.set_instance_shader_parameter("selected", ChartEditor.selection.has(note))
 
 func update_visuals(columns: int, pixels_per_second: float, timing_revision: int, preview: bool = false) -> void:
 	var state := [direction, columns, note.time, note.length, pixels_per_second, timing_revision, preview]
@@ -115,31 +86,36 @@ func update_visuals(columns: int, pixels_per_second: float, timing_revision: int
 	hold.visible = note.length > 0.0
 	hold.size = Vector2(note_size, maxf(0.0, note.length * pixels_per_second))
 	hold_color.size = hold.size
-	queue_redraw()
 
 # THIS IS SO GAYY
 func _on_note_gui_input(event):
-	if !note: return
+	if !note: 
+		return
 	
-	if event is InputEventMouseButton:
-		if event.pressed && event.button_index == MouseButton.MOUSE_BUTTON_LEFT && event.shift_pressed:
-			if ChartEditor.selection.has(note):
-				ChartEditor.remove_from_selection(note)
-			else:
-				ChartEditor.add_to_selection(note)
-			accept_event()
-		elif event.pressed && event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
-			var notes = receptor.notes
-			var removed_note = note
-			ChartEditor.undo_redo.create_action("Remove Note")
+	if event is not InputEventMouseButton:
+		return
+	
+	if !event.pressed:
+		return
+	
+	if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.shift_pressed:
+		if ChartEditor.selection.has(note):
 			ChartEditor.remove_from_selection(note)
-			ChartEditor.undo_redo.add_do_reference(note)
-			ChartEditor.undo_redo.add_do_method(func():
-				notes.erase(removed_note)
-			)
-			
-			ChartEditor.undo_redo.add_undo_method(func():
-				notes.append(removed_note)
-			)
-			ChartEditor.undo_redo.commit_action()
-			accept_event()
+		else:
+			ChartEditor.add_to_selection(note)
+		accept_event()
+	elif event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
+		var notes = receptor.notes
+		var removed_note = note
+		ChartEditor.undo_redo.create_action("Remove Note")
+		ChartEditor.remove_from_selection(note)
+		ChartEditor.undo_redo.add_do_reference(note)
+		ChartEditor.undo_redo.add_do_method(func():
+			notes.erase(removed_note)
+		)
+		
+		ChartEditor.undo_redo.add_undo_method(func():
+			notes.append(removed_note)
+		)
+		ChartEditor.undo_redo.commit_action()
+		accept_event()

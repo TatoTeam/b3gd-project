@@ -19,7 +19,6 @@ var to_tween = {
 var force_ignore = false
 var multiply = false
 
-
 func init():
 	pass
 
