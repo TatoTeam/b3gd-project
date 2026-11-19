@@ -15,12 +15,17 @@ run/main_scene="uid://c0cmejkc8gn3b"
 config/features=PackedStringArray("4.8", "Mobile")
 config/icon="uid://bf7uafq260dh6"
 
+[audio]
+
+driver/output_latency=9
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
