@@ -54,13 +54,8 @@ folder_colors={
 
 [global_group]
 
-SongAudioPlayer=""
-NoteManager=""
 CameraTargets=""
 SceneCamera=""
-ChartLoader=""
-ChartSource=""
-EventPlayer=""
 
 [input]
 
