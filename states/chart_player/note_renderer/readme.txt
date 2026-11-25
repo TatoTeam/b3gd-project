@@ -1,1 +1,1 @@
-Here for git reasons but also heres where you put your custom events
+Here for git reasons but also heres where you put your custom note renderers

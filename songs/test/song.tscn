@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfywqgr404x2a" path="res://b3gd/chart_player/chart_player.tscn" id="1_03yvb"]
 [ext_resource type="PackedScene" uid="uid://bt4wd4ck4gv3f" path="res://prefabs/stages/test/test.tscn" id="2_iai5w"]
-[ext_resource type="Resource" uid="uid://ch2goeekdj85r" path="res://songs/test/chart.tres" id="2_u5eyn"]
+[ext_resource type="Resource" uid="uid://bv0jqmdtp7hm3" path="res://songs/test/chart.tres" id="2_u5eyn"]
 [ext_resource type="PackedScene" uid="uid://5788qcu5udwe" path="res://prefabs/characters/test/test.tscn" id="3_u5eyn"]
 [ext_resource type="PackedScene" uid="uid://cj3squ17mo2kj" path="res://prefabs/characters/speaker/speaker.tscn" id="4_iai5w"]
 
@@ -10,12 +10,6 @@
 
 [node name="ChartPlayer" parent="." unique_id=192656738 instance=ExtResource("1_03yvb")]
 chart = ExtResource("2_u5eyn")
-
-[node name="Camera3D" parent="ChartPlayer/UI/Strumlines/StrumlinesSubViewport" parent_id_path=PackedInt32Array(192656738, 8042913) index="2" unique_id=955848793]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-fov = 19.0
-
-[node name="Node2D" type="Node2D" parent="ChartPlayer/UI/Strumlines" parent_id_path=PackedInt32Array(192656738, 1338891566) index="1" unique_id=822943403]
 
 [node name="TestBackground" parent="." unique_id=2125051436 instance=ExtResource("2_iai5w")]
 position = Vector2(-69, 24)
@@ -48,5 +42,3 @@ position = Vector2(569, 0)
 
 [node name="MiddlePosition" type="Marker2D" parent="CameraTargets" unique_id=689350568]
 position = Vector2(0, -104)
-
-[editable path="ChartPlayer"]
